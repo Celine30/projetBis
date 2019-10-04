@@ -1,0 +1,26 @@
+body{
+    margin: 0px 20px 0px 20px;
+}
+
+.hautetbas{
+    color:red;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height:120px;
+}
+
+.haut{
+    border-bottom:2px solid darkgray;
+    margin-bottom: 20px;
+}
+
+.bas{
+    border-top:2px solid darkgray;
+    margin-top: 30px;
+}
+
+#logoGBAF{
+    width: 60px;
+    height:70px;
+}

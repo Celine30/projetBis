@@ -1,0 +1,55 @@
+{%  extends 'template.twig' %}
+
+{% block content %}
+
+<link href="public/css/form.css" rel="stylesheet">
+
+    <h1>FORMULAIRE D'INSCRIPTION</h1>
+
+    <form id="inscription" method="post" action="index.php?action=post-inscription">
+        <div>
+            <label for="text">Nom</label>
+            <input type="text" id="last_name" name="last_name" required="required" placeholder="notre nom">
+        </div>
+
+        <div>
+            <label for="text">Prénom</label>
+            <input type="text" id="first_name" name="first_name" required="required" placeholder="notre nom">
+        </div>
+
+        <div>
+            <label for="text">Username</label>
+            <input type="text" id="username" name="username" required="required" placeholder="notre nom">
+        </div>
+
+        <div>
+            <label for="user_password">Votre mot de passe</label>
+            <input type="password" id="user_password" name="user_password" required="required" placeholder="mot de passe" >
+        </div>
+
+         <div>
+            <label id="question" for="question">Question secrète</label>
+             <select name="question" id="question">
+                 <option value="mother">Quel est le prénom de votre mère?</option>
+                 <option value="pets">Quel était le nom de votre premier animal de compagnie?</option>
+                 <option value="color">Quel est votre couleur préférée?</option>
+             </select>
+            <label for="answer" id="answer">Réponse</label>
+            <input type="text" id="answer" name="answer" required="required" placeholder="réponse à la question secrete" ">
+        </div>
+
+        <div class="submit">
+            <input type="submit" id="submit" value="s'inscrire" />
+        </div>
+
+        <div class="connexion">
+            <a href="index.php?action=connexion"> Vous avez déjà un compte </a>
+        </div>
+    </form>
+
+
+{% endblock %}
+
+
+
+

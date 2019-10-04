@@ -1,0 +1,37 @@
+{%  extends 'template.twig' %}
+
+{% block content %}
+
+<link href="public/css/form.css" rel="stylesheet">
+
+    <h1>FORMULAIRE DE CONNEXION</h1>
+
+    <form id="connexion" method="post" action="verifMDP.php">
+        <div>
+            <label for="text">Nom</label>
+            <input type="text" id="pseudo" name="pseudo" required="required" placeholder="nom" value="nom">
+        </div>
+
+        <div>
+            <label for="mot_de_passe">Votre mot de passe</label>
+            <input type="password" id="mot_de_passe" name="mot_de_passe" required="required" placeholder="mot de passe" value="mdp">
+        </div>
+
+        <div>
+            <label id="connexion" for="checkbox">Se souvenir de moi</label>
+            <input type="checkbox" id="checkbox" name="checkbox" placeholder="Votre checkbox" >
+        </div>
+
+        <div class="submit">
+            <input type="submit" id="submit" value="Connexion" />
+        </div>
+
+        <div>
+            <a href="index.php?action=inscription">Créer un compte</a>
+        </div>
+        </form>
+
+
+{% endblock %}
+
+
