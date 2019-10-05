@@ -3,6 +3,8 @@
 require 'vendor/autoload.php';
 require_once('model/UserManager.php');
 
+use Tracy\Debugger;
+Debugger::enable();
 
 function twig()
 {
