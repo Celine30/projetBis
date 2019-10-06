@@ -28,7 +28,8 @@ function inscription(){
 
 
 function usercreat($last_name, $first_name, $username, $user_password, $question, $answer ){
-     $twig=twig();
+
+    $twig=twig();
 
     $UserManager=new UserManager();
 

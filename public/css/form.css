@@ -1,20 +1,6 @@
 
-form#connexion div, form#inscription div{
-    margin:auto;
-    max-width:400px;
-    margin-bottom: 20px;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-}
 
-form#connexion div:first-child, form#inscription div:first-child{
-    padding-top: 20px;
-}
 
-form{
-    margin: auto;
-}
 
 h1{
     margin-bottom: 20px;
@@ -27,23 +13,12 @@ h1{
 }
 
 label{
-    width: 200px;
     background: rgba(0,0,0,0.2);
     text-align: center;
     border-radius: 10px 100px / 120px;
 }
 
 
-#question, #reponse{
-    width: 100%!important;
-    text-align: left;
-    padding-left: 20px;
-
-}
-
-input{
-    width: 190px;
-}
 
 a, #submit{
     margin: auto;
