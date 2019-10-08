@@ -1,6 +1,10 @@
 <?php
 
-require('controller/controller.php');
+require '../src/vendor/autoload.php';
+
+require('../src/controller/controller.php');
+
+
 
 switch ($_GET['action']) {
     case 'connexion':
