@@ -1,5 +1,5 @@
 .idea/
 .DS_Store
-src/vendor/
+vendor/
 public/images/
 src/view/ancien/
