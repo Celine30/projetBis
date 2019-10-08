@@ -1,12 +1,22 @@
 <?php
 
-require '../src/vendor/autoload.php';
 
-require('../src/controller/controller.php');
+use Project\controller\Router;
+
+require '../vendor/autoload.php';
+
+
+$router= new Router();
+$router->run();
 
 
 
-switch ($_GET['action']) {
+
+
+/*require '../src/controller/controller.php';
+
+
+ switch ($_GET['action']) {
     case 'connexion':
         connexion();
         break;
@@ -26,3 +36,5 @@ switch ($_GET['action']) {
         inscription();
 
 }
+
+*/
