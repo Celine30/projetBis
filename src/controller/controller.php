@@ -1,7 +1,7 @@
 <?php
 
-require 'vendor/autoload.php';
-require_once('model/UserManager.php');
+use Project\model;
+
 
 use Tracy\Debugger;
 Debugger::enable();
@@ -17,8 +17,8 @@ function twig()
 
 
 function connexion(){
-     $twig=twig();
-echo $twig->render('connexion.twig' );
+    $twig=twig();
+    echo $twig->render('connexion.twig' );
 }
 
 function inscription(){
@@ -28,12 +28,11 @@ function inscription(){
 
 
 function usercreat($last_name, $first_name, $username, $user_password, $question, $answer ){
-     $twig=twig();
 
-    $UserManager=new UserManager();
+    $twig=twig();
+    $UserManager = new \project\model\UserManager();
+    $creat = $UserManager->userInsert($last_name, $first_name, $username, $user_password,$question, $answer );
 
-    $creat=$UserManager->userInsert($last_name, $first_name, $username, $user_password,$question, $answer );
-
-  echo $twig->render('connected.twig' );
+    echo $twig->render('connected.twig' );
 
 }

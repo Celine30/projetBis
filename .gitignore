@@ -2,4 +2,4 @@
 .DS_Store
 vendor/
 public/images/
-view/ancien/
+src/view/ancien/
