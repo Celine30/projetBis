@@ -1,6 +1,37 @@
 <?php
 
-use Project\model;
+
+namespace Project\controller;
+
+use Twig\Environment;
+
+class UserController
+{
+
+    protected $twig = null;
+
+ public function __construct(Environment $twig)
+    {
+
+        $this->twig = $twig;
+    }
+
+
+
+function connexion(){
+    echo $this->twig->render('connexion.twig' );
+}
+
+function inscription(){
+    echo $this->twig->render('inscription.twig' );
+}
+
+function error(){
+     echo 'oups';
+}
+
+}
+/*use Project\model;
 
 
 use Tracy\Debugger;
@@ -35,4 +66,4 @@ function usercreat($last_name, $first_name, $username, $user_password, $question
 
     echo $twig->render('connected.twig' );
 
-}
+*/
