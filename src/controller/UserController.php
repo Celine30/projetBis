@@ -4,31 +4,29 @@
 namespace Project\controller;
 
 use Twig\Environment;
+use Tracy\Debugger;
+Debugger::enable();
 
 class UserController
 {
 
     protected $twig = null;
 
- public function __construct(Environment $twig)
-    {
-
+    public function __construct(Environment $twig){
         $this->twig = $twig;
     }
 
+    function connexion(){
+        echo $this->twig->render('connexion.twig' );
+    }
 
+    function inscription(){
+        echo $this->twig->render('inscription.twig' );
+    }
 
-function connexion(){
-    echo $this->twig->render('connexion.twig' );
-}
-
-function inscription(){
-    echo $this->twig->render('inscription.twig' );
-}
-
-function error(){
-     echo 'oups';
-}
+    function error(){
+        echo 'oups';
+    }
 
 }
 /*use Project\model;
