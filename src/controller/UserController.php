@@ -6,6 +6,7 @@ namespace Project\controller;
 use Twig\Environment;
 use Tracy\Debugger;
 Debugger::enable();
+use Project\model;
 
 class UserController
 {
@@ -17,51 +18,38 @@ class UserController
     }
 
     function connexion(){
-        echo $this->twig->render('connexion.twig' );
+        return $this->twig->render('connexion.twig' );
     }
 
     function inscription(){
-        echo $this->twig->render('inscription.twig' );
+        return $this->twig->render('inscription.twig' );
     }
 
     function error(){
         echo 'oups';
     }
 
-}
-/*use Project\model;
+    function control_double(){
+        if(count(array_filter($_POST))===count($_POST)) {
+         $UserManager = new model\UserManager();
+         $UserManager->userControl($_POST['last_name'], $_POST['first_name'], $_POST['username'], $_POST['user_password'], $_POST['question'], $_POST['answer']);
+        }else{
+            echo 'merci de tout remplir';
+            return $this->twig->render('inscription.twig' );
+        }
+    }
 
+    function connected(){
+        if(count(array_filter($_POST))===count($_POST)) {
+           $UserManager = new model\UserManager();
+        }else{
+            echo 'merci de tout remplir';
+            return $this->twig->render('connexion.twig' );
+        }
+    }
 
-use Tracy\Debugger;
-Debugger::enable();
-
-function twig()
-{
-    $loader = new \Twig\Loader\FilesystemLoader(__DIR__ . '/../view');
-    $twig = new \Twig\Environment($loader, [
-        'cache' => false,
-    ]);
-   return $twig;
-}
-
-
-function connexion(){
-    $twig=twig();
-    echo $twig->render('connexion.twig' );
-}
-
-function inscription(){
-    $twig=twig();
-    echo $twig->render('inscription.twig' );
+    function mdp_forget(){
+        return $this->twig->render('mdpForget.twig' );
+    }
 }
 
-
-function usercreat($last_name, $first_name, $username, $user_password, $question, $answer ){
-
-    $twig=twig();
-    $UserManager = new \project\model\UserManager();
-    $creat = $UserManager->userInsert($last_name, $first_name, $username, $user_password,$question, $answer );
-
-    echo $twig->render('connected.twig' );
-
-*/

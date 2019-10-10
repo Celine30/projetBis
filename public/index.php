@@ -1,7 +1,7 @@
 <?php
 
 
-use Project\controller\Router;
+use Project\Router;
 
 require '../vendor/autoload.php';
 
