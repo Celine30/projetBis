@@ -11,11 +11,14 @@
         "twig/twig": "^2.0",
         "tracy/tracy": "^2.7"
     },
-
     "autoload": {
-        "psr-4": {
-            "Project\\": "src/"
-        }
-
+        "classmap": [
+            "Router.php",
+            "src",
+            "src/controller",
+            "src/model",
+            "src/view"
+        ]
     }
 }
+
