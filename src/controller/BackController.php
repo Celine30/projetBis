@@ -1,9 +1,9 @@
 <?php
 
-namespace Project\controller;
+namespace Project\Controller;
 
 use Twig\Environment;
-use Project\model;
+use Project\Model;
 
 
 

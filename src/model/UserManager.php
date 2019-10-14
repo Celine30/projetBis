@@ -1,6 +1,6 @@
 <?php
 
-namespace Project\model;
+namespace Project\Model;
 
 /**
  * Class UserManager

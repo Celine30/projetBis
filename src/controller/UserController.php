@@ -1,12 +1,12 @@
 <?php
 
 
-namespace Project\controller;
+namespace Project\Controller;
 
 use Twig\Environment;
 use Tracy\Debugger;
 Debugger::enable();
-use Project\model;
+use Project\Model;
 
 class UserController
 {

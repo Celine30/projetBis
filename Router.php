@@ -2,7 +2,7 @@
 
 
 namespace Project;
-use Project\controller;
+use Project\Controller;
 
 class Router
 {
@@ -53,7 +53,7 @@ class Router
 
     function display()
     {
-        $controller = 'Project\controller\\'. $this->controller;
+        $controller = 'Project\Controller\\'. $this->controller;
         $UserController = new $controller($this->twig);
         $method = $this->method;
         $response = $UserController->$method();
