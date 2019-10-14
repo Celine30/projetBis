@@ -22,7 +22,7 @@ class Router
 
     function setTemplate()
     {
-        $loader = new \Twig\Loader\FilesystemLoader(__DIR__ . '/src/view');
+        $loader = new \Twig\Loader\FilesystemLoader(__DIR__ . '/view');
         $this->twig = new \Twig\Environment($loader, [
             'cache' => false,
         ]);
