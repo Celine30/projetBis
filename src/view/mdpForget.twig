@@ -7,16 +7,73 @@
 
         <h1>FORMULAIRE DE RE INITIALISATION DE MOT DE PASSE</h1>
 
-        <form id="connexion" method="post" action="index.php?action=back!watch">
-
+        {% if session.username is not defined  %}
+            <form id="formReset" method="post" action="index.php?action=back!watch_question">
                 <div class="form-group">
-                    <label  for="pseudo">Votre pseudo</label>
-                    <input  type="text" class="form-control" id="pseudo" aria-describedby="pseudo" placeholder="Votre pseudo" name="pseudo"required="required">
+                    <label  for="username">Votre username</label>
+                    <input  type="text" class="form-control" id="username" aria-describedby="pseudo" placeholder="Votre username" name="username"required="required" value="{{ session.username }}">
                 </div>
-                <div class="form-group">
+            {% else %}
+            <label  for="username">Votre username</label><div>{{ session.username }}</div><br/>
+        {% endif %}
+
+
+        {% if session.question is not defined  %}
+            <div class="form-group">
                     <input type="submit" id="submit" value="afficher la question secrete" />
                 </div>
-        </form>
+            </form>
+
+        {% else %}
+        {% if answer != 'ok' %}
+            {% if session.question == 'mother'%}
+                    <div>  Quel est le prénom de votre mère?</div>
+                {% elseif session.question == 'pets'  %}
+                    <div>Quel était le nom de votre premier animal de compagnie?</div>
+                {% elseif session.question == 'color'  %}
+                    <div>Quelle est votre couleur préférée?</div>
+                 {% else %}
+                    <div style="color:red">Désolée, une erreur s'est produite</div>
+            {% endif %}
+        {% endif %}
+
+            {% if session.question == 'mother' or session.question == 'pets' or session.question == 'color' %}
+
+                {% if answer != 'ok' %}
+                <form id="formReset" method="post" action="index.php?action=back!control_question">
+                        <div class="form-group">
+                            <label for="answer">Votre réponse</label>
+                            <input type="text" class="form-control" id="answer" aria-describedby="answer" placeholder="Votre réponse" name="answer" required="required">
+                        </div>
+
+                   {% if answer == 'false' %}
+                       <div class="alert alert-warning"> La réponse à la question est erronée. </div>
+                   {% endif %}
+
+                   <div class="form-group">
+                       <input type="submit" id="submit" value="Répondre" />
+                   </div>
+                 </form>
+
+               {% endif %}
+
+            {% endif %}
+
+            {% if answer == 'ok'  %}
+            <form id="formReset" method="post" action="index.php?action=back!reset_mdp">
+                <div class="form-group">
+                    <label for="user_password">Tapez votre nouveau password</label>
+                    <input type="password" class="form-control" id="user_password" placeholder="Password" name="user_password" required="required">
+                </div>
+
+                <div class="form-group">
+                    <input type="submit" id="submit" value="Envoyer" />
+                </div>
+
+            {% endif %}
+
+{% endif %}
+
 
      </div>
 
