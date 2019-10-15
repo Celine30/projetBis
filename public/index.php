@@ -1,6 +1,5 @@
 <?php
 
-
 use Project\Router;
 
 require '../vendor/autoload.php';
