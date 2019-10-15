@@ -16,22 +16,22 @@ class UserController
         $this->twig = $twig;
     }
 
-    function connexion(){
+    public function connexion(){
         return $this->twig->render('connexion.twig', ['register'=>[
             'username'=> $_COOKIE['username'],
             'password'=> $_COOKIE['password']
         ]]);
     }
 
-    function inscription(){
+    public function inscription(){
         return $this->twig->render('inscription.twig' );
     }
 
-    function error(){
+    public function error(){
         echo 'oups';
     }
 
-    function control_double(){
+    public function control_double(){
         if(count(array_filter($_POST))===count($_POST)) {
 
             $UserManager = new model\UserManager();
@@ -46,7 +46,7 @@ class UserController
         }
     }
 
-    function connected(){
+    public function connected(){
         if(count(array_filter($_POST))===count($_POST)) {
            $UserManager = new model\UserManager();
 
@@ -56,8 +56,13 @@ class UserController
         }
     }
 
-    function mdp_forget(){
+    public function mdp_forget(){
         return $this->twig->render('mdpForget.twig' );
+    }
+
+
+    public function profile_show(){
+        return $this->twig->render('profile.twig' );
     }
 }
 
