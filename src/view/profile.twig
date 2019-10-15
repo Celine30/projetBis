@@ -2,6 +2,36 @@
 
 {% block content %}
 
-    Ton profil ...
+{% include("menu.twig") %}
+
+
+    <h1> Votre Profil </h1>
+
+    <div class="row">
+        <div class="col-xs-6"> Votre nom </div>
+        <div class="col-xs-6"> {{ first_name }} </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-6"> Votre prénom </div>
+        <div class="col-xs-6"> {{ last_name }} </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-6"> La question </div>
+        <div class="col-xs-6"> {{ question }} </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-6"> Votre réponse </div>
+        <div class="col-xs-6"> {{ answer }} </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-6"> Votre password </div>
+        <div class="col-xs-6"> {{ password }}</div>
+    </div>
+
+
 
 {% endblock %}
