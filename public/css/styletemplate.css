@@ -6,6 +6,7 @@ body{
     color:red;
     display: flex;
     justify-content: space-between;
+    padding: 0 120px 0 120px;
     align-items: center;
     height:120px;
 }
