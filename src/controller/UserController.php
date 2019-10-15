@@ -17,7 +17,10 @@ class UserController
     }
 
     function connexion(){
-        return $this->twig->render('connexion.twig' );
+        return $this->twig->render('connexion.twig', ['register'=>[
+            'username'=> $_COOKIE['username'],
+            'password'=> $_COOKIE['password']
+        ]]);
     }
 
     function inscription(){
@@ -33,6 +36,7 @@ class UserController
 
             $UserManager = new model\UserManager();
             $inscription = $UserManager->userControl($_POST['last_name'], $_POST['first_name'], $_POST['username'], $_POST['user_password'], $_POST['question'], $_POST['answer']);
+
             if($inscription=='valide'){
                 return $this->twig->render('connected.twig' );
             }

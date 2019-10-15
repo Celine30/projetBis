@@ -72,7 +72,18 @@ class BackController
 
        if (isset($Mdp)) {
            if (password_verify($_POST['user_password'], $Mdp)) {
-               return $this->twig->render('connected.twig');
+
+               if(isset($_POST['register'])) {
+                   $BackManager->createCookies($_POST['username'],$_POST['user_password']);
+                   return $this->twig->render('connected.twig');
+               }
+
+               if(isset($_POST['wipe_register'])) {
+                   $BackManager->wipeCookies();
+                   return $this->twig->render('connexion.twig');
+               }
+
+
            }else{
                return $this->twig->render('connexion.twig',array(
                    'username'=> $_POST['username'],

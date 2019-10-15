@@ -44,4 +44,24 @@ class BackManager extends Manager
        $Mdp = $data['password'];
        return $Mdp;
    }
+
+   public function createCookies($username, $password)
+   {
+   echo 'oui, cookie crée';
+   	setcookie('username',$username,time()+365*24*3600, null, null, false, true);
+	setcookie('password',$password,time()+365*24*3600, null, null, false, true);
+   }
+
+public function wipeCookies()
+   {
+   echo 'oui, cookie effacé';
+
+   setcookie('username');
+   unset($_COOKIE['username']);
+
+   setcookie('username');
+   unset($_COOKIE['password']);
+
+   }
+
 }
