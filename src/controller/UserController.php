@@ -17,10 +17,23 @@ class UserController
     }
 
     public function connexion(){
-        return $this->twig->render('connexion.twig', ['register'=>[
-            'username'=> $_COOKIE['username'],
-            'password'=> $_COOKIE['password']
-        ]]);
+
+        if (isset($_COOKIE['username'])&&isset($_COOKIE['password'])) {
+            return $this->twig->render('connexion.twig', ['register' => [
+                'username' => $_COOKIE['username'],
+                'password' => $_COOKIE['password']
+            ]]);
+        }else{
+            return $this->twig->render('connexion.twig');
+        }
+    }
+
+    public function logout(){
+
+        $_SESSION['username']="";
+        session_destroy();
+        echo 'Vous êtes deconnecté';
+        header('location:index.php?action=user!connexion');
     }
 
     public function inscription(){
