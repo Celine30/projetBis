@@ -4,6 +4,8 @@
 namespace Project;
 use Project\Controller;
 
+use Twig\Extension\DebugExtension;
+
 class Router
 {
     private $twig = null;
@@ -25,7 +27,11 @@ class Router
         $loader = new \Twig\Loader\FilesystemLoader(__DIR__ . '/view');
         $this->twig = new \Twig\Environment($loader, [
             'cache' => false,
+            'debug' => true
         ]);
+
+        $this->twig->addExtension(new DebugExtension());
+        $this->twig->addGlobal('session', $_SESSION);
     }
 
     public function parseUrl()
