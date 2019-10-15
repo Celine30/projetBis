@@ -14,7 +14,7 @@
 <header  id="menu" class="hautetbas haut">
     <img id="logoGBAF" src="images/logoGBAF.jpg" alt="logoGBAF" title="logoGBAF">
     <div>
-        <p>Bonjour <a href="index.php?action=user!profile_show" title="Cliquez pour modifier votre profil">{{ session.username }}</a></p>
+        <p>Bonjour {{ session.username }}</a></p>
         {% if session.username is defined %}
         <a href = "index.php?action=user!logout" >Se deconnecter</a>
         {% endif %}
@@ -24,7 +24,11 @@
 
   <div class="container">
 
-{% block content %}{% endblock %}
+{% block content %}
+
+
+
+{% endblock %}
 
   </div>
 
