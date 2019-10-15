@@ -19,6 +19,7 @@ class BackController
     public function watch_question()
     {
         if (isset($_POST['username'])) {
+
             $_SESSION = [];
 
             $_SESSION['username'] = $_POST['username'];
@@ -96,7 +97,7 @@ class BackController
                ));
            }
       }else{
-           echo ' ce username n\'exise pas';
+           echo ' ce username n\'existe pas';
        }
     }
 
