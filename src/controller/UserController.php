@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Project\Controller;
 
 use Twig\Environment;
@@ -31,8 +30,12 @@ class UserController
 
     function control_double(){
         if(count(array_filter($_POST))===count($_POST)) {
-         $UserManager = new model\UserManager();
-         $UserManager->userControl($_POST['last_name'], $_POST['first_name'], $_POST['username'], $_POST['user_password'], $_POST['question'], $_POST['answer']);
+
+            $UserManager = new model\UserManager();
+            $inscription = $UserManager->userControl($_POST['last_name'], $_POST['first_name'], $_POST['username'], $_POST['user_password'], $_POST['question'], $_POST['answer']);
+            if($inscription=='valide'){
+                return $this->twig->render('connected.twig' );
+            }
         }else{
             echo 'merci de tout remplir';
             return $this->twig->render('inscription.twig' );
@@ -42,6 +45,7 @@ class UserController
     function connected(){
         if(count(array_filter($_POST))===count($_POST)) {
            $UserManager = new model\UserManager();
+
         }else{
             echo 'merci de tout remplir';
             return $this->twig->render('connexion.twig' );

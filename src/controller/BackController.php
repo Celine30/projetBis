@@ -66,7 +66,22 @@ class BackController
 
     }
 
+    public function check_mdp(){
+        $BackManager = new Model\BackManager();
+        $Mdp = $BackManager->checkPassword($_POST['username']);
 
-
+       if (isset($Mdp)) {
+           if (password_verify($_POST['user_password'], $Mdp)) {
+               return $this->twig->render('connected.twig');
+           }else{
+               return $this->twig->render('connexion.twig',array(
+                   'username'=> $_POST['username'],
+                   'erreur'=>'<p class="alert alert-warning"> erreur d\'authentification </p>'
+               ));
+           }
+      }else{
+           echo ' ce username n\'exise pas';
+       }
+    }
 
 }

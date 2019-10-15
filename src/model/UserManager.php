@@ -18,17 +18,20 @@ class UserManager extends Manager
      */
     public function userControl($last_name, $first_name, $username,$user_password,$question,$answer )
     {
-        $bdd = $this->dbConnect();
+        $user_password_hash = password_hash($user_password, PASSWORD_DEFAULT);
+
+        $bdd = $this -> dbConnect();
 
         $controlOne = $bdd->QUERY("SELECT username FROM userbank WHERE username='$username'");
+
         if ($data = $controlOne->fetch()) {
             echo ' username existe deja ';
             $controlOne = false;
-
         }
 
         $controlTwo = $bdd->QUERY("SELECT nom FROM userbank WHERE nom='$last_name'");
-        if ($data = $controlTwo->fetch()) {
+
+        if ($data = $controlTwo -> fetch()) {
             $controlThree = $bdd->QUERY("SELECT prenom FROM userbank WHERE prenom='$first_name'");
             if ($data = $controlThree->fetch()) {
                 echo ' / Nom et prénom existe deja ';
@@ -47,12 +50,13 @@ class UserManager extends Manager
                 'nom' => $last_name,
                 'prenom' => $first_name,
                 'username' => $username,
-                'password' => $user_password,
+                'password' => $user_password_hash,
                 'question' => $question,
                 'reponse' => $answer
 
             ));
-
+            $inscription='valide';
+            return $inscription;
         }
     }
 }

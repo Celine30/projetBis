@@ -34,4 +34,14 @@ class BackManager extends Manager
        $bdd = $this->dbConnect();
        $bdd->exec('UPDATE userbank SET password = "'.$password.'" WHERE username = "'.$username.'"');
    }
+
+   public function checkPassword($username)
+   {
+       $bdd = $this->dbConnect();
+       $reqMdp = $bdd->QUERY('SELECT password FROM userbank WHERE username="'.$username.'"');
+       $data = $reqMdp->fetch();
+
+       $Mdp = $data['password'];
+       return $Mdp;
+   }
 }
