@@ -3,7 +3,7 @@ body{
 }
 
 .hautetbas{
-    color:red;
+    color:gray;
     display: flex;
     justify-content: space-between;
     padding: 0 120px 0 120px;
