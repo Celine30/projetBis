@@ -4,29 +4,35 @@
 
 <link href="css/form.css" rel="stylesheet">
 
-
- <div class="container">
-
-
     <h1>FORMULAIRE DE CONNEXION</h1>
 
-    <form id="connexion" method="post" action="verifMDP.php">
-
+    <form id="connexion" method="post" action="index.php?action=back!check_mdp">
 
         <div class="form-group">
-            <label  for="pseudo">Votre pseudo</label>
-            <input  type="text" class="form-control" id="pseudo" aria-describedby="pseudo" placeholder="Votre pseudo" name="pseudo">
+            <label  for="username">Votre username</label>
+            <input  type="text" class="form-control" id="username" aria-describedby="username" placeholder="Votre username" name="username" value="{{ register.username }}">
         </div>
 
         <div class="form-group">
             <label  for="user_password">Votre mot de passe</label>
-            <input  type="text" class="form-control" id="user_password" aria-describedby="user_password" placeholder="Votre mot de passe" name="user_password" required="required">
+            <input  type="password" class="form-control" id="user_password" aria-describedby="user_password" placeholder="Votre mot de passe" name="user_password" required="required" value="{{ register.password }}">
         </div>
 
+        {{ erreur|raw }}
+
+        {% if register.username is not defined%}
         <div class="form-group">
-            <label id="connexion" for="checkbox">Se souvenir de moi</label>
-            <input type="checkbox" id="checkbox" name="checkbox" placeholder="Votre checkbox" >
+            <label id="register" for="register">Se souvenir de moi</label>
+            <input type="checkbox" id="register" name="register" placeholder="register" >
         </div>
+        {% else %}
+        <div class="form-group">
+            <label id="wipe_register" for="wipe_register">Ne plus se souvenir de moi</label>
+            <input type="checkbox" id="wipe_register" name="wipe_register" placeholder="wipe_register" >
+        </div>
+        {% endif %}
+
+
 
         <div class="form-group">
             <input type="submit" id="submit" value="Connexion" />
@@ -39,11 +45,7 @@
             <a href="index.php?action=user!inscription">Créer un compte</a>
         </div>
 
-
-        </form>
-
-
- </div>
+    </form>
 
 {% endblock %}
 

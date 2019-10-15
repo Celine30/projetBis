@@ -1,9 +1,9 @@
 <?php
 
-namespace Project\controller;
+namespace Project\Controller;
 
 use Twig\Environment;
-use Project\model;
+use Project\Model;
 
 
 
@@ -66,7 +66,38 @@ class BackController
 
     }
 
+    public function check_mdp(){
+        $BackManager = new Model\BackManager();
+        $Mdp = $BackManager->checkPassword($_POST['username']);
 
+       if (isset($Mdp)) {
+           if (password_verify($_POST['user_password'], $Mdp)) {
 
+               $_SESSION['username'] = $_POST['username'];
+
+               if(isset($_POST['register'])) {
+                   $BackManager->createCookies($_POST['username'],$_POST['user_password']);
+                   return $this->twig->render('connected.twig', array(
+                    'session' => $_SESSION ));
+
+               }elseif(isset($_POST['wipe_register'])) {
+                   $BackManager->wipeCookies();
+                   return $this->twig->render('connexion.twig');
+
+               }else{
+                    return $this->twig->render('connected.twig', array(
+                    'session' => $_SESSION ));
+               }
+
+           }else{
+               return $this->twig->render('connexion.twig',array(
+                   'username'=> $_POST['username'],
+                   'erreur'=>'<p class="alert alert-warning"> erreur d\'authentification </p>'
+               ));
+           }
+      }else{
+           echo ' ce username n\'exise pas';
+       }
+    }
 
 }

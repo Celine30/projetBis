@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Project\model;
+namespace Project\Model;
 
 
 
@@ -34,4 +34,31 @@ class BackManager extends Manager
        $bdd = $this->dbConnect();
        $bdd->exec('UPDATE userbank SET password = "'.$password.'" WHERE username = "'.$username.'"');
    }
+
+   public function checkPassword($username)
+   {
+       $bdd = $this->dbConnect();
+       $reqMdp = $bdd->QUERY('SELECT password FROM userbank WHERE username="'.$username.'"');
+       $data = $reqMdp->fetch();
+
+       $Mdp = $data['password'];
+       return $Mdp;
+   }
+
+   public function createCookies($username, $password)
+   {
+   	setcookie('username',$username,time()+365*24*3600, null, null, false, true);
+	setcookie('password',$password,time()+365*24*3600, null, null, false, true);
+   }
+
+public function wipeCookies()
+   {
+   setcookie('username');
+   unset($_COOKIE['username']);
+
+   setcookie('password');
+   unset($_COOKIE['password']);
+
+   }
+
 }

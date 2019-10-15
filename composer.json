@@ -12,13 +12,9 @@
         "tracy/tracy": "^2.7"
     },
     "autoload": {
-        "classmap": [
-            "Router.php",
-            "src",
-            "src/controller",
-            "src/model",
-            "src/view"
-        ]
+          "psr-4": {
+             "Project\\": "src/"
+         }
     }
 }
 
