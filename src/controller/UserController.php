@@ -75,7 +75,21 @@ class UserController
 
 
     public function profile_show(){
-        return $this->twig->render('profile.twig' );
+        $UserManager = new model\UserManager();
+        $data = $UserManager->user_profile($_SESSION['username']);
+
+        return $this->twig->render('profile.twig', array(
+            'first_name'=>$data['nom'],
+            'last_name'=>$data['prenom'],
+            'question'=>$data['question'],
+            'answer'=>$data['reponse'],
+            'password'=>"XXXXXXXXX",
+
+        ));
+    }
+
+    public function home_show(){
+        return $this->twig->render('connected.twig' );
     }
 }
 

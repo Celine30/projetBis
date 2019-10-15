@@ -59,4 +59,18 @@ class UserManager extends Manager
             return $inscription;
         }
     }
+
+    public function user_profile($username)
+    {
+        $bdd = $this->dbConnect();
+
+        $profil = $bdd->QUERY("SELECT nom,prenom,password,question,reponse FROM userbank WHERE username='$username'");
+        $data = $profil->fetch();
+        return $data;
+
+    }
+
+
+
+
 }
