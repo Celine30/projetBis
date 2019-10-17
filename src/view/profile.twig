@@ -1,37 +1,78 @@
 {%  extends 'template.twig' %}
 
+{% import 'macro.twig'as macro %}
+
 {% block content %}
+
+    <link href="css/form.css" rel="stylesheet">
+
 
 {% include("menu.twig") %}
 
+<div class="col-lg-offset-3 col-lg-6 ">
 
     <h1> Votre Profil </h1>
+   {%   if change is defined %}
+        <form id="change_profile" method="post" action="index.php?action=back!change_profile">
+   {% endif %}
 
-    <div class="row">
-        <div class="col-xs-6"> Votre nom </div>
-        <div class="col-xs-6"> {{ first_name }} </div>
+            <div class="row">
+                <div class="col-xs-4"><label  for="first_name">Nom</label></div>
+                {%   if change is defined %}
+                    <div class="col-xs-3"> {{ session.nom }} </div>
+                    <input  class="col-xs-5"  type="text" id="first_name" aria-describedby="first_name"  name="first_name" placeholder="{{ session.nom }}">
+                    {% else %}
+                    <div class="col-xs-offset-2 col-xs-6"> {{ session.nom }} </div>
+                {% endif %}
+            </div>
+
+            <div class="row">
+                <div class="col-xs-4"><label for="last_name">Prénom</label></div>
+                {%   if change is defined %}
+                    <div class="col-xs-3"> {{ session.prenom }} </div>
+                    <input  class="col-xs-5"  type="text" id="last_name" aria-describedby="last_name"  name="last_name" placeholder="{{ session.prenom  }}">
+                {% else %}
+                    <div class="col-xs-offset-2 col-xs-6"> {{ session.prenom }} </div>
+                {% endif %}
+            </div>
+
+            <div class="row">
+                <div class="col-xs-4"><label for="username">Username</label></div>
+                {%   if change is defined %}
+                    <div class="col-xs-3"> {{ session.username }} </div>
+                    <input  class="col-xs-5"  type="text" id="username" aria-describedby="username"  name="username"  placeholder="{{ session.username }}">
+                {% else %}
+                    <div class="col-xs-offset-2 col-xs-6"> {{ session.username }} </div>
+                {% endif %}
+            </div>
+
+            <div class="row">
+                   <div class="col-xs-4"><label for="user_password">Votre Password</label></div>
+                   {%   if change is defined %}
+                    <div class="col-xs-3"> XXXXXXXX </div>
+                   <input  class="col-xs-5"  type="text" id="user_password" aria-describedby="user_password"  name="user_password"  placeholder="XXXXXXXX">
+                   {% else %}
+                    <div class="col-xs-offset-2 col-xs-6"> {{ password }} </div>
+                {% endif %}
+            </div>
+
+  {%   if change is defined %}
+            <div  class ="col-sm-offset-6 col-sm-6" style="text-align: right">{{ macro.submit('Enregistrer les modifications') }}</div>
+       </form>
+   {% endif %}
+
+    {%   if change is  defined %}
+        <div class="row">
+           <a  class ="col-sm-offset-6 col-sm-6" style="text-align: right" href="index.php?action=user!profile_show">Retour à votre profil</a>
+        </div>
+    {% else %}
+        <div class="row">
+            <a  class ="col-sm-offset-6 col-sm-6" href="index.php?action=user!change_profile"> Modifier Votre profil</a>
+        </div>
+    {% endif %}
+
+
+
     </div>
-
-    <div class="row">
-        <div class="col-xs-6"> Votre prénom </div>
-        <div class="col-xs-6"> {{ last_name }} </div>
-    </div>
-
-    <div class="row">
-        <div class="col-xs-6"> La question </div>
-        <div class="col-xs-6"> {{ question }} </div>
-    </div>
-
-    <div class="row">
-        <div class="col-xs-6"> Votre réponse </div>
-        <div class="col-xs-6"> {{ answer }} </div>
-    </div>
-
-    <div class="row">
-        <div class="col-xs-6"> Votre password </div>
-        <div class="col-xs-6"> {{ password }}</div>
-    </div>
-
-
 
 {% endblock %}
