@@ -31,6 +31,7 @@ class BackManager extends Manager
 
    public function resetPassword($username,$password)
    {
+       $password = password_hash($password, PASSWORD_DEFAULT);
        $bdd = $this->dbConnect();
        $bdd->exec('UPDATE userbank SET password = "'.$password.'" WHERE username = "'.$username.'"');
    }
@@ -47,18 +48,26 @@ class BackManager extends Manager
 
    public function createCookies($username, $password)
    {
-   	setcookie('username',$username,time()+365*24*3600, null, null, false, true);
-	setcookie('password',$password,time()+365*24*3600, null, null, false, true);
+       setcookie('username');
+       unset($_COOKIE['username']);
+       setcookie('password');
+       unset($_COOKIE['password']);
+
+       setcookie('username',$username,time()+365*24*3600, null, null, false, true);
+       setcookie('password',$password,time()+365*24*3600, null, null, false, true);
    }
 
-public function wipeCookies()
+    public function wipeCookies()
    {
-   setcookie('username');
-   unset($_COOKIE['username']);
+       setcookie('username');
+       unset($_COOKIE['username']);
 
-   setcookie('password');
-   unset($_COOKIE['password']);
+       setcookie('password');
+       unset($_COOKIE['password']);
 
    }
 
-}
+
+
+
+    }
