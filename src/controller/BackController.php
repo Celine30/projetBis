@@ -65,6 +65,16 @@ class BackController
         $BackManager = new model\BackManager();
         $BackManager->resetPassword($_SESSION['username'],$_POST['user_password']);
 
+        $UserManager = new model\UserManager();
+        $data= $UserManager->user_profile($_SESSION['username']);
+        $_SESSION['nom'] = $data['nom'];
+        $_SESSION['prenom'] = $data['prenom'];
+        $_SESSION['password'] = $data['password'];
+
+        return $this->twig->render('connected.twig', array(
+                    'session' => $_SESSION
+                ));
+
     }
 
     public function check_mdp(){
@@ -93,7 +103,8 @@ class BackController
 
                }elseif(isset($_POST['wipe_register'])) {
                    $BackManager->wipeCookies();
-                   return $this->twig->render('connexion.twig');
+                   return $this->twig->render('connexion.twig', array(
+                    'session' => $_SESSION ));
 
                }else{
                     return $this->twig->render('connected.twig', array(
