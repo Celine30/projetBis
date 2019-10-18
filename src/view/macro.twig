@@ -12,9 +12,16 @@
         </div>
 {% endmacro submit %}
 
+
 {% macro checkbox(for, text) %}
         <div class="form-group">
             <label id="{{ for }}" for="{{ for }}">{{ text }}</label>
             <input type="checkbox" id="{{ for }}" name="{{ for }}" placeholder="{{ for }}" >
         </div>
 {% endmacro checkbox %}
+
+
+{% macro partenaire(nom) %}
+        <img style ="width: 250px" id="partenaire{{ nom }}" src="images/{{ nom }}.png" alt="logo{{ nom }}" title="logo{{ nom }}">
+{% endmacro partenaire %}
+
