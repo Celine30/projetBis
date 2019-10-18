@@ -1,8 +1,41 @@
 {%  extends 'template.twig' %}
 
+{% import 'macro.twig'as macro %}
+
 {% block content %}
 
+    <link href="css/styleconnected.css" rel="stylesheet">
+
     {% include("menu.twig") %}
-    Bonjour ...
+
+<div class="container text-justify " id="sectionGBAF">
+    <p>Le GBAF,  est le représentant de la profession bancaire et des assureurs sur tous les axes de la
+    réglementation financière française.</p>
+    <p>Des informations portant sur des produits bancaires et des financeurs seront basés sur vos votes et commentaires.
+    GBAF souhaite vous proposer un point d’entrée unique, avec un maximum d’informations sur nos partenaires.</p>
+</div>
+
+    <a id ="photo"class="col-xs-12" href="index.php?action=user!connexion"><img id="sliderGBAF" src="images/sliderGBAF.jpg" alt="logoGBAF" title="logoGBAF"></a>
+
+<div class="row">
+<div class="col-sm-4">{{  macro.partenaire('CDE') }}</div>
+<div class="col-sm-8">{% include ('CDE.twig') %}</div>
+</div>
+
+<div class="row">
+<div class="col-sm-4">{{  macro.partenaire('Dsa_france') }}</div>
+<div class="col-sm-8">{% include ('Dsa_france.twig') %}</div>
+</div>
+
+<div class="row">
+<div class="col-sm-4">{{  macro.partenaire('formation_co') }}</div>
+<div class="col-sm-8">{% include ('formation_co.twig') %}</div>
+</div>
+
+<div class="row">
+<div class="col-sm-4">{{  macro.partenaire('protectpeople') }}</div>
+<div class="col-sm-8">{% include ('protectpeople.twig') %}</div>
+</div>
+
 
 {% endblock %}
