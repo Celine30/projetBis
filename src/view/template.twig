@@ -12,9 +12,9 @@
 </head>
 <body>
 <header  id="menu" class="hautetbas haut">
-    <img id="logoGBAF" src="images/logoGBAF.jpg" alt="logoGBAF" title="logoGBAF">
+    <div><a href="index.php?action=user!connexion"><img id="logoGBAF" src="images/logoGBAF.jpg" alt="logoGBAF" title="logoGBAF"></a></div>
     <div>
-        <p>Bonjour {{ session.username }}</a></p>
+        <p>Bonjour {{ session.prenom |capitalize }} {{ session.nom |upper  }}</a></p>
         {% if session.username is defined %}
         <a href = "index.php?action=user!logout" >Se deconnecter</a>
         {% endif %}
@@ -22,7 +22,7 @@
 </header>
 <body>
 
-  <div class="container">
+
 
 {% block content %}
 
@@ -30,7 +30,7 @@
 
 {% endblock %}
 
-  </div>
+
 
 <footer class="hautetbas bas">
     <div id="mentionslegales">mentions legales</div>
