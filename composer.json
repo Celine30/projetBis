@@ -9,7 +9,8 @@
     ],
     "require": {
         "twig/twig": "^2.0",
-        "tracy/tracy": "^2.7"
+        "tracy/tracy": "^2.7",
+        "twig/extensions": "^1.5"
     },
     "autoload": {
           "psr-4": {
@@ -17,4 +18,3 @@
          }
     }
 }
-
