@@ -1,6 +1,9 @@
 {
     "name": "celine/bank",
+    "type": "library",
     "description": "applibank",
+    "version": "0.1.0",
+    "license": "MIT",
     "authors": [
         {
             "name": "Celine",
@@ -9,12 +12,19 @@
     ],
     "require": {
         "twig/twig": "^2.0",
-        "tracy/tracy": "^2.7",
         "twig/extensions": "^1.5"
     },
+    "require-dev": {
+        "tracy/tracy": "^2.7"
+  },
     "autoload": {
           "psr-4": {
              "Project\\": "src/"
          }
-    }
+    },
+    "support": {
+        "email": "celi.caurier@gmail.com",
+        "source": "https://github.com/Celine30/projetBis"
+  }
+
 }
