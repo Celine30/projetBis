@@ -10,14 +10,13 @@
 </head>
 <body>
 <header  id="header" class="hautetbas haut">
-    <div><a href="index.php?action=user!connexion"><img id="logoGBAF" src="images/logoGBAF.jpg" alt="logoGBAF" title="logoGBAF"></a></div>
-    <div>
-        <p>Bonjour {{ session.prenom |capitalize }} {{ session.nom |upper }}</a></p>
-        {% if session.username is defined %}
+    <a href="index.php?action=user!connexion"><img id="logoGBAF" src="images/logoGBAF.jpg" alt="logoGBAF" title="logoGBAF"></a>
+    <p>Bonjour {{ session.prenom |capitalize }} {{ session.nom |upper }}</p>
+    {% if session.username is defined %}
         <a href = "index.php?action=user!logout" >Se deconnecter</a>
         {% endif %}
-    </div>
 </header>
+
 <body>
 
 
@@ -31,8 +30,8 @@
 
 
 <footer class="hautetbas bas">
-    <div id="mentionslegales">mentions legales</div>
-    <div id="contact">contact</div>
+    <a id="mentionslegales"> | mentions légales &nbsp; </a>
+    <a id="contact"> | contact |</a>
 </footer>
 
 

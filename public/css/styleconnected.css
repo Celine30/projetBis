@@ -12,24 +12,37 @@
     margin-top: 20px;
 }
 
-#sectionPartner{
+main#sectionPartner{
     margin-top: 20px;
-    border: #003366 2px solid;
+    border: 2px solid darkgray;
+    display: flex;
+    flex-direction: column;
 }
 
-#titlePartner{
-    font-size: 1.5em;
-    margin-top: 0;
+#sectionPartner article {
+    display: flex;
+    flex-direction: column;
+    border: 2px solid darkgray;
+    width: 96%;
+    margin-top: 6px;
+    margin-left: 1.5%;
 }
 
-#titlePartner i{
-    font-size: 0.5em !important;
+#sectionPartner section img{
+    width: 96%;
+    border: 2px solid darkgray;
+    margin-top: 6px;
+    margin-left: 1.5%;
 }
 
-.textPartner{
-    width: 100%;
-    height: 58px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-
+#sectionPartner section#resume{
+   width: 96%;
+    margin: auto;
 }
+
+#more{
+    margin-left: 75%;
+}
+
+
+
