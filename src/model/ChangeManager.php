@@ -16,7 +16,10 @@ class ChangeManager extends Manager
         $bdd = $this->dbConnect();
         $bdd->exec('UPDATE userbank SET nom = "'.$nom_change.'" WHERE username = "'.$username.'"');
     }
-
+       public function change_prenom($prenom_change, $username){
+        $bdd = $this->dbConnect();
+        $bdd->exec('UPDATE userbank SET nom = "'.$prenom_change.'" WHERE username = "'.$username.'"');
+    }
 
 
 
