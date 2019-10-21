@@ -9,45 +9,32 @@
     {% include("menu.twig") %}
 
 
-    <article id="sectionGBAF">
-        <p>Le GBAF,  est le représentant de la profession bancaire et des assureurs sur tous les axes de la
+    <main id="sectionGBAF">
+        <h1>Le GBAF</h1>
+        <p>Le GBAF est le représentant de la profession bancaire et des assureurs sur tous les axes de la
         réglementation financière française.</p>
         <p>Des informations portant sur des produits bancaires et des financeurs seront basés sur vos votes et commentaires.
         GBAF souhaite vous proposer un point d’entrée unique, avec un maximum d’informations sur nos partenaires.</p>
-    </article>
+    </main>
 
-   <a id ="photo" href="index.php?action=user!connexion"><img id="sliderGBAF" src="images/sliderGBAF.jpg" alt="logoGBAF" title="logoGBAF"></a></div>
+    <a id ="photo" href="index.php?action=user!connexion"><img id="sliderGBAF" src="images/sliderGBAF.jpg" alt="logoGBAF" title="logoGBAF"></a></div>
 
-    <article id="sectionPartner">
-
-        <section>
-        {{  macro.partenaire('CDE') }}
-        {% include ('CDE.twig') %}
-        </section>
-
-        <section>
-        {{  macro.partenaire('Dsa_france') }}
-        {% include ('Dsa_france.twig')  %}
-        </section>
-
-        <section>
-        {{  macro.partenaire('formation_co') }}
-        {% include ('formation_co.twig') %}
-        </section>
-
-        <section>
-        {{  macro.partenaire('protectpeople') }}
-        {% include ('protectpeople.twig') %}
-        </section>
-    </article>
-
-
-
-    <p>ici {{ partner }}</p>
-
-    <p> avec variable ici {{ partner |truncate(15) }}</p>
-
-    {{ partner | truncate(4) }}
+    <main id="sectionPartner">
+{% for partnerOne in partner %}
+        <article>
+            <section id="image">
+                <img id="logoPartner" src="images/{{ partnerOne.imagePartner}}">
+            </section>
+            <section id="resume">
+                <h3>{{ partnerOne.namePartner}} </h3>
+                <p>{{ partnerOne.resumePartner | truncate (150)}}</p>
+            </section>
+            <p id="more"><a href="#"> Lire la suite</a></p>
+        </article>
+  {% else %}
+    <li>Rien</li>
+        {% endfor %}
+    </main>
 
 
 {% endblock %}

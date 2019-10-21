@@ -10,27 +10,14 @@ public $image= null;
 public $resume=null;
 public $name=null;
 
-    /**
-     * @return null
-     */
-    public function getImage()
-    {
-        return $this->image;
-    }
-
-    /**
-     * @return null
-     */
-    public function getResume()
-    {
-        return $this->resume;
-    }
-
-    /**
-     * @return null
-     */
-    public function getName()
-    {
-        return $this->name;
+    function Get_All(){
+        $partner =[
+            'imagePartner'=> $this->image,
+            'namePartner'=>$this->name,
+            'resumePartner'=>$this->resume
+        ];
+        return $partner;
     }
 }
+
+
