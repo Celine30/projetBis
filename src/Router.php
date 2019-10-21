@@ -6,7 +6,7 @@ use Project\Controller;
 
 use Twig\Extension\DebugExtension;
 use Twig\Extensions\TextExtension;
-//use Twig\Extra\String\StringExtension;
+
 
 class Router
 {
@@ -35,7 +35,7 @@ class Router
         $this->twig->addExtension(new DebugExtension());
         $this->twig->addGlobal('session', $_SESSION);
         $this->twig->addExtension(new TextExtension());
-       // $this->twig->addExtension(new StringExtension());
+
 
     }
 
