@@ -4,17 +4,15 @@
 <head>
     <meta charset="UTF-8">
     <link href="css/styletemplate.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-
+    <link href="css/styleconnected.css" rel="stylesheet">
 
     <title>GBAF</title>
 </head>
 <body>
-<header  id="menu" class="hautetbas haut">
+<header  id="header" class="hautetbas haut">
     <div><a href="index.php?action=user!connexion"><img id="logoGBAF" src="images/logoGBAF.jpg" alt="logoGBAF" title="logoGBAF"></a></div>
     <div>
-        <p>Bonjour {{ session.prenom |capitalize }} {{ session.nom |upper  }}</a></p>
+        <p>Bonjour {{ session.prenom |capitalize }} {{ session.nom |upper }}</a></p>
         {% if session.username is defined %}
         <a href = "index.php?action=user!logout" >Se deconnecter</a>
         {% endif %}
@@ -36,12 +34,6 @@
     <div id="mentionslegales">mentions legales</div>
     <div id="contact">contact</div>
 </footer>
-
-<script
-  src="https://code.jquery.com/jquery-3.3.1.js"
-  integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
-  crossorigin="anonymous"></script>
-
 
 
 </body>

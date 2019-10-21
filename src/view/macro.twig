@@ -1,27 +1,21 @@
 {% macro input(name, label, type) %}
-<div class="form-group">
      <label  for="{{ name }}">{{ label }}</label>
      <input  type="{{ type }}" class="form-control" id="{{ name }}" aria-describedby="{{ name }}" placeholder="{{ label }}" name="{{ name }}" required="required">
- </div>
 {% endmacro input%}
 
 
 {% macro submit(text) %}
-        <div class="form-group">
             <input type="submit" id="submit" value="{{ text }}" />
-        </div>
 {% endmacro submit %}
 
 
 {% macro checkbox(for, text) %}
-        <div class="form-group">
             <label id="{{ for }}" for="{{ for }}">{{ text }}</label>
             <input type="checkbox" id="{{ for }}" name="{{ for }}" placeholder="{{ for }}" >
-        </div>
 {% endmacro checkbox %}
 
 
 {% macro partenaire(nom) %}
-        <img style ="width: 250px" id="partenaire{{ nom }}" src="images/{{ nom }}.png" alt="logo{{ nom }}" title="logo{{ nom }}">
+    <img style ="width: 100%" id="logoPartner" src="images/{{ nom }}.png" alt="logo{{ nom }}" title="logo{{ nom }}">
 {% endmacro partenaire %}
 
