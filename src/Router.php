@@ -5,6 +5,8 @@ namespace Project;
 use Project\Controller;
 
 use Twig\Extension\DebugExtension;
+use Twig\Extensions\TextExtension;
+
 
 class Router
 {
@@ -32,6 +34,9 @@ class Router
 
         $this->twig->addExtension(new DebugExtension());
         $this->twig->addGlobal('session', $_SESSION);
+        $this->twig->addExtension(new TextExtension());
+
+
     }
 
     public function parseUrl()

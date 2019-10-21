@@ -1,12 +1,18 @@
 {%  extends 'template.twig' %}
 
+{% import 'macro.twig'as macro %}
+
 {% block content %}
+
+
 
 <link href="css/form.css" rel="stylesheet">
 
     <h1>FORMULAIRE DE CONNEXION</h1>
 
     <form id="connexion" method="post" action="index.php?action=back!check_mdp">
+
+
 
         <div class="form-group">
             <label  for="username">Votre username</label>
@@ -21,22 +27,13 @@
         {{ erreur|raw }}
 
         {% if register.username is not defined%}
-        <div class="form-group">
-            <label id="register" for="register">Se souvenir de moi</label>
-            <input type="checkbox" id="register" name="register" placeholder="register" >
-        </div>
+             {{ macro.checkbox('register', 'Se souvenir de moi') }}
         {% else %}
-        <div class="form-group">
-            <label id="wipe_register" for="wipe_register">Ne plus se souvenir de moi</label>
-            <input type="checkbox" id="wipe_register" name="wipe_register" placeholder="wipe_register" >
-        </div>
+            {{ macro.checkbox('wipe_register', 'Ne plus se souvenir de moi') }}
         {% endif %}
 
-
-
-        <div class="form-group">
-            <input type="submit" id="submit" value="Connexion" />
-        </div>
+        
+       {{ macro.submit('connexion') }}
 
         <div>
             <a href="index.php?action=user!mdp_forget">Mot de passe oublié</a>

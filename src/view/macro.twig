@@ -1,0 +1,21 @@
+{% macro input(name, label, type) %}
+     <label  for="{{ name }}">{{ label }}</label>
+     <input  type="{{ type }}" class="form-control" id="{{ name }}" aria-describedby="{{ name }}" placeholder="{{ label }}" name="{{ name }}" required="required">
+{% endmacro input%}
+
+
+{% macro submit(text) %}
+            <input type="submit" id="submit" value="{{ text }}" />
+{% endmacro submit %}
+
+
+{% macro checkbox(for, text) %}
+            <label id="{{ for }}" for="{{ for }}">{{ text }}</label>
+            <input type="checkbox" id="{{ for }}" name="{{ for }}" placeholder="{{ for }}" >
+{% endmacro checkbox %}
+
+
+{% macro partenaire(nom) %}
+    <img id="logoPartner" src="images/{{ nom }}.png" alt="logo{{ nom }}" title="logo{{ nom }}">
+{% endmacro partenaire %}
+

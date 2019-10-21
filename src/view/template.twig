@@ -4,40 +4,35 @@
 <head>
     <meta charset="UTF-8">
     <link href="css/styletemplate.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-
+    <link href="css/styleconnected.css" rel="stylesheet">
 
     <title>GBAF</title>
 </head>
 <body>
-<header  id="menu" class="hautetbas haut">
-    <img id="logoGBAF" src="images/logoGBAF.jpg" alt="logoGBAF" title="logoGBAF">
-    <div>
-        <p>Bonjour <a href="index.php?action=user!profile_show" title="Cliquez pour modifier votre profil">{{ session.username }}</a></p>
-        {% if session.username is defined %}
+<header  id="header" class="hautetbas haut">
+    <a href="index.php?action=user!connexion"><img id="logoGBAF" src="images/logoGBAF.jpg" alt="logoGBAF" title="logoGBAF"></a>
+    <p>Bonjour {{ session.prenom |capitalize }} {{ session.nom |upper }}</p>
+    {% if session.username is defined %}
         <a href = "index.php?action=user!logout" >Se deconnecter</a>
         {% endif %}
-    </div>
 </header>
+
 <body>
 
-  <div class="container">
 
-{% block content %}{% endblock %}
 
-  </div>
+{% block content %}
+
+
+
+{% endblock %}
+
+
 
 <footer class="hautetbas bas">
-    <div id="mentionslegales">mentions legales</div>
-    <div id="contact">contact</div>
+    <a id="mentionslegales"> | mentions légales &nbsp; </a>
+    <a id="contact"> | contact |</a>
 </footer>
-
-<script
-  src="https://code.jquery.com/jquery-3.3.1.js"
-  integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
-  crossorigin="anonymous"></script>
-
 
 
 </body>

@@ -1,15 +1,12 @@
 
 
 
-
 h1{
-    margin-bottom: 20px;
-    flex-direction: center;
     text-align: center;
     background: rgba(0,0,0,0.2);
     border-radius: 10px 100px / 120px;
-    max-width: 700px!important;
-    margin: auto;
+    margin-bottom: 30px;
+    /*max-width: 700px!important;*/
 }
 
 label{
@@ -25,3 +22,4 @@ a, #submit{
     text-align: center;
     border-radius: 10px 100px / 120px;
 }
+

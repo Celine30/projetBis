@@ -1,7 +1,40 @@
+
+
 {%  extends 'template.twig' %}
+
+{% import 'macro.twig'as macro %}
 
 {% block content %}
 
-    Bonjour ...
+    {% include("menu.twig") %}
+
+
+    <main id="sectionGBAF">
+        <h1>Le GBAF</h1>
+        <p>Le GBAF est le représentant de la profession bancaire et des assureurs sur tous les axes de la
+        réglementation financière française.</p>
+        <p>Des informations portant sur des produits bancaires et des financeurs seront basés sur vos votes et commentaires.
+        GBAF souhaite vous proposer un point d’entrée unique, avec un maximum d’informations sur nos partenaires.</p>
+    </main>
+
+    <a id ="photo" href="index.php?action=user!connexion"><img id="sliderGBAF" src="images/sliderGBAF.jpg" alt="logoGBAF" title="logoGBAF"></a></div>
+
+    <main id="sectionPartner">
+{% for partnerOne in partner %}
+        <article>
+            <section id="image">
+                <img id="logoPartner" src="images/{{ partnerOne.imagePartner}}">
+            </section>
+            <section id="resume">
+                <h3>{{ partnerOne.namePartner}} </h3>
+                <p>{{ partnerOne.resumePartner | truncate (150)}}</p>
+            </section>
+            <p id="more"><a href="#"> Lire la suite</a></p>
+        </article>
+  {% else %}
+    <li>Rien</li>
+        {% endfor %}
+    </main>
+
 
 {% endblock %}
