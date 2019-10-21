@@ -16,6 +16,25 @@ class BackController
         $this->twig = $twig;
     }
 
+    public function connected(){
+
+        $BackManager = new model\BackManager();
+        $partner = $BackManager->partner_list();
+
+        $UserManager = new model\UserManager();
+        $data= $UserManager->user_profile($_POST['username']);
+        $_SESSION['username'] = $_POST['username'];
+        $_SESSION['nom'] = $data['nom'];
+        $_SESSION['prenom'] = $data['prenom'];
+        $_SESSION['question'] = $data['question'];
+        $_SESSION['reponse'] = $data['reponse'];
+        $_SESSION['password'] = $data['password'];
+
+        echo $this->twig->render('connected.twig', array(
+                      'session' => $_SESSION ,
+                      'partner'=> $partner));
+    }
+
     public function watch_question()
     {
         if (isset($_POST['username'])) {
@@ -84,46 +103,31 @@ class BackController
        if (isset($Mdp)) {
            if (password_verify($_POST['user_password'], $Mdp)) {
 
-                 $UserManager = new model\UserManager();
-                 $data= $UserManager->user_profile($_POST['username']);
-                 $_SESSION['username'] = $_POST['username'];
-                 $_SESSION['nom'] = $data['nom'];
-                 $_SESSION['prenom'] = $data['prenom'];
-                 $_SESSION['question'] = $data['question'];
-                 $_SESSION['reponse'] = $data['reponse'];
-                 $_SESSION['password'] = $data['password'];
-
-
-               $_SESSION['username'] = $_POST['username'];
-
                if(isset($_POST['register'])) {
                    $BackManager->createCookies($_POST['username'],$_POST['user_password']);
-                  return $this->twig->render('connected.twig', array(
-                    'session' => $_SESSION ));
+                   $this->connected();
 
                }elseif(isset($_POST['wipe_register'])) {
                    $BackManager->wipeCookies();
-                   return $this->twig->render('connexion.twig', array(
-                    'session' => $_SESSION ));
+                   return $this->twig->render('connexion.twig');
 
                }else{
-                    return $this->twig->render('connected.twig', array(
-                    'session' => $_SESSION ));
+                    $this->connected();
                }
 
            }else{
                return $this->twig->render('connexion.twig',array(
                    'username'=> $_POST['username'],
-                   'erreur'=>'<p class="alert alert-warning"> erreur d\'authentification </p>'
+                   'erreur'=>'<p> erreur d\'authentification </p>'
                ));
            }
       }else{
            echo ' ce username n\'existe pas';
        }
     }
+
  public function change_profile()
     {
-
         if(isset($_POST['username'])&& ($_POST['username']!= "")){
             $ChangeManager = new Model\ChangeManager();
             $ChangeManager->change_username($_POST['username'],$_SESSION['username']);
@@ -143,6 +147,5 @@ class BackController
             echo 'password =>' . $_POST['user_password'];
         }
 
-   $_SESSION['username']=$_POST['username'];
     }
 }
