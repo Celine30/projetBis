@@ -1,7 +1,10 @@
 body{
-    margin: 0px 20px 0px 20px;
+    margin:0 ;
 }
 
+main{
+    margin: 0px 20px 0px 20px;
+}
 .haut{
     color:gray;
     display: flex;

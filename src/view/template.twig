@@ -11,9 +11,9 @@
 <body>
 <header  id="header" class="hautetbas haut">
     <a href="index.php?action=user!connexion"><img id="logoGBAF" src="images/logoGBAF.jpg" alt="logoGBAF" title="logoGBAF"></a>
-    <p>Bonjour {{ session.prenom |capitalize }} {{ session.nom |upper }}</p>
-    {% if session.username is defined %}
-        <a href = "index.php?action=user!logout" >Se deconnecter</a>
+    <p>Bonjour {% if session.username is defined %}
+        {{ session.prenom |capitalize }} {{ session.nom |upper }}
+        <a href = "index.php?action=user!logout" >Se deconnecter</a></p>
         {% endif %}
 </header>
 

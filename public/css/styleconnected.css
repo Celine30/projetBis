@@ -4,8 +4,9 @@
     width: 100%;
 }
 
-#photo{
-    padding: 0;
+#photo #sliderGBAF{
+    width: 96%;
+    margin-left: 1.5%;
 }
 
 #sectionGBAF{
@@ -14,23 +15,25 @@
 
 main#sectionPartner{
     margin-top: 20px;
-    border: 2px solid darkgray;
+    border: 1px solid darkgray;
     display: flex;
     flex-direction: column;
 }
 
 #sectionPartner article {
+    position:relative;
     display: flex;
     flex-direction: column;
-    border: 2px solid darkgray;
+    border: 1px solid darkgray;
     width: 96%;
     margin-top: 6px;
+    padding-bottom: 40px;
     margin-left: 1.5%;
 }
 
 #sectionPartner section img{
     width: 96%;
-    border: 2px solid darkgray;
+    border: 1px solid darkgray;
     margin-top: 6px;
     margin-left: 1.5%;
 }
@@ -40,9 +43,16 @@ main#sectionPartner{
     margin: auto;
 }
 
-#more{
-    margin-left: 75%;
+button{
+position: absolute;
+    max-width: 80px;
+    bottom:10px;
+    right: 10px;
+
 }
 
+#resumePartner, #resumeGbaf, #textGbaf{
+    text-align: justify;
+}
 
 
