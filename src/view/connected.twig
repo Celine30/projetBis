@@ -33,7 +33,7 @@
                 <h3>{{ partnerOne.namePartner}} </h3>
                 <p id="resumePartner">{{ partnerOne.resumePartner | truncate (150)}}</p>
             </section>
-            <button id="more"> Lire la suite</button>
+            <a href="index.php?action=user!{{ partnerOne.namePartner}}" id="more">Lire la suite </a>
         </article>
   {% else %}
     <li>Rien</li>
