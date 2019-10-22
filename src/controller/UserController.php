@@ -7,15 +7,8 @@ use Tracy\Debugger;
 Debugger::enable();
 use Project\Model;
 
-class UserController
+class UserController extends Controller
 {
-
-    protected $twig = null;
-
-    public function __construct(Environment $twig)
-    {
-        $this->twig = $twig;
-    }
 
     public function connexion()
     {
@@ -109,7 +102,7 @@ class UserController
 
     public function home_show()
     {
-        return $this->twig->render('connected.twig');
+        $this->connectedPartner();
     }
 
     public function change_profile()

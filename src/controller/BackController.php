@@ -7,33 +7,8 @@ use Project\Model;
 
 
 
-class BackController
+class BackController extends Controller
 {
-    protected $twig = null;
-
-    public function __construct(Environment $twig)
-    {
-        $this->twig = $twig;
-    }
-
-    public function connected(){
-
-        $BackManager = new model\BackManager();
-        $partner = $BackManager->partner_list();
-
-        $UserManager = new model\UserManager();
-        $data= $UserManager->user_profile($_POST['username']);
-        $_SESSION['username'] = $_POST['username'];
-        $_SESSION['nom'] = $data['nom'];
-        $_SESSION['prenom'] = $data['prenom'];
-        $_SESSION['question'] = $data['question'];
-        $_SESSION['reponse'] = $data['reponse'];
-        $_SESSION['password'] = $data['password'];
-
-        echo $this->twig->render('connected.twig', array(
-                      'session' => $_SESSION ,
-                      'partner'=> $partner));
-    }
 
     public function watch_question()
     {
@@ -103,16 +78,18 @@ class BackController
        if (isset($Mdp)) {
            if (password_verify($_POST['user_password'], $Mdp)) {
 
+               $_SESSION['username'] = $_POST['username'];
+
                if(isset($_POST['register'])) {
-                   $BackManager->createCookies($_POST['username'],$_POST['user_password']);
-                   $this->connected();
+                   $BackManager->createCookies($_SESSION['username'],$_POST['user_password']);
+                   $this->connectedPartner();
 
                }elseif(isset($_POST['wipe_register'])) {
                    $BackManager->wipeCookies();
                    return $this->twig->render('connexion.twig');
 
                }else{
-                    $this->connected();
+                    $this->connectedPartner();
                }
 
            }else{
