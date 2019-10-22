@@ -1,6 +1,5 @@
 
 
-
 h1{
     text-align: center;
     background: rgba(0,0,0,0.2);
@@ -15,9 +14,7 @@ label{
     border-radius: 10px 100px / 120px;
 }
 
-
-
-a, #submit{
+#submit{
     margin: auto;
     text-align: center;
     border-radius: 10px 100px / 120px;
