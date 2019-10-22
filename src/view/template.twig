@@ -6,35 +6,38 @@
     <link href="css/template.css" rel="stylesheet">
     <link href="css/connected.css" rel="stylesheet">
     <link href="css/menu.css" rel="stylesheet">
+    <link href="css/form.css" rel="stylesheet">
 
     <title>GBAF</title>
+
 </head>
+
 <body>
-<header  id="header" class="hautetbas haut">
-    <a href="index.php?action=user!connexion"><img id="logoGBAF" src="images/logoGBAF.jpg" alt="logoGBAF" title="logoGBAF"></a>
-    <p>Bonjour {% if session.username is defined %}
-        {{ session.prenom |capitalize }} {{ session.nom |upper }}
-        <a href = "index.php?action=user!logout" >Se deconnecter</a></p>
+
+<header class="haut">
+
+    <img id="logoGBAF" src="images/logoGBAF.jpg" alt="logoGBAF" title="logoGBAF">
+
+    <p>Bonjour
+        {% if session.prenom is defined  %}
+            {{ session.prenom |capitalize }} {{ session.nom |upper }} </p>
+            <a href = "index.php?action=user!logout" > &nbsp; Se déconnecter</a>
+        {% else %}
+            </p>
         {% endif %}
+
 </header>
-
-
-
-
 
 {% block content %}
 
-
-
 {% endblock %}
 
-
-
 <footer class="hautetbas bas">
-    <a id="mentionslegales"> | mentions légales &nbsp; </a>
+    <p>
+    <a id="mentions_legales"> | mentions légales &nbsp; </a>
     <a id="contact"> | contact |</a>
+    </p>
 </footer>
-
 
 </body>
 

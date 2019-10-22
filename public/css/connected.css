@@ -1,20 +1,19 @@
-
-
-#sliderGBAF{
+#sliderGBAF {
     width: 100%;
 }
 
-#photo #sliderGBAF{
+#photo #sliderGBAF {
     width: 96%;
     margin-left: 1.5%;
 }
 
-#sectionGBAF{
+#sectionGBAF {
     margin-top: 20px;
 }
 
-main#sectionPartner{
+main#sectionPartner {
     margin-top: 20px;
+    padding-bottom: 6px;
     border: 1px solid darkgray;
     display: flex;
     flex-direction: column;
@@ -31,28 +30,33 @@ main#sectionPartner{
     margin-left: 1.5%;
 }
 
-#sectionPartner section img{
+#sectionPartner section img {
     width: 96%;
     border: 1px solid darkgray;
     margin-top: 6px;
     margin-left: 1.5%;
 }
 
-#sectionPartner section#resume{
+#sectionPartner section#resume {
    width: 96%;
     margin: auto;
 }
 
-button{
+button {
 position: absolute;
     max-width: 80px;
     bottom:10px;
     right: 10px;
-
 }
 
-#resumePartner, #resumeGbaf, #textGbaf{
+#resumePartner, #resumeGbaf, #textGbaf {
     text-align: justify;
+}
+
+#connected a {
+    display: block;
+    padding-bottom: 70px;
+    border-bottom:1px solid rgba(204,204,204,0.5);
 }
 
 

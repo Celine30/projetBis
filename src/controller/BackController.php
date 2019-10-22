@@ -37,7 +37,7 @@ class BackController extends Controller
     public function control_question()
     {
         $BackManager = new model\BackManager();
-        $answer = $BackManager->userReponse($_SESSION['username']);
+        $answer = $BackManager->userAnswer($_SESSION['username']);
 
         if (isset($answer)) {
             if ($_POST['answer'] == $answer) {
@@ -56,18 +56,24 @@ class BackController extends Controller
     }
 
     public function reset_mdp(){
+
+        $password = password_hash($_POST['user_password'], PASSWORD_DEFAULT);
+
         $BackManager = new model\BackManager();
-        $BackManager->resetPassword($_SESSION['username'],$_POST['user_password']);
+        $BackManager->resetPassword($_SESSION['username'],$password);
 
-        $UserManager = new model\UserManager();
-        $data= $UserManager->user_profile($_SESSION['username']);
-        $_SESSION['nom'] = $data['nom'];
-        $_SESSION['prenom'] = $data['prenom'];
-        $_SESSION['password'] = $data['password'];
+        $this->connectedPartner();
 
-        return $this->twig->render('connected.twig', array(
-                    'session' => $_SESSION
-                ));
+  //      $UserManager = new model\UserManager();
+  //      $data= $UserManager->user_profile($_SESSION['username']);
+
+ //       $_SESSION['nom'] = $data['nom'];
+ //       $_SESSION['prenom'] = $data['prenom'];
+ //       $_SESSION['password'] = $data['password'];
+
+  //      return $this->twig->render('connected.twig', array(
+  //                  'session' => $_SESSION
+   //             ));
 
     }
 

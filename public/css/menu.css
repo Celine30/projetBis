@@ -2,6 +2,7 @@
     0%{transform:translateX(0px);}
     100%{transform:translateY(10px)rotate(45deg);}
 }
+
 @keyframes mon_animation_inverse {
     0%{transform:translateX(0px);}
     100%{transform:translateY(10px)rotate(45deg);}
@@ -11,6 +12,7 @@
     0%{transform:translateX(0px);}
     100%{transform:translateY(-10px)rotate(-45deg);}
 }
+
 @keyframes mon_animation {
     0%{transform:translateX(0px);}
     100%{transform:translateY(-10px)rotate(-45deg);}
@@ -20,6 +22,7 @@
     0%{transform:translateX(0px);}
     100%{transform:translateY(0px)rotate(0deg);}
 }
+
 @keyframes mon_animation_inverse_retour {
     0%{transform:translateX(0px);}
     100%{transform:translateY(0px)rotate(0deg);}
@@ -29,6 +32,7 @@
     0%{transform:translateX(0px);}
     100%{transform:translateY(0px)rotate(0deg);}
 }
+
 @keyframes mon_animation_retour {
     0%{transform:translateX(0px);}
     100%{transform:translateY(0px)rotate(0deg);}
@@ -62,7 +66,6 @@
     right: 30px;
 }
 
-
 .checkbox {
     border:olive 2px solid;
     position:absolute;
@@ -75,14 +78,17 @@
     opacity: 0;
 }
 
-.page {
-    color:gray;
-    width: 100px;
+.page a{
+    text-decoration: none;
     color: white;
+}
+
+.page {
+    width: 100px;
     margin-top: 20px;
 }
 
-.page:hover {
+.page a:hover {
     color:black;
 }
 
@@ -106,14 +112,14 @@
     z-index: 4;
 }
 
- .checkbox:checked ~ .bar:nth-child(4){
+.checkbox:checked ~ .bar:nth-child(4) {
      animation: mon_animation 1s;
     -webkit-animation: mon_animation 1s;
      animation-fill-mode: forwards;
     -webkit-animation-fill-mode: forwards;
 }
 
- .checkbox:checked ~ .bar:nth-child(2){
+.checkbox:checked ~ .bar:nth-child(2) {
      animation: mon_animation_inverse 1s;
     -webkit-animation: mon_animation_inverse 1s;
      animation-fill-mode: forwards;
@@ -121,6 +127,6 @@
      transform: rotate(45deg);
 }
 
-  .checkbox:checked ~ .bar:nth-child(3){
+.checkbox:checked ~ .bar:nth-child(3) {
       display: none;
 }

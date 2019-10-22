@@ -1,46 +1,52 @@
 {%  extends 'template.twig' %}
 
 {% block content %}
-<link href="css/form.css" rel="stylesheet">
 
-
-        <h1>FORMULAIRE DE RE INITIALISATION DE MOT DE PASSE</h1>
+        <h2>REINITIALISATION DE MOT DE PASSE</h2>
 
         {% if session.username is not defined  %}
             <form id="formReset" method="post" action="index.php?action=back!watch_question">
-                <div class="form-group">
+
+                <div class="champs">
                     <label  for="username">Votre username</label>
                     <input  type="text" class="form-control" id="username" aria-describedby="pseudo" placeholder="Votre username" name="username"required="required" value="{{ session.username }}">
                 </div>
             {% else %}
-            <label  for="username">Votre username</label><div>{{ session.username }}</div><br/>
+            <form id="formReset">
+               <div class="champs">
+                     <label  for="username">Votre username</label>
+                     <p>{{ session.username }}</p>
+               </div>
         {% endif %}
 
 
         {% if session.question is not defined  %}
-            <div class="form-group">
+            <div class="champs">
                     <input type="submit" id="submit" value="afficher la question secrete" />
                 </div>
+
             </form>
 
         {% else %}
         {% if answer != 'ok' %}
             {% if session.question == 'mother'%}
-                    <div>  Quel est le prénom de votre mère?</div>
+                    <p id="watch_question">  Quel est le prénom de votre mère?</p>
                 {% elseif session.question == 'pets'  %}
-                    <div>Quel était le nom de votre premier animal de compagnie?</div>
+                    <p id="watch_question">Quel était le nom de votre premier animal de compagnie?</p>
                 {% elseif session.question == 'color'  %}
-                    <div>Quelle est votre couleur préférée?</div>
+                    <p id="watch_question">Quelle est votre couleur préférée?</p>
                  {% else %}
-                    <div style="color:red">Désolée, une erreur s'est produite</div>
+                    <p style="color:red">Désolée, une erreur s'est produite</p>
             {% endif %}
+
+            </form>
         {% endif %}
 
             {% if session.question == 'mother' or session.question == 'pets' or session.question == 'color' %}
 
                 {% if answer != 'ok' %}
                 <form id="formReset" method="post" action="index.php?action=back!control_question">
-                        <div class="form-group">
+                        <div class="champs">
                             <label for="answer">Votre réponse</label>
                             <input type="text" class="form-control" id="answer" aria-describedby="answer" placeholder="Votre réponse" name="answer" required="required">
                         </div>
@@ -49,7 +55,7 @@
                        <div class="alert alert-warning"> La réponse à la question est erronée. </div>
                    {% endif %}
 
-                   <div class="form-group">
+                   <div class="champs">
                        <input type="submit" id="submit" value="Répondre" />
                    </div>
                  </form>
@@ -60,12 +66,12 @@
 
             {% if answer == 'ok'  %}
             <form id="formReset" method="post" action="index.php?action=back!reset_mdp">
-                <div class="form-group">
-                    <label for="user_password">Tapez votre nouveau password</label>
+                <div class="champs">
+                    <label for="user_password">Nouveau password</label>
                     <input type="password" class="form-control" id="user_password" placeholder="Password" name="user_password" required="required">
                 </div>
 
-                <div class="form-group">
+                <div class="champs">
                     <input type="submit" id="submit" value="Envoyer" />
                 </div>
             </form>
@@ -73,13 +79,11 @@
 
 {% endif %}
 
-        <div>
+        <section id="lien">
             <a href="index.php?action=user!inscription">Créer un compte</a>
-        </div>
-
-          <div class=" connexion">
+      <br>
             <a href="index.php?action=user!connexion"> Se connecter </a>
-        </div>
+        </section>
 
 
 {% endblock %}

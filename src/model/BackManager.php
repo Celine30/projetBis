@@ -18,7 +18,7 @@ class BackManager extends Manager
 
     }
 
-    public function userReponse($username)
+    public function userAnswer($username)
     {
         $bdd = $this->dbConnect();
         $reqAnswer = $bdd->QUERY('SELECT reponse FROM userbank WHERE username="' . $username . '"');
@@ -31,7 +31,7 @@ class BackManager extends Manager
 
     public function resetPassword($username, $password)
     {
-        $password = password_hash($password, PASSWORD_DEFAULT);
+
         $bdd = $this->dbConnect();
         $bdd->exec('UPDATE userbank SET password = "' . $password . '" WHERE username = "' . $username . '"');
     }

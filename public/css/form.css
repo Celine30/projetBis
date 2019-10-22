@@ -1,22 +1,82 @@
-
-
-h1{
+h1,h2 {
+    margin:auto;
     text-align: center;
     background: rgba(0,0,0,0.2);
     border-radius: 10px 100px / 120px;
-    margin-bottom: 30px;
-    /*max-width: 700px!important;*/
+    max-width: 700px!important;
 }
 
-label{
+label {
+    width: 49%;
     background: rgba(0,0,0,0.2);
     text-align: center;
     border-radius: 10px 100px / 120px;
 }
 
-#submit{
+#submit {
     margin: auto;
     text-align: center;
     border-radius: 10px 100px / 120px;
 }
 
+form#connexion div, form#inscription div, form#formReset div , form#change_profile div{
+    max-width:400px;
+    padding-bottom: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+form#connexion div:first-child, form#inscription div:first-child, form#formReset div:first-child, form#change_profile div:first-child {
+    padding-top: 20px;
+}
+
+form, section#lien {
+    margin: auto;
+    max-width: 400px!important;
+
+}
+
+#question, #answer {
+    width: 100%!important;
+    text-align: left;
+    padding-left: 20px;
+}
+
+input {
+    width: 49%;
+}
+
+input.input_modif,.champs i{
+margin-top: 5px;
+    width: 48%;
+}
+
+.champs i{
+    text-align: right;
+}
+
+div.champs {
+    margin: auto;
+}
+
+div.champs p {
+    width: 48%;
+}
+
+section#lien a {
+    margin:auto;
+    padding-bottom: 20px;
+    text-decoration: none;
+    font-size: 0.8em;
+    font-style: italic;
+    color: #655E5E;
+}
+
+form p {
+    margin: 0 0 0 0 ;
+}
+
+p#watch_question {
+   margin-left:30px;
+}
