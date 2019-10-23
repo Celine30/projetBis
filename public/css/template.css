@@ -33,11 +33,11 @@ main {
     margin-bottom: 20px;
 }
 
-.bas {
+footer {
     display: flex;
     justify-content: center;
     color:gray;
-    border-bottom:1px solid rgba(204,204,204,0.5);
+    border-top:1px solid rgba(204,204,204,0.5);
     margin-top: 30px;
 }
 
