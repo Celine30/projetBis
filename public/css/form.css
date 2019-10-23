@@ -7,10 +7,11 @@ h1,h2 {
 }
 
 label {
-    width: 49%;
-    background: rgba(0,0,0,0.2);
+    width: 81%;
+    background: rgba(0,0,0,0.1);
     text-align: center;
     border-radius: 10px 100px / 120px;
+    margin-left: 9%;
 }
 
 #submit {
@@ -38,18 +39,21 @@ form, section#lien {
 }
 
 #question, #answer {
-    width: 100%!important;
+    width: 80%!important;
     text-align: left;
-    padding-left: 20px;
 }
 
 input {
-    width: 49%;
+    width: 80%;
+    font-size: 0.8em;
+    height: 30px;
+    margin-left: 9%;
+    border-bottom: olive 2px solid;
 }
 
 input.input_modif,.champs i{
-margin-top: 5px;
-    width: 48%;
+    margin-top: 5px;
+    width: 100%;
 }
 
 .champs i{
@@ -62,6 +66,7 @@ div.champs {
 
 div.champs p {
     width: 48%;
+    margin-left: 9%;
 }
 
 section#lien a {
@@ -79,4 +84,22 @@ form p {
 
 p#watch_question {
    margin-left:30px;
+}
+
+select#question{
+    border: rgba(204,204,204,0.2) 2px solid;
+    height: 30px;
+    font-size: 0.8em;
+    margin-top: 6px;
+    margin-left: 9%;
+    border-bottom: olive 2px solid;
+}
+
+input#wipe_register, input#register{
+    width: 20%;
+    margin: 0;
+}
+
+label#wipe_register, label#register{
+    width: 70%;
 }

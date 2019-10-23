@@ -8,21 +8,21 @@
 
     <form id ="inscription" method="post" action="index.php?action=user!control_double">
 
-        {{ macro.input('last_name', 'votre nom','text') }}
-        {{ macro.input('first_name', 'votre prénom','text') }}
-        {{ macro.input('username', 'votre username','text') }}
-        {{ macro.input('user_password', 'votre password','password') }}
+        {{ macro.input('last_name', 'Nom','text') }}
+        {{ macro.input('first_name', 'Prénom','text') }}
+        {{ macro.input('username', 'Username','text') }}
+        {{ macro.input('user_password', 'Password','password') }}
 
         <div class="champs">
             <label for="question" id="label_question">Question secrète</label>
-            <select class="form-control" name="question" id="question">
+            <select name="question" id="question">
                 <option value="mother">Quel est le prénom de votre mère?</option>
                 <option value="pets">Quel était le nom de votre premier animal de compagnie?</option>
                 <option value="color">Quelle est votre couleur préférée?</option>
             </select>
         </div>
 
-        {{ macro.input('answer', 'votre réponse','text') }}
+        {{ macro.input('answer', 'Réponse','text') }}
 
         {{ macro.submit('envoyer') }}
 

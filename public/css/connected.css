@@ -53,10 +53,29 @@ position: absolute;
     text-align: justify;
 }
 
-#connected a {
+#connected a :first-child{
     display: block;
     padding-bottom: 70px;
     border-bottom:1px solid rgba(204,204,204,0.5);
 }
 
-
+#partner{
+    position: relative;
+}
+#partner a {
+    color: rgba(0,0,0,0.5);
+    font-size: 0.7em;
+    position: absolute;
+    text-decoration: none;
+    right: 20px;
+    bottom: 20px;
+    padding: 5px 7px 5px 7px;
+    border: rgba(0,0,0,0.2) 3px double;
+    border-radius: 50px 50px 50px 50px
+}
+#partner a:hover {
+    background-color: rgba(0,0,0,0.2);
+    color: white;
+    border: rgba(0,0,0,0.2) 1px solid;
+    bottom: 22px;
+}
