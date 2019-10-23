@@ -64,17 +64,6 @@ class BackController extends Controller
 
         $this->connectedPartner();
 
-  //      $UserManager = new model\UserManager();
-  //      $data= $UserManager->user_profile($_SESSION['username']);
-
- //       $_SESSION['nom'] = $data['nom'];
- //       $_SESSION['prenom'] = $data['prenom'];
- //       $_SESSION['password'] = $data['password'];
-
-  //      return $this->twig->render('connected.twig', array(
-  //                  'session' => $_SESSION
-   //             ));
-
     }
 
     public function check_mdp(){
@@ -131,4 +120,17 @@ class BackController extends Controller
         }
 
     }
+ public function add_com() {
+         if(isset($_POST['comment']) && ($_POST['comment']!= "") && isset($_POST['icone']) && isset($_POST['idName'])){
+
+             $addComment = new Model\BackManager();
+             $addComment->add_com($_POST['idName'], $_POST['comment'], $_SESSION['username'], $_POST['icone']);
+
+         }else{
+             echo'merci de remplir tous les champs';
+         }
+
+ }
+
+
 }

@@ -3,7 +3,7 @@
 
 namespace Project\Model;
 
-
+use Project\Model;
 
 class BackManager extends Manager
 {
@@ -86,4 +86,26 @@ class BackManager extends Manager
 
         return $partner;
     }
+
+     public function add_com($idName, $comment, $auteur, $avis)
+     {
+            $bdd = $this->dbConnect();
+            $req = $bdd->prepare('INSERT INTO PartnerGBAF (idName, comment, auteur, date_creation, avis) VALUES (:idName, :comment, :auteur, NOW(), :avis)');
+            $req->execute(array(
+                'idName' => $idName,
+                'comment' => $comment,
+                'auteur' => $auteur,
+                'avis' => $avis
+            ));
+            $comment='valide';
+            return $comment;
+        }
+
+        public function list_com($idName){
+            $bdd = $this->dbConnect();
+            $reqlist = $bdd->QUERY('SELECT comment, auteur, date_creation, avis FROM PartnerGBAF WHERE idName="' . $idName . '"');
+            $data = $reqlist->fetch();
+
+            return $data;
+        }
 }
