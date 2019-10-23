@@ -59,10 +59,10 @@ position: absolute;
     border-bottom:1px solid rgba(204,204,204,0.5);
 }
 
-#partner{
+#connected #partner{
     position: relative;
 }
-#partner a {
+#connected #sectionPartner #partner #more {
     color: rgba(0,0,0,0.5);
     font-size: 0.7em;
     position: absolute;
@@ -73,9 +73,10 @@ position: absolute;
     border: rgba(0,0,0,0.2) 3px double;
     border-radius: 50px 50px 50px 50px
 }
-#partner a:hover {
+#connected #partner #more:hover {
     background-color: rgba(0,0,0,0.2);
     color: white;
     border: rgba(0,0,0,0.2) 1px solid;
     bottom: 22px;
 }
+

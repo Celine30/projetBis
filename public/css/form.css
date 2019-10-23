@@ -1,9 +1,10 @@
-h1,h2 {
+h1,h2:not(#partner_title) {
     margin:auto;
     text-align: center;
     background: rgba(0,0,0,0.2);
     border-radius: 10px 100px / 120px;
     max-width: 700px!important;
+
 }
 
 label {
@@ -32,7 +33,7 @@ form#connexion div:first-child, form#inscription div:first-child, form#formReset
     padding-top: 20px;
 }
 
-form, section#lien {
+form#connexion, form#inscription, form#formReset , form#change_profile, section#lien {
     margin: auto;
     max-width: 400px!important;
 
@@ -43,7 +44,7 @@ form, section#lien {
     text-align: left;
 }
 
-input {
+input:not(#submit_com) {
     width: 80%;
     font-size: 0.8em;
     height: 30px;
@@ -57,7 +58,8 @@ input.input_modif,.champs i{
 }
 
 .champs i{
-    text-align: right;
+    text-align: left;
+    margin-left: 9%;
 }
 
 div.champs {

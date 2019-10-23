@@ -6,9 +6,7 @@
 
 {% block content %}
 
-    {% include("menu.twig") %}
-
-<section id="connected">
+<div id="connected">
 
     <main id="sectionGBAF">
         <h1>Le GBAF</h1>
@@ -16,7 +14,7 @@
         réglementation financière française.</p>
     </main>
 
-    <a id ="photo" href="index.php?action=user!connexion"><img id="sliderGBAF" src="images/sliderGBAF.jpg" alt="logoGBAF" title="logoGBAF"></a></div>
+    <a id ="photo" href="index.php?action=user!connexion"><img id="sliderGBAF" src="images/sliderGBAF.jpg" alt="logoGBAF" title="logoGBAF"></a>
 
     <main id="sectionResume">
         <p id="resumeGbaf">Des informations portant sur des produits bancaires et des financeurs seront basés sur vos votes et commentaires.
@@ -34,13 +32,13 @@
                 <h3>{{ partnerOne.namePartner}} </h3>
                 <p id="resumePartner">{{ partnerOne.resumePartner | truncate (150)}}</p>
             </section>
-            <a href="index.php?action=user!{{ partnerOne.namePartner}}" id="more">Lire la suite </a>
+            <a href="index.php?action=partner!{{ partnerOne.idPartner }}" id="more">Lire la suite </a>
         </article>
   {% else %}
     <li>Rien</li>
         {% endfor %}
     </main>
 
-</section>
+</div>
 
 {% endblock %}
