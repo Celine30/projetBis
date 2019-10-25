@@ -7,33 +7,8 @@ use Project\Model;
 
 
 
-class BackController
+class BackController extends PartnerController
 {
-    protected $twig = null;
-
-    public function __construct(Environment $twig)
-    {
-        $this->twig = $twig;
-    }
-
-    public function connected(){
-
-        $BackManager = new model\BackManager();
-        $partner = $BackManager->partner_list();
-
-        $UserManager = new model\UserManager();
-        $data= $UserManager->user_profile($_POST['username']);
-        $_SESSION['username'] = $_POST['username'];
-        $_SESSION['nom'] = $data['nom'];
-        $_SESSION['prenom'] = $data['prenom'];
-        $_SESSION['question'] = $data['question'];
-        $_SESSION['reponse'] = $data['reponse'];
-        $_SESSION['password'] = $data['password'];
-
-        echo $this->twig->render('connected.twig', array(
-                      'session' => $_SESSION ,
-                      'partner'=> $partner));
-    }
 
     public function watch_question()
     {
@@ -62,7 +37,7 @@ class BackController
     public function control_question()
     {
         $BackManager = new model\BackManager();
-        $answer = $BackManager->userReponse($_SESSION['username']);
+        $answer = $BackManager->userAnswer($_SESSION['username']);
 
         if (isset($answer)) {
             if ($_POST['answer'] == $answer) {
@@ -81,18 +56,13 @@ class BackController
     }
 
     public function reset_mdp(){
+
+        $password = password_hash($_POST['user_password'], PASSWORD_DEFAULT);
+
         $BackManager = new model\BackManager();
-        $BackManager->resetPassword($_SESSION['username'],$_POST['user_password']);
+        $BackManager->resetPassword($_SESSION['username'],$password);
 
-        $UserManager = new model\UserManager();
-        $data= $UserManager->user_profile($_SESSION['username']);
-        $_SESSION['nom'] = $data['nom'];
-        $_SESSION['prenom'] = $data['prenom'];
-        $_SESSION['password'] = $data['password'];
-
-        return $this->twig->render('connected.twig', array(
-                    'session' => $_SESSION
-                ));
+        $this->connectedPartner();
 
     }
 
@@ -103,16 +73,18 @@ class BackController
        if (isset($Mdp)) {
            if (password_verify($_POST['user_password'], $Mdp)) {
 
+               $_SESSION['username'] = $_POST['username'];
+
                if(isset($_POST['register'])) {
-                   $BackManager->createCookies($_POST['username'],$_POST['user_password']);
-                   $this->connected();
+                   $BackManager->createCookies($_SESSION['username'],$_POST['user_password']);
+                   $this->connectedPartner();
 
                }elseif(isset($_POST['wipe_register'])) {
                    $BackManager->wipeCookies();
                    return $this->twig->render('connexion.twig');
 
                }else{
-                    $this->connected();
+                    $this->connectedPartner();
                }
 
            }else{
@@ -148,4 +120,21 @@ class BackController
         }
 
     }
+ public function add_com() {
+         if(isset($_POST['comment']) && ($_POST['comment']!= "") && isset($_POST['icone']) && isset($_POST['idName'])){
+
+             $addComment = new Model\BackManager();
+             $addComment->add_com($_POST['idName'], $_POST['comment'], $_SESSION['username'], $_POST['icone']);
+
+             $class = $_POST['idName'];
+
+             $this->$class();
+
+         }else{
+             echo'merci de remplir tous les champs';
+         }
+
+ }
+
+
 }

@@ -6,35 +6,39 @@
 
 {% block content %}
 
-    {% include("menu.twig") %}
-
+<div id="connected">
 
     <main id="sectionGBAF">
         <h1>Le GBAF</h1>
-        <p>Le GBAF est le représentant de la profession bancaire et des assureurs sur tous les axes de la
+        <p id="textGbaf">Le GBAF est le représentant de la profession bancaire et des assureurs sur tous les axes de la
         réglementation financière française.</p>
-        <p>Des informations portant sur des produits bancaires et des financeurs seront basés sur vos votes et commentaires.
+    </main>
+
+    <a id ="photo" href="index.php?action=user!connexion"><img id="sliderGBAF" src="images/sliderGBAF.jpg" alt="logoGBAF" title="logoGBAF"></a>
+
+    <main id="sectionResume">
+        <p id="resumeGbaf">Des informations portant sur des produits bancaires et des financeurs seront basés sur vos votes et commentaires.
         GBAF souhaite vous proposer un point d’entrée unique, avec un maximum d’informations sur nos partenaires.</p>
     </main>
 
-    <a id ="photo" href="index.php?action=user!connexion"><img id="sliderGBAF" src="images/sliderGBAF.jpg" alt="logoGBAF" title="logoGBAF"></a></div>
-
     <main id="sectionPartner">
+
 {% for partnerOne in partner %}
-        <article>
+        <article id="partner">
             <section id="image">
-                <img id="logoPartner" src="images/{{ partnerOne.imagePartner}}">
+                <img id="logoPartner" src="images/{{ partnerOne.imagePartner}}" alt="logoPartner">
             </section>
             <section id="resume">
                 <h3>{{ partnerOne.namePartner}} </h3>
-                <p>{{ partnerOne.resumePartner | truncate (150)}}</p>
+                <p id="resumePartner">{{ partnerOne.resumePartner | truncate (150)}}</p>
             </section>
-            <p id="more"><a href="#"> Lire la suite</a></p>
+            <a href="index.php?action=partner!{{ partnerOne.idPartner }}" id="more">Lire la suite </a>
         </article>
   {% else %}
     <li>Rien</li>
         {% endfor %}
     </main>
 
+</div>
 
 {% endblock %}

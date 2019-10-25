@@ -64,8 +64,8 @@ class UserManager extends Manager
     {
         $bdd = $this->dbConnect();
 
-        $profil = $bdd->QUERY("SELECT nom,prenom,password,question,reponse FROM userbank WHERE username='$username'");
-        $data = $profil->fetch();
+        $profile = $bdd->QUERY("SELECT nom,prenom,password,question,reponse FROM userbank WHERE username='$username'");
+        $data = $profile->fetch();
         return $data;
 
     }

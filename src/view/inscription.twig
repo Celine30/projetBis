@@ -3,41 +3,37 @@
 {% import 'macro.twig'as macro %}
 
 {% block content %}
+<div id="content_inscription">
 
-    <link href="css/form.css" rel="stylesheet">
+    <h2>FORMULAIRE D'INSCRIPTION</h2>
 
+    <form id ="inscription" method="post" action="index.php?action=user!control_double">
 
-<div class="container">
+        {{ macro.input('last_name', 'Nom','text') }}
+        {{ macro.input('first_name', 'Prénom','text') }}
+        {{ macro.input('username', 'Username','text') }}
+        {{ macro.input('user_password', 'Password','password') }}
 
-    <h1>FORMULAIRE D'INSCRIPTION</h1>
-
-    <form method="post" action="index.php?action=user!control_double">
-
-        {{ macro.input('last_name', 'votre nom','text') }}
-        {{ macro.input('first_name', 'votre prénom','text') }}
-        {{ macro.input('username', 'votre username','text') }}
-        {{ macro.input('user_password', 'votre password','password') }}
-
-        <div class="form-group">
-            <label for="question" id="question">Question secrète</label>
-            <select class="form-control" name="question">
+        <div class="champs">
+            <label for="question" id="label_question">Question secrète</label>
+            <select name="question" id="question">
                 <option value="mother">Quel est le prénom de votre mère?</option>
                 <option value="pets">Quel était le nom de votre premier animal de compagnie?</option>
                 <option value="color">Quelle est votre couleur préférée?</option>
             </select>
         </div>
 
-        {{ macro.input('answer', 'votre réponse','text') }}
+        {{ macro.input('answer', 'Réponse','text') }}
+
         {{ macro.submit('envoyer') }}
 
     </form>
 
-        <div class=" connexion">
-            <a href="index.php?action=user!connexion"> Vous avez déjà un compte </a>
-        </div>
+    <section id="lien">
+        <a href="index.php?action=user!connexion"> Vous avez déjà un compte </a>
+    </section>
 
-
-</div>
+<div>
 
 {% endblock %}
 

@@ -1,11 +1,15 @@
 {% macro input(name, label, type) %}
-     <label  for="{{ name }}">{{ label }}</label>
-     <input  type="{{ type }}" class="form-control" id="{{ name }}" aria-describedby="{{ name }}" placeholder="{{ label }}" name="{{ name }}" required="required">
+    <div class="champs">
+        <label  for="{{ name }}">{{ label }}</label>
+        <input  type="{{ type }}" class="form-control" id="{{ name }}" aria-describedby="{{ name }}" placeholder="{{ label }}" name="{{ name }}" required="required">
+    </div>
 {% endmacro input%}
 
 
 {% macro submit(text) %}
-            <input type="submit" id="submit" value="{{ text }}" />
+    <div class="champs">
+        <input type="submit" id="submit" value="{{ text }}" />
+    </div>
 {% endmacro submit %}
 
 

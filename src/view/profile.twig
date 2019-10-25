@@ -4,72 +4,73 @@
 
 {% block content %}
 
-    <link href="css/form.css" rel="stylesheet">
-
-
-{% include("menu.twig") %}
-
 <article id="profile">
 
-    <h1> Votre Profil </h1>
+    <h2> Votre Profil </h2>
    {%   if change is defined %}
         <form id="change_profile" method="post" action="index.php?action=back!change_profile">
+            {% else %}
+            <form id="change_profile">
    {% endif %}
 
-           <label  for="first_name">Nom</label>
+            <div class="champs">
+                <label  for="first_name">Nom</label>
                 {%   if change is defined %}
-                    <span> {{ session.nom }} </span>
-                    <input  type="text" id="first_name" aria-describedby="first_name"  name="first_name" placeholder="{{ session.nom }}">
+                    <p> {{ session.nom }} </p>
+                    <i>Modifié par</i><input  type="text" id="first_name" class="input_modif" aria-describedby="first_name"  name="first_name" placeholder="{{ session.nom }}">
                     {% else %}
-                    <span> {{ session.nom }} </span>
+                    <p> {{ session.nom }} </p>
                 {% endif %}
+            </div>
 
-            <br>
-
-            <label for="last_name">Prénom</label>
+            <div class="champs">
+                <label for="last_name">Prénom</label>
                 {%   if change is defined %}
-                    <span> {{ session.prenom }} </span>
-                    <input  type="text" id="last_name" aria-describedby="last_name"  name="last_name" placeholder="{{ session.prenom  }}">
+                    <p> {{ session.prenom }} </p>
+                    <i>Modifié par</i><input  type="text" id="last_name" class="input_modif" aria-describedby="last_name"  name="last_name" placeholder="{{ session.prenom  }}">
                 {% else %}
-                    <span> {{ session.prenom }}</span>
+                    <p> {{ session.prenom }}</p>
                 {% endif %}
+            </div>
 
-            <br>
-
-            <label for="username">Username</label>
+            <div class="champs">
+                <label for="username">Username</label>
                 {%   if change is defined %}
-                    <span>  {{ session.username }} </span>
-                    <input type="text" id="username" aria-describedby="username"  name="username"  placeholder="{{ session.username }}">
+                    <p>  {{ session.username }} </p>
+                    <i>Modifié par</i><input type="text" id="username" class="input_modif" aria-describedby="username"  name="username"  placeholder="{{ session.username }}">
                 {% else %}
-                    <span>  {{ session.username }} </span>
+                    <p>  {{ session.username }} </p>
                 {% endif %}
+            </div>
 
-            <br>
-
-            <label for="user_password">Votre Password</label>
-                   {%   if change is defined %}
-                    <span> XXXXXXXX </span>
-                   <input  type="text" id="user_password" aria-describedby="user_password"  name="user_password"  placeholder="XXXXXXXX">
+            <div class="champs">
+            <label for="user_password">Password</label>
+                {%   if change is defined %}
+                    <p> XXXXXXXX </p>
+                    <i>Modifié par</i><input  type="text" id="user_password" class="input_modif" aria-describedby="user_password"  name="user_password"  placeholder="XXXXXXXX">
                    {% else %}
-                    <span> {{ password }} </span>
+                    <p> XXXXXXXX </p>
                 {% endif %}
+            </div>
 
-            <br>
 
   {%   if change is defined %}
-            {{ macro.submit('Enregistrer les modifications') }}
+            {{ macro.submit('Enregistrer') }}
+
        </form>
    {% endif %}
 
     {%   if change is  defined %}
-
+        <section id="lien">
            <a  style="text-align: right" href="index.php?action=user!profile_show">Retour à votre profil</a>
+        </section>
     {% else %}
+         </form>
+        <section id="lien">
             <a  href="index.php?action=user!change_profile"> Modifier Votre profil</a>
+        </section>
     {% endif %}
 
-
-
-    </article>
+</article>
 
 {% endblock %}

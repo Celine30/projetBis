@@ -1,0 +1,135 @@
+#connected {
+    padding-top: 120px;
+}
+
+#sliderGBAF {
+    width: 100%;
+}
+
+#photo #sliderGBAF {
+    width: 96%;
+    margin-left: 1.5%;
+}
+
+#sectionGBAF {
+    margin-top: 20px;
+}
+
+main#sectionPartner {
+    margin-top: 20px;
+    padding-bottom: 6px;
+    border: 1px solid darkgray;
+    display: flex;
+    flex-direction: column;
+}
+
+#sectionPartner article {
+    position:relative;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid darkgray;
+    width: 96%;
+    margin-top: 6px;
+    padding-bottom: 40px;
+    margin-left: 1.5%;
+}
+
+#sectionPartner section img {
+    width: 96%;
+    border: 1px solid darkgray;
+    margin-top: 6px;
+    margin-left: 1.5%;
+}
+
+
+#sectionPartner section#resume {
+   width: 96%;
+    margin: auto;
+}
+
+button {
+position: absolute;
+    max-width: 80px;
+    bottom:10px;
+    right: 10px;
+}
+
+#resumePartner, #resumeGbaf, p#textGbaf {
+    text-align: justify;
+}
+
+#connected a :first-child{
+    display: block;
+    padding-bottom: 70px;
+    border-bottom:1px solid rgba(204,204,204,0.5);
+}
+
+#connected #partner{
+    position: relative;
+}
+
+#connected #sectionPartner #partner #more {
+    color: rgba(0,0,0,0.5);
+    font-size: 0.7em;
+    position: absolute;
+    text-decoration: none;
+    right: 20px;
+    bottom: 15px;
+    padding: 5px 7px 5px 7px;
+    border: rgba(0,0,0,0.2) 3px double;
+    border-radius: 50px 50px 50px 50px
+}
+
+#connected #partner #more:hover {
+    background-color: rgba(0,0,0,0.2);
+    color: white;
+    border: rgba(0,0,0,0.2) 1px solid;
+    bottom: 22px;
+}
+
+@media (min-width: 768px) {
+
+  #sectionPartner article {
+      position: relative;
+      display: flex;
+      flex-direction: row;
+      padding-bottom: 0px;
+      margin-left: 1.5%;
+  }
+
+    #connected h3{
+        margin: 0;
+    }
+
+    #sectionPartner section img {
+        width: 96%;
+        border: 1px solid darkgray;
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+
+    #connected #sectionPartner #partner #more {
+        right: 5px;
+        bottom: 7px;
+    }
+
+    #resumePartner {
+        margin-right: 7px;
+        padding-bottom: 10px;
+    }
+
+    p#textGbaf {
+    text-align: center;
+    }
+
+
+
+}
+
+@media (min-width: 1024px) {
+
+        #resumePartner {
+        margin-right: 100px;
+
+    }
+}

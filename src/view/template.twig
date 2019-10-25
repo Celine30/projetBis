@@ -3,37 +3,57 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link href="css/styletemplate.css" rel="stylesheet">
-    <link href="css/styleconnected.css" rel="stylesheet">
+
+    <meta name="viewport" content="width=device-width" />
+    <meta name="description" content="GBAF, le point de rendez-vous des informations utiles" />
+
+    <link href="css/template.css" rel="stylesheet">
+    <link href="css/connected.css" rel="stylesheet">
+    <link href="css/menu.css" rel="stylesheet">
+    <link href="css/form.css" rel="stylesheet">
+    <link href="css/partner.css" rel="stylesheet">
+
+    <script src="https://kit.fontawesome.com/aee0f1128d.js" crossorigin="anonymous"></script>
 
     <title>GBAF</title>
+
 </head>
-<body>
-<header  id="header" class="hautetbas haut">
-    <a href="index.php?action=user!connexion"><img id="logoGBAF" src="images/logoGBAF.jpg" alt="logoGBAF" title="logoGBAF"></a>
-    <p>Bonjour {{ session.prenom |capitalize }} {{ session.nom |upper }}</p>
-    {% if session.username is defined %}
-        <a href = "index.php?action=user!logout" >Se deconnecter</a>
-        {% endif %}
-</header>
 
 <body>
+
+<header>
+{% if session.prenom is defined  %}
+
+    {% include("menu.twig") %}
+
+            <a href="index.php?action=user!home_show"><img id="logoGBAF" src="images/logoGBAF.jpg" alt="logoGBAF" title="logoGBAF"></a>
+        {% else %}
+            <img id="logoGBAF" src="images/logoGBAF.jpg" alt="logoGBAF" title="logoGBAF">
+    {% endif %}
+   <aside>
+    <p>Bonjour
+        {% if session.prenom is defined  %}
+            {{ session.prenom |capitalize }} {{ session.nom |upper }} </p>
+            <a href = "index.php?action=user!logout" > &nbsp; Se déconnecter</a>
+        {% else %}
+            </p>
+        {% endif %}
+    </aside>
+
+</header>
 
 
 
 {% block content %}
 
-
-
 {% endblock %}
 
-
-
 <footer class="hautetbas bas">
-    <a id="mentionslegales"> | mentions légales &nbsp; </a>
+    <p>
+    <a id="mentions_legales"> | mentions légales &nbsp; </a>
     <a id="contact"> | contact |</a>
+    </p>
 </footer>
-
 
 </body>
 

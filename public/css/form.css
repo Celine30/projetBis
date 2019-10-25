@@ -1,25 +1,225 @@
-
-
-
-h1{
-    text-align: center;
-    background: rgba(0,0,0,0.2);
-    border-radius: 10px 100px / 120px;
-    margin-bottom: 30px;
-    /*max-width: 700px!important;*/
+#profile, #content_connexion, #content_inscription{
+   padding-top: 120px;
 }
 
-label{
-    background: rgba(0,0,0,0.2);
+h1,h2:not(#partner_title) {
+    margin:auto;
     text-align: center;
-    border-radius: 10px 100px / 120px;
+  /*  background: rgba(0,0,0,0.2);*/
+    border-bottom: #CD1818 2px solid ;
+    background-color: red;
+    color: white;
+    border-radius: 20px 20px 0 0;
 }
 
+h2:not(#partner_title){
+      max-width:400px;
+}
 
+form{
+    background-color: rgba(161,161,161,0.1);
+    border-radius:  0 0 20px 20px;
+}
 
-a, #submit{
+label:not(#wipe_register) {
+    width: 81%;
+  /*  background: rgba(0,0,0,0.1);
+    text-align: center;*/
+    border-radius: 20px 20px 0 0;
+    margin-left: 9%;
+}
+
+label#wipe_register , label#register {
+    width: 81%;
+    background: rgba(0,0,0,0.1);
+    border-radius:  20px 20px 20px 20px;
+    text-align: center;
+    margin-left: 9%;
+}
+
+#submit {
     margin: auto;
     text-align: center;
-    border-radius: 10px 100px / 120px;
+    border-radius:  20px 20px 20px 20px;
+    border-bottom: #CD1818 2px solid ;
+    background-color: red;
+    color: white;
+    font-size: 1.2em;
+
 }
 
+form#connexion div, form#inscription div, form#formReset div , form#change_profile div{
+    max-width:400px;
+    padding-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+
+
+form#connexion div:nth-last-child(2){
+    flex-direction: row;
+}
+
+form#connexion div:first-child, form#inscription div:first-child, form#formReset div:first-child, form#change_profile div:first-child {
+    padding-top: 20px;
+}
+
+form#connexion, form#inscription, form#formReset , form#change_profile, section#lien {
+    margin: auto;
+    max-width: 400px!important;
+}
+
+#question, #answer {
+    width: 80%!important;
+    text-align: left;
+}
+
+input:not(#submit_com) {
+    width: 80%;
+    height: 30px;
+    margin-left: 9%;
+    border-bottom: olive 2px solid;
+}
+
+input.input_modif,.champs i{
+    margin-top: 5px;
+    width: 100%;
+}
+
+.champs i{
+    text-align: left;
+    margin-left: 9%;
+}
+
+div.champs {
+    margin: auto;
+}
+
+div.champs p {
+    width: 48%;
+    margin-left: 9%;
+}
+
+section#lien a {
+    margin:auto;
+    padding-bottom: 20px;
+    font-size: 0.8em;
+    font-style: italic;
+    color: #655E5E;
+}
+
+form p {
+    margin: 0 0 0 0 ;
+}
+
+p#watch_question {
+   margin-left:30px;
+}
+
+select#question{
+    border: rgba(204,204,204,0.2) 2px solid;
+    height: 30px;
+    font-size: 0.8em;
+    margin-left: 9%;
+    border-bottom: olive 2px solid;
+}
+
+input#wipe_register, input#register{
+    width: 7%;
+    margin: 0 35px 0 0 ;
+    height: 20px;
+
+}
+
+label#wipe_register, label#register{
+    width: 70%;
+}
+
+@media (min-width: 768px) {
+
+    form#connexion, form#inscription , form#formReset , form#change_profile {
+    max-width:90%!important;
+    }
+
+    h1,h2:not(#partner_title){
+        max-width:90%!important;
+    }
+
+    h1{
+        max-width:100%!important;
+    }
+
+    form#connexion div, form#inscription div, form#formReset div , form#change_profile div{
+        max-width:90%!important;
+        padding-bottom: 20px;
+        display: flex;
+        flex-direction: row;
+    }
+
+    label:not(#register) {
+        width: 20%;
+        margin-left: 0;
+        margin-top: 10px;
+    }
+
+    label#wipe_register {
+        width: 20%;
+        margin-left: 0;
+        margin-top: 10px;
+    }
+
+
+    input:not(#submit_com) {
+        margin:auto;
+    }
+
+    form#connexion div:last-child, form#inscription div:last-child, form#formReset div:last-child, form#change_profile div:last-child{
+        width: 30%;
+    }
+
+    select#question{
+        margin-left: 0%;
+
+    }
+
+    label#wipe_register, label#register{
+        margin-left: 20%;
+        }
+
+    input#wipe_register{
+        margin: 0;
+    }
+
+    label#wipe_register{
+        width: 90%;
+        margin-top: 0;
+    }
+
+    section#lien {
+       max-width: 90%!important;
+    }
+
+    .champs i {
+        margin-top: 10px;
+        width: 90px!important;
+        margin-left: 30px;
+    }
+
+    form#change_profile div.champs label{
+        max-width: 90px!important;
+    }
+
+    form#change_profile div.champs p{
+        margin-top: 10px;
+        margin-left: 10px;
+        max-width: 90px!important;;
+    }
+
+    form#change_profile div.champs input{
+        margin-left: 10px;
+    }
+
+
+}
