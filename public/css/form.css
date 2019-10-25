@@ -175,7 +175,7 @@ label#wipe_register, label#register{
         margin:auto;
     }
 
-    form#connexion div:last-child, form#inscription div:last-child, form#formReset div:last-child, form#change_profile div:last-child{
+    form#connexion div:last-child input, form#inscription div:last-child input, form#formReset div:last-child input, form#change_profile div:last-child input{
         width: 30%;
     }
 
@@ -215,10 +215,6 @@ label#wipe_register, label#register{
         margin-top: 10px;
         margin-left: 10px;
         max-width: 90px!important;;
-    }
-
-    form#change_profile div.champs input{
-        margin-left: 10px;
     }
 
 

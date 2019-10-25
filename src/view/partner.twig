@@ -4,93 +4,89 @@
 
 {% block content %}
 
-<div id="content_partner">
+{% if session is defined %}
+                <div id="content_partner">
 
+                    <section id="partner">
+                        <img src="images/{{ partner.imagePartner}}" alt="image_Partner">
+                        <h2 id="partner_title">{{ partner.namePartner}}</h2>
+                        <a id="lien" href="{{ partner.lien}}">{{ partner.lien}}</a>
+                        <br>
+                        <p>{{ partner.resumePartner}}</p>
+                    </section>
 
-    <section id="partner">
-        <img src="images/{{ partner.imagePartner}}" alt="image_Partner">
-        <h2 id="partner_title">{{ partner.namePartner}}</h2>
-        <a id="lien" href="{{ partner.lien}}">{{ partner.lien}}</a>
-        <br>
-        <p>{{ partner.resumePartner}}</p>
-    </section>
+            {% if comment != 'comment' %}
+                    <section id="comments">
 
+                        <article id="title_comments">
+                            <aside>
+                                <span>{{ comments | length }}</span> Commentaires
+                            </aside>
+                            <aside>
+                                <div class="button"><a href="index.php?action=partner!{{ partner.idPartner}}_com">Nouveau commentaire</a></div>
+                                <div class="button">
+                                    <span>{{ comments_up | length }}</span><i id ="thumb_good_resume" class="fas fa-thumbs-up"></i>
+                                    <span>{{ comments_down | length }}</span><i id ="thumb_bad_resume" class="fa fa-thumbs-down"></i>
+                                </div>
+                            </aside>
+                        </article>
 
-{% if comment != 'comment' %}
-    <section id="comments">
+                        {% for comment in comments %}
+                        <article class="content_comment">
+                            <article>
+                                <p class="comment">{{ comment.auteur}}</p>
+                                <p class="comment"><i>{{ comment.date_creation}}</i></p>
+                                <p class="comment">{{ comment.comment}}</p>
+                            </article>
+                        </article>
+                        {% endfor %}
+                    </section>
 
-        <article id="title_comments">
-            <aside>
-                <span>{{ comments | length }}</span> Commentaires
-            </aside>
-            <aside>
-                <div class="button"><a href="index.php?action=partner!{{ partner.idPartner}}_com">Nouveau commentaire</a></div>
-                <div class="button">
-                    <span>{{ comments_up | length }}</span><i id ="thumb_good_resume" class="fas fa-thumbs-up"></i>
-                    <span>{{ comments_down | length }}</span><i id ="thumb_bad_resume" class="fa fa-thumbs-down"></i>
                 </div>
-            </aside>
-        </article>
 
-        {% for comment in comments %}
-        <article class="content_comment">
-            <article>
-                <p class="comment">{{ comment.auteur}}</p>
-                <p class="comment"><i>{{ comment.date_creation}}</i></p>
-                <p class="comment">{{ comment.comment}}</p>
-            </article>
-        </article>
-        {% endfor %}
-    </section>
+            {% else %}
 
-</div>
+                <section id="add_comments">
+
+                    <p id="title_addcomment">Ajouter votre commentaire</p>
+
+                        <form id="add_comment" method="post" action="index.php?action=back!add_com">
+
+                            <div class="clean">
+                                <label  for="idName">idName</label>
+                                <input  type="text" id="idName" name="idName" required="required" value="{{ partner.idPartner}}">
+                            </div>
+                            <label  for="comment">Votre commentaire</label>
+                            <textarea id="comment" placeholder="Votre commentaire" name="comment" required="required" ></textarea>
+
+                            <div class="flex">
+
+                                <div id="avis">
+                                    <label class="clean" for ='bad'></label><input class="radio" required="required" type="radio" id="bad" value="bad" name="icone" />
+                                    <label class="clean" for ='good'></label> <input class="radio2" required="required" type="radio" id="good" value="good" name="icone" />
+                                    <i id ="thumb_good" class="fas fa-thumbs-up"></i>
+                                    <i id ="thumb_bad" class="fa fa-thumbs-down"></i>
+                                </div>
+
+                                <input type="submit" id="submit_com" value="envoyer" />
+
+                            </div>
+
+                        </form>
+
+                         <section id="return">
+                           <a href="index.php?action=partner!{{ partner.idPartner}}"><i class="fas fa-times"></i>Abandon</a>
+                         </section>
+
+                </section>
+
+            {% endif %}
 
 {% else %}
 
+    <p> Merci de vous identifier.</p>
 
-
-<section id="add_comments">
-
-    <p id="title_addcomment">Ajouter votre commentaire</p>
-
-        <form id="add_comment" method="post" action="index.php?action=back!add_com">
-
-            <div class="clean">
-                <label  for="idName">idName</label>
-                <input  type="text" id="idName" name="idName" required="required" value="{{ partner.idPartner}}">
-            </div>
-            <label  for="comment">Votre commentaire</label>
-            <textarea id="comment" placeholder="Votre commentaire" name="comment" required="required" ></textarea>
-
-            <div class="flex">
-
-                <div id="avis">
-                    <label class="clean" for ='bad'></label><input class="radio" required="required" type="radio" id="bad" value="bad" name="icone" />
-                    <label class="clean" for ='good'></label> <input class="radio2" required="required" type="radio" id="good" value="good" name="icone" />
-                    <i id ="thumb_good" class="fas fa-thumbs-up"></i>
-                    <i id ="thumb_bad" class="fa fa-thumbs-down"></i>
-                </div>
-
-                <input type="submit" id="submit_com" value="envoyer" />
-
-            </div>
-
-        </form>
-
-         <section id="return">
-           <a href="index.php?action=partner!{{ partner.idPartner}}"><i class="fas fa-times"></i>Abandon</a>
-         </section>
-
-
-</section>
-
-
-
-{% endif %}
-
-
-
-
+{% endif%}
 
 
 {% endblock %}

@@ -1,47 +1,8 @@
 {%  extends 'template.twig' %}
 
-{% import 'macro.twig'as macro %}
-
 {% block content %}
 
-<div id="content_connexion" >
-
-    <h2>FORMULAIRE DE CONNEXION</h2>
-
-    <form id="connexion" method="post" action="index.php?action=back!check_mdp">
-
-        <div class="champs">
-            <label  for="username">Votre username</label>
-            <input  type="text" class="form-control" id="username" aria-describedby="username" placeholder="Votre username" name="username" value="{{ register.username }}">
-        </div>
-
-        <div class="champs">
-            <label  for="user_password">Votre mot de passe</label>
-            <input  type="password" class="form-control" id="user_password" aria-describedby="user_password" placeholder="Votre mot de passe" name="user_password" required="required" value="{{ register.password }}">
-        </div>
-
-        {{ erreur|raw }}
-
-        <div class="champs">
-            {% if register.username is not defined%}
-                 {{ macro.checkbox('register', 'Se souvenir de moi') }}
-            {% else %}
-                {{ macro.checkbox('wipe_register', 'Ne plus se souvenir de moi') }}
-            {% endif %}
-        </div>
-
-        {{ macro.submit('connexion') }}
-
-
-    </form>
-
-        <section id="lien">
-            <a href="index.php?action=user!mdp_forget">Mot de passe oublié</a>
-        <br>
-            <a href="index.php?action=user!inscription">Créer un compte</a>
-        </section>
-
-    </div>
+{% include("f_connexion.twig") %}
 
 {% endblock %}
 
