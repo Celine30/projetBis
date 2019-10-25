@@ -44,7 +44,7 @@
             </div>
 
             <div class="champs">
-            <label for="user_password">Votre Password</label>
+            <label for="user_password">Password</label>
                 {%   if change is defined %}
                     <p> XXXXXXXX </p>
                     <i>Modifié par</i><input  type="text" id="user_password" class="input_modif" aria-describedby="user_password"  name="user_password"  placeholder="XXXXXXXX">
@@ -55,7 +55,7 @@
 
 
   {%   if change is defined %}
-            {{ macro.submit('Enregistrer les modifications') }}
+            {{ macro.submit('Enregistrer') }}
 
        </form>
    {% endif %}
@@ -65,6 +65,7 @@
            <a  style="text-align: right" href="index.php?action=user!profile_show">Retour à votre profil</a>
         </section>
     {% else %}
+         </form>
         <section id="lien">
             <a  href="index.php?action=user!change_profile"> Modifier Votre profil</a>
         </section>

@@ -3,6 +3,10 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width" />
+    <meta name="description" content="GBAF, le point de rendez-vous des informations utiles" />
+
     <link href="css/template.css" rel="stylesheet">
     <link href="css/connected.css" rel="stylesheet">
     <link href="css/menu.css" rel="stylesheet">
@@ -17,10 +21,16 @@
 
 <body>
 
-<header class="haut">
+<header>
+{% if session.prenom is defined  %}
 
-    <img id="logoGBAF" src="images/logoGBAF.jpg" alt="logoGBAF" title="logoGBAF">
+    {% include("menu.twig") %}
 
+            <a href="index.php?action=user!home_show"><img id="logoGBAF" src="images/logoGBAF.jpg" alt="logoGBAF" title="logoGBAF"></a>
+        {% else %}
+            <img id="logoGBAF" src="images/logoGBAF.jpg" alt="logoGBAF" title="logoGBAF">
+    {% endif %}
+   <aside>
     <p>Bonjour
         {% if session.prenom is defined  %}
             {{ session.prenom |capitalize }} {{ session.nom |upper }} </p>
@@ -28,10 +38,11 @@
         {% else %}
             </p>
         {% endif %}
+    </aside>
 
 </header>
 
-{% include("menu.twig") %}
+
 
 {% block content %}
 

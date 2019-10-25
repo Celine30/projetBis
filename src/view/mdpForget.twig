@@ -2,6 +2,8 @@
 
 {% block content %}
 
+    <div id="content_connexion" >
+
         <h2> RE-INITIALISATION PASSWORD</h2>
 
         {% if session.username is not defined  %}
@@ -22,7 +24,7 @@
 
         {% if session.question is not defined  %}
             <div class="champs">
-                    <input type="submit" id="submit" value="afficher la question secrete" />
+                    <input type="submit" id="submit" value="question secrète" />
                 </div>
 
             </form>
@@ -85,5 +87,5 @@
             <a href="index.php?action=user!connexion"> Se connecter </a>
         </section>
 
-
+    </div>
 {% endblock %}

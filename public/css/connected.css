@@ -1,3 +1,7 @@
+#connected {
+    padding-top: 120px;
+}
+
 #sliderGBAF {
     width: 100%;
 }
@@ -37,6 +41,7 @@ main#sectionPartner {
     margin-left: 1.5%;
 }
 
+
 #sectionPartner section#resume {
    width: 96%;
     margin: auto;
@@ -49,7 +54,7 @@ position: absolute;
     right: 10px;
 }
 
-#resumePartner, #resumeGbaf, #textGbaf {
+#resumePartner, #resumeGbaf, p#textGbaf {
     text-align: justify;
 }
 
@@ -62,17 +67,19 @@ position: absolute;
 #connected #partner{
     position: relative;
 }
+
 #connected #sectionPartner #partner #more {
     color: rgba(0,0,0,0.5);
     font-size: 0.7em;
     position: absolute;
     text-decoration: none;
     right: 20px;
-    bottom: 20px;
+    bottom: 15px;
     padding: 5px 7px 5px 7px;
     border: rgba(0,0,0,0.2) 3px double;
     border-radius: 50px 50px 50px 50px
 }
+
 #connected #partner #more:hover {
     background-color: rgba(0,0,0,0.2);
     color: white;
@@ -80,3 +87,49 @@ position: absolute;
     bottom: 22px;
 }
 
+@media (min-width: 768px) {
+
+  #sectionPartner article {
+      position: relative;
+      display: flex;
+      flex-direction: row;
+      padding-bottom: 0px;
+      margin-left: 1.5%;
+  }
+
+    #connected h3{
+        margin: 0;
+    }
+
+    #sectionPartner section img {
+        width: 96%;
+        border: 1px solid darkgray;
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+
+    #connected #sectionPartner #partner #more {
+        right: 5px;
+        bottom: 7px;
+    }
+
+    #resumePartner {
+        margin-right: 7px;
+        padding-bottom: 10px;
+    }
+
+    p#textGbaf {
+    text-align: center;
+    }
+
+
+
+}
+
+@media (min-width: 1024px) {
+
+        #resumePartner {
+        margin-right: 100px;
+
+    }
+}

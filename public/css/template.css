@@ -2,12 +2,16 @@ body {
     margin:0 ;
     font-family: "Arial Unicode MS";
     color: #333;
+     font-size: 0.8em;
+
 }
 
-header p, header a {
+header aside{
+    margin: auto;
+}
+
+header aside p{
     margin: 0;
-    padding:0;
-    font-size: 1em;
 }
 
 header a {
@@ -19,21 +23,29 @@ header a {
 header a:hover {
     border-bottom:1px solid rgba(204,204,204,0.5);
 }
+header img:first-child{
+    position : absolute;
+    top: 20px;
+    left:20px
+
+}
+header aside:nth-child(3){
+   text-align: center;
+    margin-right: 20px;
+}
 
 main {
     margin: 0 20px 0 20px;
 }
 
-.haut {
-    color:gray;
+header {
+    z-index: 4;
     display: flex;
-    flex-direction: column;
-    align-items: center;
+    color:gray;
     border-bottom:1px solid rgba(204,204,204,0.5);
-    padding-bottom: 10px;
-    margin-bottom: 20px
+    height: 80px;
+    padding-bottom: 30px;
 }
-
 
 footer {
     display: flex;
