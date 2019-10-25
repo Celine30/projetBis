@@ -13,7 +13,7 @@ class PartnerController extends Controller
     public function partner_cde()
     {
         $partner = new Model\PartnerCde();
-        $this->partner(partner_cde,$partner );
+        $this->partner('partner_cde',$partner );
     }
 
         public function partner_cde_com()
@@ -25,7 +25,7 @@ class PartnerController extends Controller
     public function partner_dsa()
     {
         $partner = new Model\PartnerDsa();
-        $this->partner(partner_cde,$partner );
+        $this->partner('partner_dsa',$partner );
     }
 
     public function partner_dsa_com()
@@ -37,7 +37,7 @@ class PartnerController extends Controller
     public function partner_co()
     {
         $partner = new Model\PartnerCo();
-        $this->partner(partner_cde,$partner );
+        $this->partner('partner_co',$partner );
 
     }
 
@@ -51,7 +51,7 @@ class PartnerController extends Controller
     public function partner_pro()
     {
         $partner = new Model\PartnerPro();
-        $this->partner(partner_cde,$partner );
+        $this->partner('partner_pro',$partner );
     }
 
         public function partner_pro_com()
