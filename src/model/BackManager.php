@@ -89,23 +89,59 @@ class BackManager extends Manager
 
      public function add_com($idName, $comment, $auteur, $avis)
      {
-            $bdd = $this->dbConnect();
-            $req = $bdd->prepare('INSERT INTO PartnerGBAF (idName, comment, auteur, date_creation, avis) VALUES (:idName, :comment, :auteur, NOW(), :avis)');
-            $req->execute(array(
-                'idName' => $idName,
-                'comment' => $comment,
-                'auteur' => $auteur,
-                'avis' => $avis
-            ));
-            $comment='valide';
-            return $comment;
+         $bdd = $this->dbConnect();
+         $req = $bdd->prepare('INSERT INTO PartnerGBAF (idName, comment, auteur, date_creation, avis) VALUES (:idName, :comment, :auteur, NOW(), :avis)');
+         $req->execute(array(
+             'idName' => $idName,
+             'comment' => $comment,
+             'auteur' => $auteur,
+             'avis' => $avis
+         ));
+         $comment='valide';
+         return $comment;
         }
 
-        public function list_com($idName){
+        public function list_com($idName)
+        {
             $bdd = $this->dbConnect();
-            $reqlist = $bdd->QUERY('SELECT comment, auteur, date_creation, avis FROM PartnerGBAF WHERE idName="' . $idName . '"');
-            $data = $reqlist->fetch();
 
-            return $data;
+            $req_list = $bdd->QUERY('SELECT comment, auteur, DATE_FORMAT(date_creation, \'%d/%m/%Y à %Hh%i\') AS date_creation, avis FROM PartnerGBAF WHERE idName="' . $idName . '" ORDER BY date_creation DESC');
+
+            while ($data = $req_list->fetch()) {
+                $comments[] = $data;
+            }
+
+            return $comments;
+
         }
+
+
+        public function list_up($idName)
+        {
+            $bdd = $this->dbConnect();
+
+            $req_up = $bdd->QUERY('SELECT comment FROM PartnerGBAF WHERE avis="good" and idName="' . $idName . '"');
+
+                while ($data = $req_up->fetch()) {
+                    $comments_up[] = $data;
+                }
+
+                return $comments_up;
+
+        }
+
+         public function list_down($idName)
+        {
+            $bdd = $this->dbConnect();
+
+            $req_down = $bdd->QUERY('SELECT comment FROM PartnerGBAF WHERE avis="bad" and idName="' . $idName . '"');
+
+                while ($data = $req_down->fetch()) {
+                    $comments_down[] = $data;
+                }
+
+                return $comments_down;
+
+        }
+
 }

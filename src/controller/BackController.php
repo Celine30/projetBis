@@ -7,7 +7,7 @@ use Project\Model;
 
 
 
-class BackController extends Controller
+class BackController extends PartnerController
 {
 
     public function watch_question()
@@ -125,6 +125,10 @@ class BackController extends Controller
 
              $addComment = new Model\BackManager();
              $addComment->add_com($_POST['idName'], $_POST['comment'], $_SESSION['username'], $_POST['icone']);
+
+             $class = $_POST['idName'];
+
+             $this->$class();
 
          }else{
              echo'merci de remplir tous les champs';

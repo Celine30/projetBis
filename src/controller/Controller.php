@@ -31,4 +31,39 @@ class Controller
                       'session' => $_SESSION ,
                       'partner'=> $partner));
     }
+
+
+
+    public function partner($idName,$partner )
+    {
+
+        $partner = $partner->Get_All();
+
+        $com_partner = new Model\BackManager();
+        $comments = $com_partner->list_com($idName);
+
+        $up_partner = new Model\BackManager();
+        $comments_up = $up_partner->list_up($idName);
+
+        $down_partner = new Model\BackManager();
+        $comments_down = $down_partner->list_down($idName);
+
+        echo $this->twig->render('partner.twig', array(
+            'partner' => $partner,
+            'comments' => $comments,
+            'comments_up' => $comments_up,
+            'comments_down' => $comments_down
+
+
+        ));
+
+    }
+    public function view_add_com($partner )
+    {
+        $partner = $partner->Get_All();
+        echo $this->twig->render('partner.twig', array(
+            'partner' => $partner,
+            'comment' => 'comment'
+        ));
+    }
 }

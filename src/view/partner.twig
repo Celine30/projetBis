@@ -13,37 +13,33 @@
         <a id="lien" href="{{ partner.lien}}">{{ partner.lien}}</a>
         <br>
         <p>{{ partner.resumePartner}}</p>
-        <br>
     </section>
 
-    {{ dump(data) }}
-    {{ data.comment }}
 
 {% if comment != 'comment' %}
     <section id="comments">
 
         <article id="title_comments">
             <aside>
-                <span>1</span> Commentaires
+                <span>{{ comments | length }}</span> Commentaires
             </aside>
             <aside>
                 <div class="button"><a href="index.php?action=partner!{{ partner.idPartner}}_com">Nouveau commentaire</a></div>
                 <div class="button">
-                    <span>15</span><i id ="thumb_good_resume" class="fas fa-thumbs-up"></i>
-                    <span>15</span><i id ="thumb_bad_resume" class="fa fa-thumbs-down"></i>
+                    <span>{{ comments_up | length }}</span><i id ="thumb_good_resume" class="fas fa-thumbs-up"></i>
+                    <span>{{ comments_down | length }}</span><i id ="thumb_bad_resume" class="fa fa-thumbs-down"></i>
                 </div>
             </aside>
         </article>
 
-        {% for dataOne in data %}
+        {% for comment in comments %}
         <article class="content_comment">
             <article>
-                <i>Nom</i><p>{{ dataOne.auteur}}</p>
-                <i>Date</i><p>{{ dataOne.date_creation}}</p>
-                <i>Texte</i><p>{{ dataOne.comment}}</p>
+                <p class="comment">{{ comment.auteur}}</p>
+                <p class="comment"><i>{{ comment.date_creation}}</i></p>
+                <p class="comment">{{ comment.comment}}</p>
             </article>
         </article>
-            {% else %}
         {% endfor %}
     </section>
 
@@ -59,23 +55,25 @@
 
         <form id="add_comment" method="post" action="index.php?action=back!add_com">
 
-<div class="clean">
-            <label  for="idName">idName</label>
-            <input  type="text" id="idName" name="idName" required="required" value="{{ partner.idPartner}}">
-</div>
+            <div class="clean">
+                <label  for="idName">idName</label>
+                <input  type="text" id="idName" name="idName" required="required" value="{{ partner.idPartner}}">
+            </div>
             <label  for="comment">Votre commentaire</label>
             <textarea id="comment" placeholder="Votre commentaire" name="comment" required="required" ></textarea>
 
-            <div id="avis">
+            <div class="flex">
 
-                <label class="clean" for ='bad'></label><input class="radio" required="required" type="radio" id="bad" value="bad" name="icone" />
-                <label class="clean" for ='good'></label> <input class="radio2" required="required" type="radio" id="good" value="good" name="icone" />
-                 <i id ="thumb_good" class="fas fa-thumbs-up"></i>
-                <i id ="thumb_bad" class="fa fa-thumbs-down"></i>
+                <div id="avis">
+                    <label class="clean" for ='bad'></label><input class="radio" required="required" type="radio" id="bad" value="bad" name="icone" />
+                    <label class="clean" for ='good'></label> <input class="radio2" required="required" type="radio" id="good" value="good" name="icone" />
+                    <i id ="thumb_good" class="fas fa-thumbs-up"></i>
+                    <i id ="thumb_bad" class="fa fa-thumbs-down"></i>
+                </div>
+
+                <input type="submit" id="submit_com" value="envoyer" />
 
             </div>
-
-                  <input type="submit" id="submit_com" value="envoyer" />
 
         </form>
 
