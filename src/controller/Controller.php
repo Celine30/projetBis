@@ -28,42 +28,64 @@ class Controller
         $_SESSION['password'] = $data['password'];
 
         echo $this->twig->render('connected.twig', array(
-                      'session' => $_SESSION ,
-                      'partner'=> $partner));
+            'session' => $_SESSION ,
+            'partner'=> $partner,
+        ));
     }
 
+    public function logout(){
 
+        $_SESSION['username'] = "";
+        $_SESSION['nom'] = "";
+        $_SESSION['prenom'] = "";
+        session_destroy();
+
+        header('location:index.php?action=user!connexion');
+    }
 
     public function partner($idName,$partner )
     {
 
-        $partner = $partner->Get_All();
+        if(isset($_SESSION['prenom'])) {
+            $partner = $partner->Get_All();
 
-        $com_partner = new Model\BackManager();
-        $comments = $com_partner->list_com($idName);
+            $com_partner = new Model\BackManager();
+            $comments = $com_partner->list_com($idName);
 
-        $up_partner = new Model\BackManager();
-        $comments_up = $up_partner->list_up($idName);
+            $up_partner = new Model\BackManager();
+            $comments_up = $up_partner->list_up($idName);
 
-        $down_partner = new Model\BackManager();
-        $comments_down = $down_partner->list_down($idName);
+            $down_partner = new Model\BackManager();
+            $comments_down = $down_partner->list_down($idName);
 
-        echo $this->twig->render('partner.twig', array(
-            'partner' => $partner,
-            'comments' => $comments,
-            'comments_up' => $comments_up,
-            'comments_down' => $comments_down
+            echo $this->twig->render('partner.twig', array(
+                'partner' => $partner,
+                'comments' => $comments,
+                'comments_up' => $comments_up,
+                'comments_down' => $comments_down,
 
-
-        ));
+            ));
+        }else{
+            $this->logout();
+        }
 
     }
     public function view_add_com($partner )
     {
+        if(isset($_SESSION['prenom'])) {
         $partner = $partner->Get_All();
         echo $this->twig->render('partner.twig', array(
             'partner' => $partner,
-            'comment' => 'comment'
+            'comment' => 'comment',
+            'connexion'=> 'login'
         ));
+          }else{
+            $this->logout();
+        }
     }
+
+
+
+
+
 }

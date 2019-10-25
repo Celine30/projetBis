@@ -67,6 +67,8 @@ class BackController extends PartnerController
     }
 
     public function check_mdp(){
+
+        if (isset ($_POST['username'])) {
         $BackManager = new Model\BackManager();
         $Mdp = $BackManager->checkPassword($_POST['username']);
 
@@ -96,9 +98,14 @@ class BackController extends PartnerController
       }else{
            echo ' ce username n\'existe pas';
        }
+    }else{
+
+        $this->logout();
+
+        }
     }
 
- public function change_profile()
+    public function change_profile()
     {
         if(isset($_POST['username'])&& ($_POST['username']!= "")){
             $ChangeManager = new Model\ChangeManager();
@@ -118,9 +125,10 @@ class BackController extends PartnerController
         if(isset($_POST['user_password'])&& ($_POST['user_password']!= "")){
             echo 'password =>' . $_POST['user_password'];
         }
-
     }
- public function add_com() {
+
+    public function add_com()
+    {
          if(isset($_POST['comment']) && ($_POST['comment']!= "") && isset($_POST['icone']) && isset($_POST['idName'])){
 
              $addComment = new Model\BackManager();
@@ -134,7 +142,7 @@ class BackController extends PartnerController
              echo'merci de remplir tous les champs';
          }
 
- }
+    }
 
 
 }

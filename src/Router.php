@@ -10,11 +10,23 @@ use Twig\Extensions\TextExtension;
 
 class Router
 {
+
+    const DEFAULT_PATH = 'Project\Controller\\';
+
+    const DEFAULT_CONTROLLER = 'UserController';
+
+    const DEFAULT_METHOD = 'connexion';
+
+
+
     private $twig = null;
 
-    private $controller = null;
+    private $controller = self::DEFAULT_CONTROLLER;
 
-    private $method = null;
+    private $method = self::DEFAULT_METHOD;
+
+
+
 
     public function __construct()
     {
@@ -35,8 +47,6 @@ class Router
         $this->twig->addExtension(new DebugExtension());
         $this->twig->addGlobal('session', $_SESSION);
         $this->twig->addExtension(new TextExtension());
-
-
     }
 
     public function parseUrl()
@@ -54,18 +64,31 @@ class Router
     public function setController()
     {
         $this->controller = ucfirst(strtolower($this->controller)) . 'Controller';
+
+        $this->controller = self::DEFAULT_PATH . $this->controller;
+
+        if (!class_exists($this->controller)) {
+            $this->controller = self::DEFAULT_PATH . self::DEFAULT_CONTROLLER;
+        }
     }
 
     public function setMethod()
     {
         $this->method = strtolower($this->method);
+
+        if (!method_exists($this->controller, $this->method)) {
+            $this->method = self::DEFAULT_METHOD;
+        }
+
+
+
     }
 
 
     function display()
     {
-        $controller = 'Project\Controller\\'. $this->controller;
-        $UserController = new $controller($this->twig);
+
+        $UserController = new $this->controller($this->twig);
         $method = $this->method;
         $response = $UserController->$method();
         echo filter_var($response);

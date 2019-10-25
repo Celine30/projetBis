@@ -25,14 +25,6 @@ class UserController extends Controller
         }
     }
 
-    public function logout()
-    {
-
-        $_SESSION['username'] = "";
-        session_destroy();
-        echo 'Vous êtes deconnecté';
-        header('location:index.php?action=user!connexion');
-    }
 
     public function inscription()
     {
@@ -83,6 +75,7 @@ class UserController extends Controller
 
     public function profile_show()
     {
+         if(isset($_SESSION['prenom'])) {
         $UserManager = new model\UserManager();
         $data = $UserManager->user_profile($_SESSION['username']);
 
@@ -96,21 +89,31 @@ class UserController extends Controller
             'question' => $data['question'],
             'answer' => $data['reponse'],
             'password' => "XXXXXXXXX",
-
-        ));
+             ));
+        }else {
+            $this->logout();
+        }
     }
 
     public function home_show()
     {
-        $this->connectedPartner();
+        if(isset($_SESSION['prenom'])) {
+            $this->connectedPartner();
+        }else {
+            $this->logout();
+        }
     }
 
     public function change_profile()
     {
+        if(isset($_SESSION['prenom'])) {
         return $this->twig->render('profile.twig', array(
             'change' => 'change'));
-
+         }else {
+            $this->logout();
+        }
     }
 
 }
+
 
