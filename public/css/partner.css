@@ -83,7 +83,7 @@ section#comments , section#add_comments{
 }
 
 
-#title_addcomment{
+#title_addcomment, #title_comments aside:first-child{
     margin: auto auto 20px 0;
     text-decoration: underline;
     font-weight: bold;
@@ -181,7 +181,7 @@ input#bad, input#good{
 
 #thumb_bad_resume, #thumb_good_resume{
     border-radius: 25px;
-    margin-left: 10px;
+    margin-left: 3px;
     margin-top: 7px;
 }
 
