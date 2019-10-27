@@ -17,15 +17,11 @@ class Router
 
     const DEFAULT_METHOD = 'connexion';
 
-
-
     private $twig = null;
 
     private $controller = self::DEFAULT_CONTROLLER;
 
     private $method = self::DEFAULT_METHOD;
-
-
 
 
     public function __construct()
@@ -57,7 +53,7 @@ class Router
         }
         $action = explode('!', $action);
         $this->controller = $action[0];
-        $this->method = count($action) == 1 ? 'connexion' : $action[1];
+        $this->method = count($action) == 1 ? 'logout' : $action[1];
     }
 
 
