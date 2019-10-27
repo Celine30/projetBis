@@ -107,11 +107,11 @@ class BackController extends PartnerController
 
     public function change_profile()
     {
-        if(isset($_POST['username'])&& ($_POST['username']!= "")){
-            $ChangeManager = new Model\ChangeManager();
-            $ChangeManager->change_username($_POST['username'],$_SESSION['username']);
-            $_SESSION['username']=$_POST['username'];
-        }
+      if(isset($_POST['username'])&& ($_POST['username']!= "")){
+          $ChangeManager = new Model\ChangeManager();
+          $ChangeManager->change_username($_POST['username'],$_SESSION['username']);
+          $_SESSION['username']=$_POST['username'];
+       }
         if(isset($_POST['first_name'])&& ($_POST['first_name']!= "")){
             $ChangeManager = new Model\ChangeManager();
             $ChangeManager->change_nom($_POST['first_name'],$_SESSION['username']);
@@ -120,23 +120,26 @@ class BackController extends PartnerController
         if(isset($_POST['last_name'])&& ($_POST['last_name']!= "")){
             $ChangeManager = new Model\ChangeManager();
             $ChangeManager->change_prenom($_POST['last_name'],$_SESSION['username']);
-            $_SESSION['nom']=$_POST['first_name'];
+            $_SESSION['prenom']=$_POST['last_name'];
         }
         if(isset($_POST['user_password'])&& ($_POST['user_password']!= "")){
-            echo 'password =>' . $_POST['user_password'];
+
+            $user_password_hash = password_hash($_POST['user_password'], PASSWORD_DEFAULT);
+            $ChangeManager = new Model\ChangeManager();
+            $ChangeManager->change_password($user_password_hash,$_SESSION['username']);
         }
+
+        $this-> profile_show();
     }
 
     public function add_com()
     {
-         if(isset($_POST['comment']) && ($_POST['comment']!= "") && isset($_POST['icone']) && isset($_POST['idName'])){
+         if(isset($_POST['comment']) && ($_POST['comment']!= "") && isset($_POST['idName'])){
 
              $addComment = new Model\BackManager();
-             $addComment->add_com($_POST['idName'], $_POST['comment'], $_SESSION['username'], $_POST['icone']);
+             $addComment->add_com($_POST['idName'], $_POST['comment'], $_SESSION['username'], $_SESSION['prenom']);
 
-             $class = $_POST['idName'];
-
-             $this->$class();
+             header('location:index.php?action=partner!'. $_POST['idName']);
 
          }else{
              echo'merci de remplir tous les champs';
