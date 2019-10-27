@@ -12,6 +12,8 @@ header aside{
 
 header aside p{
     margin: 0;
+    display: block;
+    width: 200px ;
 }
 
 header a {

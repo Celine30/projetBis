@@ -53,31 +53,25 @@ header{
     z-index: 0;
     cursor: pointer;
     background-color:red;
-    right: 85px!important;
+    right: 89px!important;
 }
 
 .bar:nth-child(2) {
-    position: absolute;
     top:70px;
-    right: 30px;
 }
 
 .bar:nth-child(3) {
-    position: absolute;
     top:80px;
-    right: 30px;
 }
 
 .bar:nth-child(4) {
-    position: absolute;
     top:90px;
-    right: 30px;
 }
 
 .checkbox {
     border:olive 2px solid;
     position:absolute;
-    right: 82px!important;
+    right: 89px!important;
     top:60px!important;
     width: 40px!important;
     height: 40px!important;

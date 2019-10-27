@@ -7,6 +7,8 @@
 {% if session is defined %}
                 <div id="content_partner">
 
+    <p id="return_partner"><a href="index.php?action=partner!connected_partner"> <i class="fas fa-arrow-left"></i> Retour à la liste des partenaires</a></p>
+
                     <section id="partner">
                         <img src="images/{{ partner.imagePartner}}" alt="image_Partner">
                         <h2 id="partner_title">{{ partner.namePartner}}</h2>
@@ -25,16 +27,18 @@
                             <aside>
                                 <div class="button"><a href="index.php?action=partner!{{ partner.idPartner}}_com">Nouveau commentaire</a></div>
                                 <div class="button">
-                                    <span style="color:darkgreen">{{ comments_up | length }}</span><i id ="thumb_good_resume" class="fas fa-thumbs-up" style="color:darkgreen"></i>
-                                    <span style="color:red; margin-left: 10px">{{ comments_down | length }}</span><i id ="thumb_bad_resume" class="fa fa-thumbs-down" style="color:red" ></i>
+                                    <span style="color:darkgreen">{{ comments_up | length }}</span><a href="index.php?action=partner!{{ partner.idPartner}}_good"><i id ="thumb_good_resume" class="fas fa-thumbs-up" style="color:darkgreen"></i></a>
+                                    <span style="color:red; margin-left: 10px">{{ comments_down | length }}</span><a href="index.php?action=partner!{{ partner.idPartner}}_bad"><i id ="thumb_bad_resume" class="fa fa-thumbs-down" style="color:red" ></i></a>
+                                    <br><br><i style="color:red ; display:block ;margin-left: -45px; width: 150px">{{ message }}</i>
                                 </div>
+
                             </aside>
                         </article>
 
                         {% for comment in comments %}
                         <article class="content_comment">
                             <article>
-                                <p class="comment">{{ comment.auteur}}</p>
+                                <p class="comment">{{ comment.prenom}}</p>
                                 <p class="comment"><i>{{ comment.date_creation}}</i></p>
                                 <p class="comment">{{ comment.comment}}</p>
                             </article>
@@ -56,21 +60,9 @@
                                 <label  for="idName">idName</label>
                                 <input  type="text" id="idName" name="idName" required="required" value="{{ partner.idPartner}}">
                             </div>
-                            <label  for="comment">Votre commentaire</label>
+                            <label  class=clean for="comment"> Votre commentaire</label>
                             <textarea id="comment" placeholder="Votre commentaire" name="comment" required="required" ></textarea>
-
-                            <div class="flex">
-
-                                <div id="avis">
-                                    <label class="clean" for ='bad'></label><input class="radio" required="required" type="radio" id="bad" value="bad" name="icone" />
-                                    <label class="clean" for ='good'></label> <input class="radio2" required="required" type="radio" id="good" value="good" name="icone" />
-                                    <i id ="thumb_good" class="fas fa-thumbs-up"></i>
-                                    <i id ="thumb_bad" class="fa fa-thumbs-down"></i>
-                                </div>
-
-                                <input type="submit" id="submit_com" value="envoyer" />
-
-                            </div>
+                            <input type="submit" id="submit_com" value="envoyer" />
 
                         </form>
 
