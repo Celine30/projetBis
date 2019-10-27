@@ -87,15 +87,15 @@ class BackManager extends Manager
         return $partner;
     }
 
-     public function add_com($idName, $comment, $auteur, $avis)
+     public function add_com($idName, $comment, $auteur, $prenom)
      {
          $bdd = $this->dbConnect();
-         $req = $bdd->prepare('INSERT INTO PartnerGBAF (idName, comment, auteur, date_creation, avis) VALUES (:idName, :comment, :auteur, NOW(), :avis)');
+         $req = $bdd->prepare('INSERT INTO PartnerGBAF (idName, comment, auteur, prenom, date_creation) VALUES (:idName, :comment, :auteur, :prenom, NOW())');
          $req->execute(array(
              'idName' => $idName,
              'comment' => $comment,
              'auteur' => $auteur,
-             'avis' => $avis
+             'prenom'=>$prenom
          ));
          $comment='valide';
          return $comment;
@@ -105,7 +105,7 @@ class BackManager extends Manager
         {
             $bdd = $this->dbConnect();
 
-            $req_list = $bdd->QUERY('SELECT comment, auteur, DATE_FORMAT(date_creation, \'%d/%m/%Y à %Hh%i\') AS date_creation, avis FROM PartnerGBAF WHERE idName="' . $idName . '" ORDER BY date_creation DESC');
+            $req_list = $bdd->QUERY('SELECT comment, auteur, prenom, DATE_FORMAT(date_creation, \'%d/%m/%Y à %Hh%i\') AS date_creation, avis FROM PartnerGBAF WHERE idName="' . $idName . '" and comment!="" ORDER BY date_creation DESC');
 
             while ($data = $req_list->fetch()) {
                 $comments[] = $data;
@@ -120,7 +120,7 @@ class BackManager extends Manager
         {
             $bdd = $this->dbConnect();
 
-            $req_up = $bdd->QUERY('SELECT comment FROM PartnerGBAF WHERE avis="good" and idName="' . $idName . '"');
+            $req_up = $bdd->QUERY('SELECT avis FROM PartnerGBAF WHERE avis="good" and idName="' . $idName . '"');
 
                 while ($data = $req_up->fetch()) {
                     $comments_up[] = $data;
@@ -134,14 +134,33 @@ class BackManager extends Manager
         {
             $bdd = $this->dbConnect();
 
-            $req_down = $bdd->QUERY('SELECT comment FROM PartnerGBAF WHERE avis="bad" and idName="' . $idName . '"');
+            $req_down = $bdd->QUERY('SELECT avis FROM PartnerGBAF WHERE avis="bad" and idName="' . $idName . '"');
 
                 while ($data = $req_down->fetch()) {
                     $comments_down[] = $data;
                 }
 
                 return $comments_down;
-
         }
 
+        public function add_avis($idName,$auteur ,$avis){
+
+            $bdd = $this->dbConnect();
+
+            $reqAvis = $bdd->QUERY('SELECT avis FROM PartnerGBAF WHERE auteur="' . $auteur . '"and idName= "' . $idName . '"');
+
+            if($data = $reqAvis->fetch()){
+
+                $message = 'vous avez déjà donné votre avis';
+                return $message;
+
+            }else{
+                $req = $bdd->prepare('INSERT INTO PartnerGBAF (idName, auteur, date_creation, avis) VALUES (:idName, :auteur, NOW(), :avis)');
+                $req->execute(array(
+                'idName' => $idName,
+                'auteur' => $auteur,
+                'avis' => $avis
+                ));
+            }
+        }
 }
