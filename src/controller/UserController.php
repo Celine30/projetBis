@@ -12,8 +12,10 @@ class UserController extends Controller
 
     public function connexion()
     {
-        $_SESSION['username'] = "";
-        session_destroy();
+       $_SESSION['username'] = "";
+        $_SESSION['nom'] = "";
+        $_SESSION['prenom'] = "";
+       session_destroy();
 
         if (isset($_COOKIE['username']) && isset($_COOKIE['password'])) {
             return $this->twig->render('connexion.twig', ['register' => [
@@ -45,10 +47,10 @@ class UserController extends Controller
 
             if ($inscription == 'valide') {
 
-                $_SESSION['username'] = $_POST['username'];
+               $_SESSION['username'] = $_POST['username'];
 
-                return $this->twig->render('connected.twig', array(
-                    'session' => $_SESSION));
+                $this->connectedPartner();
+
             }
         } else {
             echo 'merci de tout remplir';
@@ -72,28 +74,6 @@ class UserController extends Controller
         return $this->twig->render('mdpForget.twig');
     }
 
-
-    public function profile_show()
-    {
-         if(isset($_SESSION['prenom'])) {
-        $UserManager = new model\UserManager();
-        $data = $UserManager->user_profile($_SESSION['username']);
-
-        $_SESSION['question'] = $data['question'];
-        $_SESSION['reponse'] = $data['reponse'];
-        $_SESSION['password'] = $data['password'];
-
-        return $this->twig->render('profile.twig', array(
-            'first_name' => $data['nom'],
-            'last_name' => $data['prenom'],
-            'question' => $data['question'],
-            'answer' => $data['reponse'],
-            'password' => "XXXXXXXXX",
-             ));
-        }else {
-            $this->logout();
-        }
-    }
 
     public function home_show()
     {
