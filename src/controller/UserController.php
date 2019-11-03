@@ -27,10 +27,19 @@ class UserController extends Controller
         }
     }
 
-
     public function inscription()
     {
         return $this->twig->render('inscription.twig');
+    }
+
+    public function contact()
+    {
+        return $this->twig->render('contact.twig');
+    }
+
+    public function mentions()
+    {
+        return $this->twig->render('mentions_legales.twig');
     }
 
     public function error()
