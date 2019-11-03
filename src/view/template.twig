@@ -12,6 +12,7 @@
     <link href="css/menu.css" rel="stylesheet">
     <link href="css/form.css" rel="stylesheet">
     <link href="css/partner.css" rel="stylesheet">
+    <link href="css/mentions_legales.css" rel="stylesheet">
 
     <script src="https://kit.fontawesome.com/aee0f1128d.js" crossorigin="anonymous"></script>
 
@@ -22,18 +23,19 @@
 <body>
 
 <header>
+
 {% if session.prenom is defined  %}
 
     {% include("menu.twig") %}
 
             <a href="index.php?action=user!home_show"><img id="logoGBAF" src="images/logoGBAF.jpg" alt="logoGBAF" title="logoGBAF"></a>
         {% else %}
-            <img id="logoGBAF" src="images/logoGBAF.jpg" alt="logoGBAF" title="logoGBAF">
+            <a href="index.php?action=user!connexion"><img id="logoGBAF" src="images/logoGBAF.jpg" alt="logoGBAF" title="logoGBAF"></a>
     {% endif %}
    <aside>
-    <p>Bonjour
+
         {% if session.prenom is defined  %}
-            {{ session.prenom |capitalize }} {{ session.nom |upper }} </p>
+            <p>Bonjour {{ session.prenom |capitalize }} {{ session.nom |upper }} </p>
             <a href = "index.php?action=user!logout" > &nbsp; Se déconnecter</a>
         {% else %}
             </p>
@@ -50,8 +52,8 @@
 
 <footer class="hautetbas bas">
     <p>
-    <a id="mentions_legales"> | mentions légales &nbsp; </a>
-    <a id="contact"> | contact |</a>
+    <a id="mentions_legales" href="index.php?action=user!mentions" > | mentions légales &nbsp; </a>
+    <a id="contact" href="index.php?action=user!contact"> | contact |</a>
     </p>
 </footer>
 

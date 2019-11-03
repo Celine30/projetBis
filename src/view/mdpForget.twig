@@ -10,7 +10,7 @@
             <form id="formReset" method="post" action="index.php?action=back!watch_question">
 
                 <div class="champs">
-                    <label  for="username">Votre username</label>
+                    <label  for="username">Votre username <br>  <i style="color:red; font-size: 0.7em; margin-left: 0">{{ message1 }}</i></label>
                     <input  type="text" class="form-control" id="username" aria-describedby="pseudo" placeholder="Votre username" name="username"required="required" value="{{ session.username }}">
                 </div>
             {% else %}
@@ -54,7 +54,7 @@
                         </div>
 
                    {% if answer == 'false' %}
-                       <div class="alert alert-warning"> La réponse à la question est erronée. </div>
+                       <p class="message_formReset" style="color:red; font-size: 0.7em"> La réponse à la question est erronée. </p>
                    {% endif %}
 
                    <div class="champs">

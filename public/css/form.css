@@ -76,12 +76,14 @@ form#connexion, form#inscription, form#formReset , form#change_profile, section#
     text-align: left;
 }
 
-input:not(#submit_com) {
+input:not(#submit_com), #content_contact article form textarea{
     width: 80%;
     height: 30px;
     margin-left: 9%;
     border-bottom: olive 2px solid;
 }
+
+
 
 input.input_modif,.champs i{
     margin-top: 5px;
@@ -114,8 +116,8 @@ form p {
     margin: 0 0 0 0 ;
 }
 
-p#watch_question {
-   margin-left:30px;
+p#watch_question, .message_formReset{
+   margin-left:9%;
 }
 
 select#question{
@@ -136,6 +138,12 @@ input#wipe_register, input#register{
 label#wipe_register, label#register{
     width: 70%;
 }
+
+form#formReset {
+    border-radius: 0;
+}
+
+
 
 @media (min-width: 768px) {
 
@@ -171,7 +179,7 @@ label#wipe_register, label#register{
     }
 
 
-    input:not(#submit_com) {
+    input:not(#submit_com),#content_contact article form textarea {
         margin:auto;
     }
 
@@ -216,6 +224,11 @@ label#wipe_register, label#register{
         margin-left: 10px;
         max-width: 90px!important;;
     }
+    p#watch_question, .message_formReset {
+        display: block;
+        width: 90%;
+        margin: auto;
+}
 
 
 }
