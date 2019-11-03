@@ -104,18 +104,9 @@ class Controller
     public function profile_show()
     {
          if(isset($_SESSION['prenom'])) {
-        $UserManager = new model\UserManager();
-        $data = $UserManager->user_profile($_SESSION['username']);
-
-        $_SESSION['question'] = $data['question'];
-        $_SESSION['reponse'] = $data['reponse'];
-        $_SESSION['password'] = $data['password'];
 
         echo $this->twig->render('profile.twig', array(
-            'first_name' => $data['nom'],
-            'last_name' => $data['prenom'],
-            'question' => $data['question'],
-            'answer' => $data['reponse'],
+            'session' => $_SESSION,
             'password' => "XXXXXXXXX",
              ));
         }else {

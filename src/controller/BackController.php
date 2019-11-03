@@ -16,20 +16,21 @@ class BackController extends PartnerController
 
             $_SESSION = [];
 
-            $_SESSION['username'] = $_POST['username'];
-
             $BackManager = new model\BackManager();
             $question = $BackManager->userQuestion($_POST['username']);
 
             if (isset($question)) {
 
+                $_SESSION['username'] = $_POST['username'];
                 $_SESSION['question'] = $question;
 
                 return $this->twig->render('mdpForget.twig', array(
                     'session' => $_SESSION
                 ));
             } else {
-                echo 'merci de remplir votre Username';
+                 return $this->twig->render('mdpForget.twig',array(
+                     'message1' => 'Ce userName n\'existe pas'
+                 ));
             }
         }
     }
@@ -92,11 +93,15 @@ class BackController extends PartnerController
            }else{
                return $this->twig->render('connexion.twig',array(
                    'username'=> $_POST['username'],
-                   'erreur'=>'<p> erreur d\'authentification </p>'
+                   'message2'=>'erreur d\'authentification'
                ));
            }
       }else{
-           echo ' ce username n\'existe pas';
+           return $this->twig->render('connexion.twig', ['register' => [
+               'username' => $_COOKIE['username'],
+               'password' => $_COOKIE['password'],
+               'message' => 'Ce userName n\'existe pas'
+               ]]);
        }
     }else{
 
@@ -128,6 +133,8 @@ class BackController extends PartnerController
             $ChangeManager = new Model\ChangeManager();
             $ChangeManager->change_password($user_password_hash,$_SESSION['username']);
         }
+
+        echo $_SESSION['prenom'] ."".$_SESSION['nom'];
 
         $this-> profile_show();
     }
