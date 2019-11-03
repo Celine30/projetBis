@@ -1,0 +1,41 @@
+#content_mentions, #content_contact
+{
+    padding-top:120px;
+    width: 90%;
+    margin: auto;
+}
+
+#content_contact p, #content_contact form {
+    padding-top: 5px;
+    padding-bottom: 5px;
+    background: rgba(0,0,0,0.1);
+    width: 400px;
+    margin: 20px auto 20px auto;
+    text-align: center;
+}
+
+#content_contact form {
+    margin-top: -20px;
+    padding-top: 10px;
+}
+
+#content_contact h1{
+    width: 400px;
+}
+
+#content_contact p em{
+    text-decoration: underline;
+    font-size: 1.2em;
+    font-style: normal;
+}
+
+#content_contact form textarea{
+    padding-bottom: 15px;
+    height: 150px!important;
+    margin-top: 15px!important;
+}
+
+#content_contact form #submit{
+    margin-top: 15px;
+    margin-bottom: 15px;
+}

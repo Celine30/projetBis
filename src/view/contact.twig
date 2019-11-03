@@ -1,0 +1,48 @@
+{%  extends 'template.twig' %}
+
+{% import 'macro.twig'as macro %}
+
+{% block content %}
+
+<div id="content_contact">
+
+<h1>Nous Contacter</h1>
+
+    <article>
+        <p><em>Par téléphone du Lundi au Vendredi de 7h à 18h</em><br>
+        01 93 84 67 38</p>
+    </article>
+
+    <article>
+        <p><em>Par Courrier</em><br>
+        GBAF<br>
+        34 rue de la Police<br>
+         75400 PARIS</p>
+    </article>
+
+    <article>
+        <p><em>Par Email</em><br>
+        contact@gbaf.fr</p>
+        </article>
+
+    <article>
+    <p><em>Remplir le Formulaire de contact</em></p>
+    <form>
+         <div class="champs">
+            <label for="question" id="label_question">Votre demande concerne</label>
+            <select name="demande" id="demande" title="Choisir" required>
+                <option value="" selected disabled>Choisir une option</option>
+                <option value="partner">un partenaire</option>
+                <option value="account">votre compte</option>
+                <option value="us"> GBAF</option>
+            </select>
+        </div>
+        {{ macro.textarea('contact','') }}
+        {{ macro.submit('envoyer') }}
+    </form>
+    </article>
+
+</div>
+
+{% endblock %}
+
