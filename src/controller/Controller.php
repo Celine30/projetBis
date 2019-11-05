@@ -2,7 +2,6 @@
 
 
 namespace Project\Controller;
-use http\Message;
 use Twig\Environment;
 use Project\Model;
 
@@ -24,6 +23,7 @@ class Controller
         $data= $UserManager->user_profile($_SESSION['username']);
 
         $_SESSION['nom'] = $data['nom'];
+        $_SESSION['id_user'] = $data['id_user'];
         $_SESSION['prenom'] = $data['prenom'];
         $_SESSION['question'] = $data['question'];
         $_SESSION['reponse'] = $data['reponse'];
@@ -49,23 +49,25 @@ class Controller
         header('location:index.php?action=user!connexion');
     }
 
-    public function partner($idName,$partner, $message="" )
+    public function partner($partner, $message="" )
     {
 
         if(isset($_SESSION['prenom'])) {
 
-            $partnerB = $partner->Get_All();
+            //$partnerB = $partner->Get_All();
+            $BackManager = new model\BackManager();
+            $partnerB = $BackManager->partner($partner);
 
             $com_partner = new Model\BackManager();
-            $comments = $com_partner->list_com($idName);
+            $comments = $com_partner->list_com($partner);
 
             $up_partner = new Model\BackManager();
-            $comments_up = $up_partner->list_up($idName);
+            $comments_up = $up_partner->list_up($partner);
 
             $down_partner = new Model\BackManager();
-            $comments_down = $down_partner->list_down($idName);
+            $comments_down = $down_partner->list_down($partner);
 
-            echo $this->twig->render('partner.twig', array(
+          echo $this->twig->render('partner.twig', array(
                 'partner' => $partnerB,
                 'comments' => $comments,
                 'comments_up' => $comments_up,
@@ -73,31 +75,36 @@ class Controller
                 'message'=>$message
 
             ));
+
         }else{
             $this->logout();
         }
 
     }
-    public function view_add_com($partner )
+    public function view_add_com($partner)
     {
         if(isset($_SESSION['prenom'])) {
-        $partner = $partner->Get_All();
+
+        //$partner = $partner->Get_All();
+
+        $BackManager = new model\BackManager();
+        $partner = $BackManager->partner($partner);
+
         echo $this->twig->render('partner.twig', array(
             'partner' => $partner,
             'comment' => 'comment',
-            'connexion'=> 'login'
         ));
           }else{
             $this->logout();
         }
     }
 
-    public function User_avis($idName, $username, $avis){
+    public function User_avis($partner, $auteur, $avis){
 
         $add_avis = new Model\BackManager();
-        $message = $add_avis->add_avis($idName, $username,$avis );
+        $message = $add_avis->add_avis($partner, $auteur,$avis );
 
-        $this->$idName($message);
+        $this->partner($partner,$message);
 
     }
 

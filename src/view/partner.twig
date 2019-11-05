@@ -10,11 +10,11 @@
     <p id="return_partner"><a href="index.php?action=partner!connected_partner"> <i class="fas fa-arrow-left"></i> Retour à la liste des partenaires</a></p>
 
                     <section id="partner">
-                        <img src="images/{{ partner.imagePartner}}" alt="image_Partner">
-                        <h2 id="partner_title">{{ partner.namePartner}}</h2>
+                        <img src="images/{{ partner.logo}}" alt="image_Partner">
+                        <h2 id="partner_title">{{ partner.acteur}}</h2>
                         <a id="lien" href="{{ partner.lien}}">{{ partner.lien}}</a>
                         <br>
-                        <p>{{ partner.resumePartner}}</p>
+                        <p>{{ partner.description}}</p>
                     </section>
 
             {% if comment != 'comment' %}
@@ -25,10 +25,10 @@
                                 <span>{{ comments | length }}</span> Commentaires
                             </aside>
                             <aside>
-                                <div class="button"><a href="index.php?action=partner!{{ partner.idPartner}}_com">Nouveau commentaire</a></div>
+                                <div class="button"><a href="index.php?partner={{ partner.id_acteur}}&action=partner!view_comment">Nouveau commentaire</a></div>
                                 <div class="button">
-                                    <span style="color:darkgreen">{{ comments_up | length }}</span><a href="index.php?action=partner!{{ partner.idPartner}}_good"><i id ="thumb_good_resume" class="fas fa-thumbs-up" style="color:darkgreen"></i></a>
-                                    <span style="color:red; margin-left: 10px">{{ comments_down | length }}</span><a href="index.php?action=partner!{{ partner.idPartner}}_bad"><i id ="thumb_bad_resume" class="fa fa-thumbs-down" style="color:red" ></i></a>
+                                    <span style="color:darkgreen">{{ comments_up | length }}</span><a href="index.php?partner={{ partner.id_acteur}}&action=partner!good"><i id ="thumb_good_resume" class="fas fa-thumbs-up" style="color:darkgreen"></i></a>
+                                    <span style="color:red; margin-left: 10px">{{ comments_down | length }}</span><a href="index.php?partner={{ partner.id_acteur}}&action=partner!bad"><i id ="thumb_bad_resume" class="fa fa-thumbs-down" style="color:red" ></i></a>
                                     <br><br><i style="color:red ; display:block ;margin-left: -45px; width: 150px">{{ message }}</i>
                                 </div>
 
@@ -40,7 +40,7 @@
                             <article>
                                 <p class="comment">{{ comment.prenom}}</p>
                                 <p class="comment"><i>{{ comment.date_creation}}</i></p>
-                                <p class="comment">{{ comment.comment}}</p>
+                                <p class="comment">{{ comment.post}}</p>
                             </article>
                         </article>
                         {% endfor %}
@@ -57,8 +57,8 @@
                         <form id="add_comment" method="post" action="index.php?action=back!add_com">
 
                             <div class="clean">
-                                <label  for="idName">idName</label>
-                                <input  type="text" id="idName" name="idName" required="required" value="{{ partner.idPartner}}">
+                                <label  for="id_acteur">id_acteur</label>
+                                <input  type="text" id="id_acteur" name="id_acteur" required="required" value="{{ partner.id_acteur}}">
                             </div>
                             <label  class=clean for="comment"> Votre commentaire</label>
                             <textarea id="comment" placeholder="Votre commentaire" name="comment" required="required" ></textarea>
@@ -67,7 +67,7 @@
                         </form>
 
                          <section id="return">
-                           <a href="index.php?action=partner!{{ partner.idPartner}}"><i class="fas fa-times"></i>Abandon</a>
+                           <a href="index.php?partner={{ partner.id_acteur }}&action=partner!actor"><i class="fas fa-times"></i>Abandon</a>
                          </section>
 
                 </section>

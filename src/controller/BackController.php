@@ -141,12 +141,12 @@ class BackController extends PartnerController
 
     public function add_com()
     {
-         if(isset($_POST['comment']) && ($_POST['comment']!= "") && isset($_POST['idName'])){
+         if(isset($_POST['comment']) && ($_POST['comment']!= "") && isset($_POST['id_acteur'])){
 
              $addComment = new Model\BackManager();
-             $addComment->add_com($_POST['idName'], $_POST['comment'], $_SESSION['username'], $_SESSION['prenom']);
+             $addComment->add_com($_POST['id_acteur'], $_POST['comment'], $_SESSION['id_user']);
 
-             header('location:index.php?action=partner!'. $_POST['idName']);
+             header('location:index.php?partner='.$_POST['id_acteur'].'&action=partner!actor');
 
          }else{
              echo'merci de remplir tous les champs';

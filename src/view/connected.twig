@@ -28,13 +28,13 @@
         {% for partnerOne in partner %}
                 <article id="partner">
                     <section id="image">
-                        <img id="logoPartner" src="images/{{ partnerOne.imagePartner}}" alt="logoPartner">
+                        <img id="logoPartner" src="images/{{ partnerOne.logo}}" alt="logoPartner">
                     </section>
                     <section id="resume">
-                        <h3>{{ partnerOne.namePartner}} </h3>
-                        <p id="resumePartner">{{ partnerOne.resumePartner | truncate (150)}}</p>
+                        <h3>{{ partnerOne.acteur}} </h3>
+                        <p id="resumePartner">{{ partnerOne.description | truncate (150)}}</p>
                     </section>
-                    <a href="index.php?action=partner!{{ partnerOne.idPartner }}" id="more">Lire la suite </a>
+                    <a href="index.php?partner={{ partnerOne.id_acteur }}&action=partner!actor" id="more">Lire la suite </a>
                 </article>
           {% else %}
             <li>Rien</li>
