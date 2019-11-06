@@ -8,7 +8,7 @@
 
         <div class="champs">
             <label  for="username">Votre UserName <br> <i style="color:red; font-size: 0.7em; margin-left: 0">{{ register.message }}</i></label>
-            <input  type="text" class="form-control" id="username" aria-describedby="username" placeholder="Votre username" name="username" value="{{ register.username }}">
+            <input  type="text" class="form-control" id="username" aria-describedby="username" placeholder="Votre username" name="username" value="{{ register.username }}{{ username }}">
         </div>
 
         <div class="champs">
@@ -19,12 +19,12 @@
 
 
         <div class="champs">
-            {% if register.username is not defined%}
-                 {{ macro.checkbox('register', 'Se souvenir de moi') }}
-            {% else %}
-                {{ macro.checkbox('wipe_register', 'Ne plus se souvenir de moi') }}
-            {% endif %}
+
+            {{ macro.checkbox('register', 'Se souvenir de moi') }}
+
         </div>
+
+
 
         {{ macro.submit('connexion') }}
 

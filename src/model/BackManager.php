@@ -57,15 +57,6 @@ class BackManager extends Manager
         setcookie('password', $password, time() + 365 * 24 * 3600, null, null, false, true);
     }
 
-    public function wipeCookies()
-    {
-        setcookie('username');
-        unset($_COOKIE['username']);
-
-        setcookie('password');
-        unset($_COOKIE['password']);
-
-    }
 
     public function partner_list()
     {
@@ -124,9 +115,9 @@ class BackManager extends Manager
          return $comment;
         }
 
-        public function list_com($idName)
+        public function list_com($partner)
         {
-            $bdd = $this->dbConnect();
+            /*$bdd = $this->dbConnect();
 
             $req_list = $bdd->QUERY('SELECT post, id_user, DATE_FORMAT(date_creation, \'%d/%m/%Y à %Hh%i\') AS date_creation FROM PartnerGBAF WHERE id_acteur="' . $idName . '" ORDER BY date_creation DESC');
 
@@ -134,6 +125,17 @@ class BackManager extends Manager
                 $comments[] = $data;
             }
 
+            return $comments;*/
+
+            $bdd = $this->dbConnect();
+
+            $req_list = $bdd->QUERY('SELECT u.prenom AS prenom, DATE_FORMAT(p.date_creation, \'%d/%m/%Y à %Hh%i\') AS date_creation , p.post AS post FROM userbank u INNER JOIN PartnerGBAF p ON u.id_user = p.id_user WHERE p.id_acteur="' . $partner . '" ORDER BY date_creation DESC');
+
+            $comments=[];
+
+            while ($data = $req_list->fetch()) {
+                $comments[] = $data;
+            }
             return $comments;
 
         }

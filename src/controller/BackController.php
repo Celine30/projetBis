@@ -74,6 +74,7 @@ class BackController extends PartnerController
         $Mdp = $BackManager->checkPassword($_POST['username']);
 
        if (isset($Mdp)) {
+
            if (password_verify($_POST['user_password'], $Mdp)) {
 
                $_SESSION['username'] = $_POST['username'];
@@ -81,10 +82,6 @@ class BackController extends PartnerController
                if(isset($_POST['register'])) {
                    $BackManager->createCookies($_SESSION['username'],$_POST['user_password']);
                    $this->connectedPartner();
-
-               }elseif(isset($_POST['wipe_register'])) {
-                   $BackManager->wipeCookies();
-                   return $this->twig->render('connexion.twig');
 
                }else{
                     $this->connectedPartner();
@@ -98,7 +95,7 @@ class BackController extends PartnerController
            }
       }else{
            return $this->twig->render('connexion.twig', ['register' => [
-               'username' => $_COOKIE['username'],
+               'username.' => $_COOKIE['username'],
                'password' => $_COOKIE['password'],
                'message' => 'Ce userName n\'existe pas'
                ]]);
