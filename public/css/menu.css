@@ -44,6 +44,7 @@ header{
     background-color: white;
 }
 
+
 .bar {
     position: absolute;
     display: block;
@@ -53,8 +54,9 @@ header{
     z-index: 0;
     cursor: pointer;
     background-color:red;
-    right: 89px!important;
+    right: 40px!important;
 }
+
 
 .bar:nth-child(2) {
     top:70px;
@@ -71,7 +73,7 @@ header{
 .checkbox {
     border:olive 2px solid;
     position:absolute;
-    right: 89px!important;
+    right: 40px!important;
     top:60px!important;
     width: 40px!important;
     height: 40px!important;
@@ -132,4 +134,18 @@ header{
 
 .checkbox:checked ~ .bar:nth-child(3) {
       display: none;
+}
+
+
+@media (min-width: 768px) {
+
+.bar {
+    right: 89px!important;
+}
+.checkbox {
+    right: 89px!important;
+}
+
+
+
 }

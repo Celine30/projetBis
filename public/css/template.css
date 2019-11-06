@@ -20,20 +20,22 @@ header a {
     padding-right:5px;
     text-decoration: none;
     color: gray;
+
 }
+header a.logoGBAF {
+   width: 60px;
+    margin: auto;
+}
+
 
 header a:hover {
     border-bottom:1px solid rgba(204,204,204,0.5);
 }
-header img:first-child{
-    position : absolute;
-    top: 20px;
-    left:20px
 
-}
+
 header aside:nth-child(3){
    text-align: center;
-    margin-right: 20px;
+
 }
 
 main {
@@ -44,6 +46,7 @@ main {
 header {
     z-index: 4;
     display: flex;
+    flex-direction: column;
     color:gray;
     border-bottom:1px solid rgba(204,204,204,0.5);
     height: 80px;
@@ -61,4 +64,28 @@ footer {
 #logoGBAF {
     width: 60px;
     height:70px;
+}
+
+footer a {
+    margin: auto;
+    color: #655E5E;
+    text-decoration: none;
+}
+
+@media (min-width: 768px) {
+
+    header aside:nth-child(3){
+   text-align: center;
+    margin-right: 20px;
+    }
+
+    header img:first-child{
+    position : absolute;
+    top: 20px;
+    left:20px
+}
+    header {
+        flex-direction: row;
+    }
+
 }

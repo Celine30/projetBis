@@ -5,11 +5,11 @@
 h1,h2:not(#partner_title) {
     margin:auto;
     text-align: center;
-  /*  background: rgba(0,0,0,0.2);*/
     border-bottom: #CD1818 2px solid ;
     background-color: red;
     color: white;
     border-radius: 20px 20px 0 0;
+    font-size: 1.5em;
 }
 
 h2:not(#partner_title){
@@ -23,8 +23,6 @@ form:not(#add_comment){
 
 label:not(#wipe_register) {
     width: 81%;
-  /*  background: rgba(0,0,0,0.1);
-    text-align: center;*/
     border-radius: 20px 20px 0 0;
     margin-left: 9%;
 }
