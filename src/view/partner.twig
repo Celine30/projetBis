@@ -2,6 +2,10 @@
 
 {% import 'macro.twig'as macro %}
 
+{% block head %}
+    - {{ partner.acteur}}
+{% endblock %}
+
 {% block content %}
 
 {% if session is defined %}
@@ -14,7 +18,7 @@
                         <h2 id="partner_title">{{ partner.acteur}}</h2>
                         <a id="lien" href="{{ partner.lien}}">{{ partner.lien}}</a>
                         <br>
-                        <p>{{ partner.description}}</p>
+                        <p>{{ partner.description | nl2br }}</p>
                     </section>
 
             {% if comment != 'comment' %}
@@ -38,7 +42,7 @@
                         {% for comment in comments %}
                         <article class="content_comment">
                             <article>
-                                <p class="comment">{{ comment.prenom}}</p>
+                                <p class="comment">{{ comment.prenom |capitalize }}</p>
                                 <p class="comment"><i>{{ comment.date_creation}}</i></p>
                                 <p class="comment">{{ comment.post}}</p>
                             </article>

@@ -2,7 +2,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
+
+    <meta charset="utf-8"/>
 
     <meta name="viewport" content="width=device-width" />
     <meta name="description" content="GBAF, le point de rendez-vous des informations utiles" />
@@ -16,7 +17,9 @@
 
     <script src="https://kit.fontawesome.com/aee0f1128d.js" crossorigin="anonymous"></script>
 
-    <title>GBAF</title>
+    <title>GBAF
+        {% block head %}{% endblock %}
+    </title>
 
 </head>
 
@@ -28,14 +31,14 @@
 
     {% include("menu.twig") %}
 
-            <a href="index.php?action=user!home_show"><img id="logoGBAF" src="images/logoGBAF.jpg" alt="logoGBAF" title="logoGBAF"></a>
+            <a class="logoGBAF" href="index.php?action=user!home_show"><img id="logoGBAF" src="images/logoGBAF.jpg" alt="logoGBAF" title="logoGBAF"></a>
         {% else %}
-            <a href="index.php?action=user!connexion"><img id="logoGBAF" src="images/logoGBAF.jpg" alt="logoGBAF" title="logoGBAF"></a>
+            <a class="logoGBAF" href="index.php?action=user!connexion"><img id="logoGBAF" src="images/logoGBAF.jpg" alt="logoGBAF" title="logoGBAF"></a>
     {% endif %}
    <aside>
 
         {% if session.prenom is defined  %}
-            <p>Bonjour {{ session.prenom |capitalize }} {{ session.nom |upper }} </p>
+            <p><i class="fas fa-user-circle" style="color:black"></i> {{ session.nom |upper }} {{ session.prenom |capitalize }}</p>
             <a href = "index.php?action=user!logout" > &nbsp; Se déconnecter</a>
         {% else %}
             </p>
@@ -43,8 +46,6 @@
     </aside>
 
 </header>
-
-
 
 {% block content %}
 
