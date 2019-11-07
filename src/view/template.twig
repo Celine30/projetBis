@@ -40,8 +40,6 @@
         {% if session.prenom is defined  %}
             <p><i class="fas fa-user-circle" style="color:black"></i> {{ session.nom |upper }} {{ session.prenom |capitalize }}</p>
             <a href = "index.php?action=user!logout" > &nbsp; Se déconnecter</a>
-        {% else %}
-            </p>
         {% endif %}
     </aside>
 

@@ -7,7 +7,7 @@
 
 {% macro textarea(name, label) %}
     <div class="champs">
-        <label  for="{{ name }}">{{ label }}</label>
+        <label style="display: none" class="{{ name }}" for="{{ name }}">{{ label }}</label>
         <textarea id="{{ name }}" aria-describedby="{{ name }}" placeholder="{{ label }}" name="{{ name }}" required="required"></textarea>
     </div>
 {% endmacro textarea %}
@@ -21,8 +21,8 @@
 
 
 {% macro checkbox(for, text) %}
-            <label id="{{ for }}" for="{{ for }}">{{ text }}</label>
-            <input type="checkbox" id="{{ for }}" name="{{ for }}" placeholder="{{ for }}" >
+            <label id="wipe_{{ for }}" for="{{ for }}">{{ text }}</label>
+            <input type="checkbox" id="{{ for }}" name="{{ for }}" >
 {% endmacro checkbox %}
 
 
