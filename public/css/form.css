@@ -21,12 +21,6 @@ form:not(#add_comment){
     border-radius:  0 0 20px 20px;
 }
 
-label:not(#wipe_register) {
-    width: 81%;
-    border-radius: 20px 20px 0 0;
-    margin-left: 9%;
-}
-
 label#wipe_register , label#register {
     width: 81%;
     background: rgba(0,0,0,0.1);
@@ -54,7 +48,11 @@ form#connexion div, form#inscription div, form#formReset div , form#change_profi
     justify-content: space-between;
 }
 
-
+label:not(#wipe_register) {
+    width: 81%;
+    border-radius: 20px 20px 0 0;
+    margin-left: 9%
+}
 
 form#connexion div:nth-last-child(2){
     flex-direction: row;
@@ -64,24 +62,36 @@ form#connexion div:first-child, form#inscription div:first-child, form#formReset
     padding-top: 20px;
 }
 
-form#connexion, form#inscription, form#formReset , form#change_profile, section#lien {
+form#connexion, form#inscription, form#formReset , form#change_profile, aside#lien {
     margin: auto;
     max-width: 400px!important;
 }
+
+
+aside#lien a {
+    color: #655E5E;
+}
+
 
 #question, #answer {
     width: 80%!important;
     text-align: left;
 }
 
-input:not(#submit_com), #content_contact article form textarea{
+input:not(#submit_com), #content_contact article form textarea {
     width: 80%;
     height: 30px;
     margin-left: 9%;
     border-bottom: olive 2px solid;
 }
 
+form#contact div label {
+   margin-left: 0!important;
+}
 
+#content_contact article form textarea , #content_contact input {
+    margin-left: 0!important;
+}
 
 input.input_modif,.champs i{
     margin-top: 5px;
@@ -203,9 +213,10 @@ form#formReset {
         margin-top: 0;
     }
 
-    section#lien {
+    aside#lien {
        max-width: 90%!important;
     }
+
 
     .champs i {
         margin-top: 10px;

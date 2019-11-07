@@ -1,10 +1,11 @@
 #content_mentions, #content_contact
 {
     padding-top:120px;
+}
+#content_mentions{
     width: 90%;
     margin: auto;
 }
-
 #content_contact p, #content_contact form {
     padding-top: 5px;
     padding-bottom: 5px;

@@ -27,13 +27,18 @@
     <article>
         <p><em>Par Email</em><br>
         contact@gbaf.fr</p>
-        </article>
+    </article>
 
     <article>
-    <p><em>Remplir le Formulaire de contact</em></p>
-    <form>
-         <div class="champs">
-            <label for="question" id="label_question">Votre demande concerne</label>
+    <p><em>Remplir le Formulaire de contact</em> <i style="color:red"><br>{{ message }}</i></p>
+    <form id="contact" method="post" action="index.php?action=back!contact">
+
+        {{ macro.input('nom', 'Nom - Prénom','text') }}
+
+        {{ macro.input('mail', 'Adresse mail','Email') }}
+
+         <div class="champs" style="margin-top: 10px">
+            <label for="demande" id="demande">Votre demande concerne</label>
             <select name="demande" id="demande" title="Choisir" required>
                 <option value="" selected disabled>Choisir une option</option>
                 <option value="partner">un partenaire</option>
