@@ -40,3 +40,12 @@
     margin-top: 15px;
     margin-bottom: 15px;
 }
+
+#content_contact a:first-child, #content_mentions a:first-child, article#profile a:first-child {
+    display: block;
+    padding-left: 20px;
+    margin-bottom: 20px;
+    text-decoration: underline;
+    color: gray;
+    cursor: pointer;
+}
