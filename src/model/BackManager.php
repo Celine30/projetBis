@@ -109,6 +109,8 @@ class BackManager extends Manager
      {
          $bdd = $this->dbConnect();
 
+         $comments_up=[];
+
          $req_up = $bdd->QUERY('SELECT vote FROM vote WHERE vote="good" and id_acteur="' . $partner . '"');
 
          while ($data = $req_up->fetch()) {
@@ -140,8 +142,10 @@ class BackManager extends Manager
 
          if($data = $reqAvis->fetch()){
 
-             $message = 'vous avez déjà donné votre avis';
-             return $message;
+             $bdd->exec('UPDATE vote SET vote = "'.$avis.'" WHERE id_user="' . $auteur . '"and id_acteur= "' . $partner . '"');
+
+            // $message = 'vous avez déjà donné votre avis';
+            // return $message;
 
          }else{
              $req = $bdd->prepare('INSERT INTO vote (id_user, id_acteur, vote) VALUES (:id_user, :id_acteur, :vote)');
@@ -153,5 +157,15 @@ class BackManager extends Manager
          }
      }
 
+     public function req_avis($partner,$auteur)
+     {
+         $bdd = $this->dbConnect();
+         $reqAvis = $bdd->QUERY('SELECT vote FROM vote WHERE id_user="' . $auteur . '"and id_acteur= "' . $partner . '"');
+
+        $data = $reqAvis->fetch();
+        $opinionGiven = $data['vote'];
+        return $opinionGiven;
+
+     }
 
 }

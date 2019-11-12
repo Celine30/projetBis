@@ -31,8 +31,8 @@
                             <aside>
                                 <div class="button"><a href="index.php?partner={{ partner.id_acteur}}&action=partner!view_comment">Nouveau commentaire</a></div>
                                 <div class="button">
-                                    <span style="color:darkgreen">{{ comments_up | length }}</span><a href="index.php?partner={{ partner.id_acteur}}&action=partner!good"><i id ="thumb_good_resume" class="fas fa-thumbs-up" style="color:darkgreen"></i></a>
-                                    <span style="color:red; margin-left: 10px">{{ comments_down | length }}</span><a href="index.php?partner={{ partner.id_acteur}}&action=partner!bad"><i id ="thumb_bad_resume" class="fa fa-thumbs-down" style="color:red" ></i></a>
+                                    <span style="color:darkgreen" >{{ comments_up | length }}</span><a href="index.php?partner={{ partner.id_acteur}}&action=partner!good"><i id ="thumb_good_resume" class="fas fa-thumbs-up" {% if opinion == 'good' %} style="color:darkgreen" {% else %} style="color:rgba(204,204,204,0.8)" {% endif %}></i></a>
+                                    <span style="color:red; margin-left: 10px" >{{ comments_down | length }}</span><a href="index.php?partner={{ partner.id_acteur}}&action=partner!bad"><i id ="thumb_bad_resume" class="fa fa-thumbs-down" {% if opinion == 'bad' %} style="color:red" {% else %} style="color:rgba(204,204,204,0.8)" {% endif %}></i></a>
                                     <br><br><i style="color:red ; display:block ;margin-left: -45px; width: 150px">{{ message }}</i>
                                 </div>
 

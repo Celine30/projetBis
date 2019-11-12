@@ -29,6 +29,7 @@ class Controller
         $_SESSION['reponse'] = $data['reponse'];
         $_SESSION['password'] = $data['password'];
 
+
         echo $this->twig->render('connected.twig', array(
             'session' => $_SESSION ,
             'partner'=> $partner,
@@ -67,12 +68,16 @@ class Controller
             $down_partner = new Model\BackManager();
             $comments_down = $down_partner->list_down($partner);
 
+            $opinionGiven= new Model\BackManager();
+            $opinionGiven = $opinionGiven->req_avis($partner,$_SESSION['id_user']);
+
           echo $this->twig->render('partner.twig', array(
-                'partner' => $partnerB,
-                'comments' => $comments,
-                'comments_up' => $comments_up,
-                'comments_down' => $comments_down,
-                'message'=>$message
+              'partner' => $partnerB,
+              'comments' => $comments,
+              'comments_up' => $comments_up,
+              'comments_down' => $comments_down,
+              'message'=>$message,
+              'opinion'=>$opinionGiven
 
             ));
 
@@ -84,8 +89,6 @@ class Controller
     public function view_add_com($partner)
     {
         if(isset($_SESSION['prenom'])) {
-
-        //$partner = $partner->Get_All();
 
         $BackManager = new model\BackManager();
         $partner = $BackManager->partner($partner);
