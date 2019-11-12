@@ -11,6 +11,7 @@
 
     <h2>FORMULAIRE D'INSCRIPTION</h2>
 
+    <em style="color:red; font-size: 1em; width: 90%; display: block; margin:auto">{{ message }}</em>
     <form id ="inscription" method="post" action="index.php?action=user!control_double">
 
         {{ macro.input('last_name', 'Nom','text') }}

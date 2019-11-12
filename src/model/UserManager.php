@@ -20,31 +20,38 @@ class UserManager extends Manager
     {
         $user_password_hash = password_hash($user_password, PASSWORD_DEFAULT);
 
-        $bdd = $this -> dbConnect();
-
+        $bdd = $this->dbConnect();
         $controlOne = $bdd->QUERY("SELECT username FROM userbank WHERE username='$username'");
 
         if ($data = $controlOne->fetch()) {
-            echo ' username existe deja ';
+            // echo ' username existe deja ';
             $controlOne = false;
         }
 
         $controlTwo = $bdd->QUERY("SELECT nom FROM userbank WHERE nom='$last_name'");
 
-        if ($data = $controlTwo -> fetch()) {
+        if ($data = $controlTwo->fetch()) {
             $controlThree = $bdd->QUERY("SELECT prenom FROM userbank WHERE prenom='$first_name'");
             if ($data = $controlThree->fetch()) {
-                echo ' / Nom et prénom existe deja ';
+                // echo ' / Nom et prénom existe deja ';
                 $controlTwo = false;
             }
+        } else {
+            $controlTwo = true;
         }
 
-        if (!$controlOne) {
-            echo ' / ça marche ';
-        }if (!$controlTwo) {
-            echo ' / ça marche2 ';
-        } else {
 
+        $inscription = '';
+
+        if (!$controlOne) {
+            $inscription =  'username';
+        }
+
+        if (!$controlTwo) {
+            $inscription .=  'nom';
+        }
+
+        if ( $controlTwo & $controlOne ){
             $req = $bdd->prepare('INSERT INTO userbank (nom,prenom,username,password,question,reponse) VALUES (:nom, :prenom, :username, :password, :question, :reponse)');
             $req->execute(array(
                 'nom' => $last_name,
@@ -53,11 +60,11 @@ class UserManager extends Manager
                 'password' => $user_password_hash,
                 'question' => $question,
                 'reponse' => $answer
-
             ));
-            $inscription='valide';
-            return $inscription;
+            $inscription = 'valid';
         }
+
+       return $inscription;
     }
 
     public function user_profile($username)
