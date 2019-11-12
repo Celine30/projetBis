@@ -17,11 +17,11 @@ class BackController extends PartnerController
             $_SESSION = [];
 
             $BackManager = new model\BackManager();
-            $question = $BackManager->userQuestion($_POST['username']);
+            $question = $BackManager->userQuestion(htmlspecialchars($_POST['username']));
 
             if (isset($question)) {
 
-                $_SESSION['username'] = $_POST['username'];
+                $_SESSION['username'] = htmlspecialchars($_POST['username']);
                 $_SESSION['question'] = $question;
 
                 return $this->twig->render('mdpForget.twig', array(
@@ -41,7 +41,7 @@ class BackController extends PartnerController
         $answer = $BackManager->userAnswer($_SESSION['username']);
 
         if (isset($answer)) {
-            if ($_POST['answer'] == $answer) {
+            if (htmlspecialchars($_POST['answer']) == $answer) {
 
                 return $this->twig->render('mdpForget.twig', array(
                     'session' => $_SESSION,
@@ -58,7 +58,7 @@ class BackController extends PartnerController
 
     public function reset_mdp(){
 
-        $password = password_hash($_POST['user_password'], PASSWORD_DEFAULT);
+        $password = password_hash(htmlspecialchars($_POST['user_password']), PASSWORD_DEFAULT);
 
         $BackManager = new model\BackManager();
         $BackManager->resetPassword($_SESSION['username'],$password);
@@ -71,16 +71,16 @@ class BackController extends PartnerController
 
         if (isset ($_POST['username'])) {
         $BackManager = new Model\BackManager();
-        $Mdp = $BackManager->checkPassword($_POST['username']);
+        $Mdp = $BackManager->checkPassword(htmlspecialchars($_POST['username']));
 
        if (isset($Mdp)) {
 
            if (password_verify($_POST['user_password'], $Mdp)) {
 
-               $_SESSION['username'] = $_POST['username'];
+               $_SESSION['username'] = htmlspecialchars($_POST['username']);
 
                if(isset($_POST['register'])) {
-                   $BackManager->createCookies($_SESSION['username'],$_POST['user_password']);
+                   $BackManager->createCookies($_SESSION['username'],htmlspecialchars($_POST['user_password']));
                    $this->connectedPartner();
 
                }else{
@@ -89,7 +89,7 @@ class BackController extends PartnerController
 
            }else{
                return $this->twig->render('connexion.twig',array(
-                   'username'=> $_POST['username'],
+                   'username'=> htmlspecialchars($_POST['username']),
                    'message2'=>'erreur d\'authentification'
                ));
            }
@@ -111,27 +111,24 @@ class BackController extends PartnerController
     {
       if(isset($_POST['username'])&& ($_POST['username']!= "")){
           $ChangeManager = new Model\ChangeManager();
-          $ChangeManager->change_username($_POST['username'],$_SESSION['username']);
-          $_SESSION['username']=$_POST['username'];
+          $ChangeManager->change_username(htmlspecialchars($_POST['username']),$_SESSION['username']);
+          $_SESSION['username'] = htmlspecialchars($_POST['username']);
        }
         if(isset($_POST['first_name'])&& ($_POST['first_name']!= "")){
             $ChangeManager = new Model\ChangeManager();
-            $ChangeManager->change_nom($_POST['first_name'],$_SESSION['username']);
-            $_SESSION['nom']=$_POST['first_name'];
+            $ChangeManager->change_nom(htmlspecialchars($_POST['first_name']),$_SESSION['username']);
+            $_SESSION['nom']=htmlspecialchars($_POST['first_name']);
         }
         if(isset($_POST['last_name'])&& ($_POST['last_name']!= "")){
             $ChangeManager = new Model\ChangeManager();
-            $ChangeManager->change_prenom($_POST['last_name'],$_SESSION['username']);
-            $_SESSION['prenom']=$_POST['last_name'];
+            $ChangeManager->change_prenom(htmlspecialchars($_POST['last_name']),$_SESSION['username']);
+            $_SESSION['prenom']=htmlspecialchars($_POST['last_name']);
         }
         if(isset($_POST['user_password'])&& ($_POST['user_password']!= "")){
-
-            $user_password_hash = password_hash($_POST['user_password'], PASSWORD_DEFAULT);
+            $user_password_hash = password_hash(htmlspecialchars($_POST['user_password']), PASSWORD_DEFAULT);
             $ChangeManager = new Model\ChangeManager();
             $ChangeManager->change_password($user_password_hash,$_SESSION['username']);
         }
-
-        echo $_SESSION['prenom'] ."".$_SESSION['nom'];
 
         $this-> profile_show();
     }
@@ -141,9 +138,9 @@ class BackController extends PartnerController
          if(isset($_POST['comment']) && ($_POST['comment']!= "") && isset($_POST['id_acteur'])){
 
              $addComment = new Model\BackManager();
-             $addComment->add_com($_POST['id_acteur'], $_POST['comment'], $_SESSION['id_user']);
+             $addComment->add_com(htmlspecialchars($_POST['id_acteur']), htmlspecialchars($_POST['comment']), $_SESSION['id_user']);
 
-             header('location:index.php?partner='.$_POST['id_acteur'].'&action=partner!actor');
+             header('location:index.php?partner='.htmlspecialchars($_POST['id_acteur']).'&action=partner!actor');
 
          }else{
              echo'merci de remplir tous les champs';
@@ -156,19 +153,24 @@ class BackController extends PartnerController
 
         $message='* message envoyé *';
 
+     /*EN LOCAL
+
         $to      = 'celi.caurier@gmail.com';
-        $subject = $_POST['demande'];
-        $corpsMail = $_POST['contact'];
+        $subject = htmlspecialchars($_POST['demande']);
+        $corpsMail = htmlspecialchars($_POST['contact']);
         $headers = array(
             'From' => 'contactGBAF.fr',
-            'Reply-To' => $_POST['mail'],
+            'Reply-To' => htmlspecialchars($_POST['mail']),
             'X-Mailer' => 'PHP/' . phpversion()
         );
 
        mail($to, $subject, $corpsMail, $headers);
 
+     */
+
 
     /*SUR LE SERVEUR
+    */
 
         $name       = @trim(stripslashes($_POST['nom']));
         $fromBis    = @trim(stripslashes($_POST['mail']));
@@ -187,16 +189,6 @@ class BackController extends PartnerController
         $headers .= "X-Mailer: PHP/".phpversion()."\r\n";
 
         mail($to, $subject, $corps, $headers);
-
-        return $this->twig->render('contact.twig', array(
-            'message'=> $message
-        ));
-     */
-
-
-
-
-
 
 
 
