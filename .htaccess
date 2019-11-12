@@ -14,6 +14,9 @@ Allow from all
     RewriteCond %{REQUEST_URI} !/public/ [NC]
     RewriteRule ^(.*?)/?$ public/$1 [L]
 
-    ErrorDocument 404 http://localhost:8888/projetBis/errors/not_found.html
+    ErrorDocument 404 /error/erreur_404.html
+
+    # Article sans partner :
+   RewriteRule ^projetBis-(-[a-z]*)-(-[a-z]*).html$   /projetBis/public/index.php?action=$1!$2 [L]
 
 </IfModule>
