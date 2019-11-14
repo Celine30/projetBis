@@ -58,12 +58,12 @@ class BackController extends PartnerController
 
     public function reset_mdp(){
 
-        $password = password_hash(htmlspecialchars($_POST['user_password']), PASSWORD_DEFAULT);
+       $password = password_hash(htmlspecialchars($_POST['user_password']), PASSWORD_DEFAULT);
 
-        $BackManager = new model\BackManager();
-        $BackManager->resetPassword($_SESSION['username'],$password);
+       $BackManager = new model\BackManager();
+       $BackManager->resetPassword($_SESSION['username'],$password);
 
-        $this->connectedPartner();
+       $this->connectedPartner();
 
     }
 
@@ -97,7 +97,7 @@ class BackController extends PartnerController
            return $this->twig->render('connexion.twig', ['register' => [
                'username.' => $_COOKIE['username'],
                'password' => $_COOKIE['password'],
-               'message' => 'Ce userName n\'existe pas'
+               'message' => 'Cet userName n\'existe pas'
                ]]);
        }
     }else{
