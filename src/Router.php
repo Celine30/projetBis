@@ -15,7 +15,7 @@ class Router
 
     const DEFAULT_CONTROLLER = 'UserController';
 
-    const DEFAULT_METHOD = 'connexion';
+    const DEFAULT_METHOD = 'logout';
 
     private $twig = null;
 
@@ -74,21 +74,16 @@ class Router
 
         if (!method_exists($this->controller, $this->method)) {
             $this->method = self::DEFAULT_METHOD;
+
         }
-
-
-
     }
-
 
     function display()
     {
-
         $UserController = new $this->controller($this->twig);
         $method = $this->method;
         $response = $UserController->$method();
         echo filter_var($response);
-
     }
 
 }
