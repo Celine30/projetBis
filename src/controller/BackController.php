@@ -16,20 +16,21 @@ class BackController extends PartnerController
 
             $_SESSION = [];
 
-            $_SESSION['username'] = $_POST['username'];
-
             $BackManager = new model\BackManager();
-            $question = $BackManager->userQuestion($_POST['username']);
+            $question = $BackManager->userQuestion(htmlspecialchars($_POST['username']));
 
             if (isset($question)) {
 
+                $_SESSION['username'] = htmlspecialchars($_POST['username']);
                 $_SESSION['question'] = $question;
 
                 return $this->twig->render('mdpForget.twig', array(
                     'session' => $_SESSION
                 ));
             } else {
-                echo 'merci de remplir votre Username';
+                 return $this->twig->render('mdpForget.twig',array(
+                     'message1' => 'Ce userName n\'existe pas'
+                 ));
             }
         }
     }
@@ -40,7 +41,7 @@ class BackController extends PartnerController
         $answer = $BackManager->userAnswer($_SESSION['username']);
 
         if (isset($answer)) {
-            if ($_POST['answer'] == $answer) {
+            if (htmlspecialchars($_POST['answer']) == $answer) {
 
                 return $this->twig->render('mdpForget.twig', array(
                     'session' => $_SESSION,
@@ -57,31 +58,30 @@ class BackController extends PartnerController
 
     public function reset_mdp(){
 
-        $password = password_hash($_POST['user_password'], PASSWORD_DEFAULT);
+       $password = password_hash(htmlspecialchars($_POST['user_password']), PASSWORD_DEFAULT);
 
-        $BackManager = new model\BackManager();
-        $BackManager->resetPassword($_SESSION['username'],$password);
+       $BackManager = new model\BackManager();
+       $BackManager->resetPassword($_SESSION['username'],$password);
 
-        $this->connectedPartner();
+       $this->connectedPartner();
 
     }
 
     public function check_mdp(){
+
+        if (isset ($_POST['username'])) {
         $BackManager = new Model\BackManager();
-        $Mdp = $BackManager->checkPassword($_POST['username']);
+        $Mdp = $BackManager->checkPassword(htmlspecialchars($_POST['username']));
 
        if (isset($Mdp)) {
+
            if (password_verify($_POST['user_password'], $Mdp)) {
 
-               $_SESSION['username'] = $_POST['username'];
+               $_SESSION['username'] = htmlspecialchars($_POST['username']);
 
                if(isset($_POST['register'])) {
-                   $BackManager->createCookies($_SESSION['username'],$_POST['user_password']);
+                   $BackManager->createCookies($_SESSION['username'],htmlspecialchars($_POST['user_password']));
                    $this->connectedPartner();
-
-               }elseif(isset($_POST['wipe_register'])) {
-                   $BackManager->wipeCookies();
-                   return $this->twig->render('connexion.twig');
 
                }else{
                     $this->connectedPartner();
@@ -89,52 +89,115 @@ class BackController extends PartnerController
 
            }else{
                return $this->twig->render('connexion.twig',array(
-                   'username'=> $_POST['username'],
-                   'erreur'=>'<p> erreur d\'authentification </p>'
+                   'username'=> htmlspecialchars($_POST['username']),
+                   'message2'=>'erreur d\'authentification'
                ));
            }
       }else{
-           echo ' ce username n\'existe pas';
+           return $this->twig->render('connexion.twig', ['register' => [
+               'username.' => $_COOKIE['username'],
+               'password' => $_COOKIE['password'],
+               'message' => 'Cet userName n\'existe pas'
+               ]]);
        }
+    }else{
+
+        $this->logout();
+
+        }
     }
 
- public function change_profile()
+    public function change_profile()
     {
-        if(isset($_POST['username'])&& ($_POST['username']!= "")){
-            $ChangeManager = new Model\ChangeManager();
-            $ChangeManager->change_username($_POST['username'],$_SESSION['username']);
-            $_SESSION['username']=$_POST['username'];
-        }
+      if(isset($_POST['username'])&& ($_POST['username']!= "")){
+          $ChangeManager = new Model\ChangeManager();
+          $ChangeManager->change_username(htmlspecialchars($_POST['username']),$_SESSION['username']);
+          $_SESSION['username'] = htmlspecialchars($_POST['username']);
+       }
         if(isset($_POST['first_name'])&& ($_POST['first_name']!= "")){
             $ChangeManager = new Model\ChangeManager();
-            $ChangeManager->change_nom($_POST['first_name'],$_SESSION['username']);
-            $_SESSION['nom']=$_POST['first_name'];
+            $ChangeManager->change_nom(htmlspecialchars($_POST['first_name']),$_SESSION['username']);
+            $_SESSION['nom']=htmlspecialchars($_POST['first_name']);
         }
         if(isset($_POST['last_name'])&& ($_POST['last_name']!= "")){
             $ChangeManager = new Model\ChangeManager();
-            $ChangeManager->change_prenom($_POST['last_name'],$_SESSION['username']);
-            $_SESSION['nom']=$_POST['first_name'];
+            $ChangeManager->change_prenom(htmlspecialchars($_POST['last_name']),$_SESSION['username']);
+            $_SESSION['prenom']=htmlspecialchars($_POST['last_name']);
         }
         if(isset($_POST['user_password'])&& ($_POST['user_password']!= "")){
-            echo 'password =>' . $_POST['user_password'];
+            $user_password_hash = password_hash(htmlspecialchars($_POST['user_password']), PASSWORD_DEFAULT);
+            $ChangeManager = new Model\ChangeManager();
+            $ChangeManager->change_password($user_password_hash,$_SESSION['username']);
         }
 
+        $this-> profile_show();
     }
- public function add_com() {
-         if(isset($_POST['comment']) && ($_POST['comment']!= "") && isset($_POST['icone']) && isset($_POST['idName'])){
+
+    public function add_com()
+    {
+         if(isset($_POST['comment']) && ($_POST['comment']!= "") && isset($_POST['id_acteur'])){
 
              $addComment = new Model\BackManager();
-             $addComment->add_com($_POST['idName'], $_POST['comment'], $_SESSION['username'], $_POST['icone']);
+             $addComment->add_com(htmlspecialchars($_POST['id_acteur']), htmlspecialchars($_POST['comment']), $_SESSION['id_user']);
 
-             $class = $_POST['idName'];
-
-             $this->$class();
+             header('location:index.php?partner='.htmlspecialchars($_POST['id_acteur']).'&action=partner!actor');
 
          }else{
              echo'merci de remplir tous les champs';
          }
 
- }
+    }
 
+    public function contact()
+    {
+
+        $message='* message envoyé *';
+
+     /*EN LOCAL
+
+        $to      = 'celi.caurier@gmail.com';
+        $subject = htmlspecialchars($_POST['demande']);
+        $corpsMail = htmlspecialchars($_POST['contact']);
+        $headers = array(
+            'From' => 'contactGBAF.fr',
+            'Reply-To' => htmlspecialchars($_POST['mail']),
+            'X-Mailer' => 'PHP/' . phpversion()
+        );
+
+       mail($to, $subject, $corpsMail, $headers);
+
+     */
+
+
+    /*SUR LE SERVEUR
+    */
+
+        $name       = @trim(stripslashes($_POST['nom']));
+        $fromBis    = @trim(stripslashes($_POST['mail']));
+        $from       = 'contact@gbaf.fr';
+        $subject    = @trim(stripslashes($_POST['demande']));
+        $corps      = @trim(stripslashes($_POST['contact']));
+        $to         = 'celi.caurier@gmail.com';
+
+
+        $headers  = "";
+        $headers .= "MIME-Version: 1.0\r\n";
+        $headers .= "Content-type: text/plain; charset=iso-8859-1\r\n";
+        $headers .= "From: ContactGBAF <{$from}>\r\n";
+        $headers .= "Reply-To: <{$fromBis}>\r\n";
+        $headers .= "Subject: {$subject}\r\n";
+        $headers .= "X-Mailer: PHP/".phpversion()."\r\n";
+
+        mail($to, $subject, $corps, $headers);
+
+
+
+
+
+        return $this->twig->render('contact.twig', array(
+            'message'=> $message
+        ));
+
+    }
 
 }

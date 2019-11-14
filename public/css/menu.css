@@ -44,6 +44,7 @@ header{
     background-color: white;
 }
 
+
 .bar {
     position: absolute;
     display: block;
@@ -53,31 +54,26 @@ header{
     z-index: 0;
     cursor: pointer;
     background-color:red;
-    right: 85px!important;
+    right: 40px!important;
 }
 
+
 .bar:nth-child(2) {
-    position: absolute;
     top:70px;
-    right: 30px;
 }
 
 .bar:nth-child(3) {
-    position: absolute;
     top:80px;
-    right: 30px;
 }
 
 .bar:nth-child(4) {
-    position: absolute;
     top:90px;
-    right: 30px;
 }
 
 .checkbox {
     border:olive 2px solid;
     position:absolute;
-    right: 82px!important;
+    right: 40px!important;
     top:60px!important;
     width: 40px!important;
     height: 40px!important;
@@ -112,7 +108,7 @@ header{
     list-style-type: none;
     background-color: gray;
     width: 150px;
-    height: 100px;
+    height: 140px;
     border: inset;
     z-index: 4;
 }
@@ -138,4 +134,18 @@ header{
 
 .checkbox:checked ~ .bar:nth-child(3) {
       display: none;
+}
+
+
+@media (min-width: 768px) {
+
+.bar {
+    right: 89px!important;
+}
+.checkbox {
+    right: 89px!important;
+}
+
+
+
 }

@@ -1,0 +1,42 @@
+{% import 'macro.twig'as macro %}
+
+<div id="content_connexion" >
+
+    <h2>FORMULAIRE DE CONNEXION</h2>
+
+    <form id="connexion" method="post" action="index.php?action=back!check_mdp">
+
+        <div class="champs">
+            <label  for="username">Votre UserName <br> <em style="color:red; font-size: 0.7em; margin-left: 0">{{ register.message }}</em></label>
+            <input  type="text" class="form-control" id="username" aria-describedby="username" placeholder="Votre username" name="username" value="{{ register.username }}{{ username }}">
+        </div>
+
+        <div class="champs">
+            <label  for="user_password">Votre password <br> <em style="color:red; font-size: 0.7em; margin-left: 0">{{ message2 }}</em></label>
+            <input  type="password" class="form-control" id="user_password" aria-describedby="user_password" placeholder="Votre mot de passe" name="user_password" required="required" value="{{ register.password }}">
+        </div>
+
+
+
+        <div class="champs">
+
+            {{ macro.checkbox('register', 'Se souvenir de moi') }}
+
+        </div>
+
+
+
+        {{ macro.submit('connexion') }}
+
+
+    </form>
+
+        <aside id="lien">
+
+            <a href="index.php?action=user!mdp_forget">Mot de passe oublié</a>
+        <br>
+            <a href="index.php?action=user!inscription">Créer un compte</a>
+
+        </aside>
+
+    </div>

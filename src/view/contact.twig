@@ -1,0 +1,63 @@
+{%  extends 'template.twig' %}
+
+{% import 'macro.twig'as macro %}
+
+{% block head %}
+    - contact
+{% endblock %}
+
+{% block content %}
+
+<div id="content_contact">
+
+      {% if session.username is not defined  %}
+            <a href="index.php?action=user"> <i class="fas fa-arrow-left"></i> Retour au formulaire de contact</a>
+       {% else %}
+           <a href="index.php?action=partner!connected_partner"> <i class="fas fa-arrow-left"></i> Retour à l'accueil</a>
+      {% endif %}
+
+<h1>NOUS CONTACTER</h1>
+
+    <article>
+        <p><em>Par téléphone du Lundi au Vendredi de 7h à 18h</em><br>
+        01 93 84 67 38</p>
+    </article>
+
+    <article>
+        <p><em>Par Courrier</em><br>
+        GBAF<br>
+        34 rue de la Police<br>
+         75400 PARIS</p>
+    </article>
+
+    <article>
+        <p><em>Par Email</em><br>
+        <a href="mailto: contact@gbaf.fr" style="color: rgb(52, 52, 52); text-decoration: none; font-family: sans-serif, Arial, Verdana ">contact@gbaf.fr</a></p>
+    </article>
+
+    <article>
+    <p><em>Remplir le Formulaire de contact</em> <i style="color:red"><br>{{ message }}</i></p>
+    <form id="contact" method="post" action="index.php?action=back!contact">
+
+        {{ macro.input('nom', 'Nom - Prénom','text') }}
+
+        {{ macro.input('mail', 'Adresse mail','Email') }}
+
+         <div class="champs" style="margin-top: 10px">
+            <label for="demande" id="demande">Votre demande concerne</label>
+            <select name="demande" id="demande" title="Choisir" required>
+                <option value="" selected disabled>Choisir une option</option>
+                <option value="partner">un partenaire</option>
+                <option value="account">votre compte</option>
+                <option value="us"> GBAF</option>
+            </select>
+        </div>
+        {{ macro.textarea('contact','') }}
+        {{ macro.submit('envoyer') }}
+    </form>
+    </article>
+
+</div>
+
+{% endblock %}
+

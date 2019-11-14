@@ -2,9 +2,15 @@
 
 {% import 'macro.twig'as macro %}
 
+{% block head %}
+    - votre profil
+{% endblock %}
+
 {% block content %}
 
 <article id="profile">
+
+     <a href="index.php?action=partner!connected_partner"> <i class="fas fa-arrow-left"></i> Retour à l'accueil</a>
 
     <h2> Votre Profil </h2>
    {%   if change is defined %}
@@ -61,14 +67,14 @@
    {% endif %}
 
     {%   if change is  defined %}
-        <section id="lien">
+        <aside id="lien">
            <a  style="text-align: right" href="index.php?action=user!profile_show">Retour à votre profil</a>
-        </section>
+        </aside>
     {% else %}
          </form>
-        <section id="lien">
+        <aside id="lien">
             <a  href="index.php?action=user!change_profile"> Modifier Votre profil</a>
-        </section>
+        </aside>
     {% endif %}
 
 </article>

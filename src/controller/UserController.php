@@ -3,8 +3,8 @@
 namespace Project\Controller;
 
 use Twig\Environment;
-use Tracy\Debugger;
-Debugger::enable();
+//use Tracy\Debugger;
+//Debugger::enable();
 use Project\Model;
 
 class UserController extends Controller
@@ -12,8 +12,10 @@ class UserController extends Controller
 
     public function connexion()
     {
-        $_SESSION['username'] = "";
-        session_destroy();
+       $_SESSION['username'] = "";
+        $_SESSION['nom'] = "";
+        $_SESSION['prenom'] = "";
+       session_destroy();
 
         if (isset($_COOKIE['username']) && isset($_COOKIE['password'])) {
             return $this->twig->render('connexion.twig', ['register' => [
@@ -25,18 +27,19 @@ class UserController extends Controller
         }
     }
 
-    public function logout()
-    {
-
-        $_SESSION['username'] = "";
-        session_destroy();
-        echo 'Vous êtes deconnecté';
-        header('location:index.php?action=user!connexion');
-    }
-
     public function inscription()
     {
         return $this->twig->render('inscription.twig');
+    }
+
+    public function contact()
+    {
+        return $this->twig->render('contact.twig');
+    }
+
+    public function mentions()
+    {
+        return $this->twig->render('mentions_legales.twig');
     }
 
     public function error()
@@ -49,17 +52,33 @@ class UserController extends Controller
         if (count(array_filter($_POST)) === count($_POST)) {
 
             $UserManager = new model\UserManager();
-            $inscription = $UserManager->userControl($_POST['last_name'], $_POST['first_name'], $_POST['username'], $_POST['user_password'], $_POST['question'], $_POST['answer']);
+            $inscription = $UserManager->userControl(htmlspecialchars($_POST['last_name']), htmlspecialchars($_POST['first_name']), htmlspecialchars($_POST['username']), htmlspecialchars($_POST['user_password']), htmlspecialchars($_POST['question']), htmlspecialchars($_POST['answer']));
 
-            if ($inscription == 'valide') {
+            if ($inscription == 'valid') {
 
-                $_SESSION['username'] = $_POST['username'];
+               $_SESSION['username'] = htmlspecialchars($_POST['username']);
 
-                return $this->twig->render('connected.twig', array(
-                    'session' => $_SESSION));
+                $this->connectedPartner();
+
+            }else{
+
+                $message = '';
+
+                if ($inscription == 'nom'){
+                    $message = 'Le nom et le prénom indiqués existe déja';
+                }elseif($inscription == 'username'){
+                    $message = 'L\'username indiqué existe déja';
+                }elseif($inscription == 'usernamenom'){
+                    $message = 'L\'username, le nom et le prénom indiqués existe déja';
+                }
+
+                return $this->twig->render('inscription.twig', array(
+                'message' => $message));
+
             }
+
         } else {
-            echo 'merci de tout remplir';
+
             return $this->twig->render('inscription.twig');
         }
     }
@@ -81,36 +100,25 @@ class UserController extends Controller
     }
 
 
-    public function profile_show()
-    {
-        $UserManager = new model\UserManager();
-        $data = $UserManager->user_profile($_SESSION['username']);
-
-        $_SESSION['question'] = $data['question'];
-        $_SESSION['reponse'] = $data['reponse'];
-        $_SESSION['password'] = $data['password'];
-
-        return $this->twig->render('profile.twig', array(
-            'first_name' => $data['nom'],
-            'last_name' => $data['prenom'],
-            'question' => $data['question'],
-            'answer' => $data['reponse'],
-            'password' => "XXXXXXXXX",
-
-        ));
-    }
-
     public function home_show()
     {
-        $this->connectedPartner();
+        if(isset($_SESSION['prenom'])) {
+            $this->connectedPartner();
+        }else {
+            $this->logout();
+        }
     }
 
     public function change_profile()
     {
+        if(isset($_SESSION['prenom'])) {
         return $this->twig->render('profile.twig', array(
             'change' => 'change'));
-
+         }else {
+            $this->logout();
+        }
     }
 
 }
+
 

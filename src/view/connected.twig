@@ -4,41 +4,52 @@
 
 {% import 'macro.twig'as macro %}
 
+{% block head %}
+    - Accueil
+{% endblock %}
+
 {% block content %}
 
+{% if session is defined %}
+
+        <div id="connected">
+
+            <main id="sectionGBAF">
+                <h1>Le GBAF</h1>
+                <p id="textGbaf">Le GBAF est le représentant de la profession bancaire et des assureurs sur tous les axes de la
+                réglementation financière française.</p>
+            </main>
+
+            <img id="sliderGBAF" src="images/sliderGBAF.jpg" alt="logoGBAF" title="logoGBAF">
+
+            <main id="sectionResume">
+                <p id="resumeGbaf">Des informations portant sur des produits bancaires et des financeurs seront basées sur vos votes et commentaires.
+                GBAF souhaite vous proposer un point d’entrée unique, avec un maximum d’informations sur nos partenaires.</p>
+            </main>
+
+            <main id="sectionPartner">
+
+        {% for partnerOne in partner %}
+                <article id="partner">
+                    <section id="image">
+                        <img id="logoPartner" src="images/{{ partnerOne.logo}}" alt="logoPartner">
+                    </section>
+                    <section id="resume">
+                        <h3>{{ partnerOne.acteur}} </h3>
+                        <p id="resumePartner">{{ partnerOne.description | truncate (150,true)}}</p>
+                    </section>
+                    <a href="index.php?partner={{ partnerOne.id_acteur }}&action=partner!actor" id="more">Lire la suite </a>
+                </article>
+          {% else %}
+            <li>Rien</li>
+                {% endfor %}
+            </main>
+
+        </div>
+
+{% else %}
 <div id="connected">
-
-    <main id="sectionGBAF">
-        <h1>Le GBAF</h1>
-        <p id="textGbaf">Le GBAF est le représentant de la profession bancaire et des assureurs sur tous les axes de la
-        réglementation financière française.</p>
-    </main>
-
-    <a id ="photo" href="index.php?action=user!connexion"><img id="sliderGBAF" src="images/sliderGBAF.jpg" alt="logoGBAF" title="logoGBAF"></a>
-
-    <main id="sectionResume">
-        <p id="resumeGbaf">Des informations portant sur des produits bancaires et des financeurs seront basés sur vos votes et commentaires.
-        GBAF souhaite vous proposer un point d’entrée unique, avec un maximum d’informations sur nos partenaires.</p>
-    </main>
-
-    <main id="sectionPartner">
-
-{% for partnerOne in partner %}
-        <article id="partner">
-            <section id="image">
-                <img id="logoPartner" src="images/{{ partnerOne.imagePartner}}" alt="logoPartner">
-            </section>
-            <section id="resume">
-                <h3>{{ partnerOne.namePartner}} </h3>
-                <p id="resumePartner">{{ partnerOne.resumePartner | truncate (150)}}</p>
-            </section>
-            <a href="index.php?action=partner!{{ partnerOne.idPartner }}" id="more">Lire la suite </a>
-        </article>
-  {% else %}
-    <li>Rien</li>
-        {% endfor %}
-    </main>
-
+    <p> Merci de vous identifier.</p>
 </div>
-
+{% endif%}
 {% endblock %}

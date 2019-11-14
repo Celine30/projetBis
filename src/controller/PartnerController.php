@@ -3,61 +3,27 @@
 
 namespace Project\Controller;
 
-use Tracy\Debugger;
-Debugger::enable();
-use Project\Model;
-
 class PartnerController extends Controller
 {
-
-    public function partner_cde()
+     public function actor($message="")
     {
-        $partner = new Model\PartnerCde();
-        $this->partner(partner_cde,$partner );
+        $_GET['partner'];
+        $this->partner( $_GET['partner'],$message);
     }
 
-        public function partner_cde_com()
+    public function good()
     {
-        $partner = new Model\PartnerCde();
-        $this->view_add_com($partner );
+        $this->User_avis($_GET['partner'] , $_SESSION['id_user'], 'good');
     }
 
-    public function partner_dsa()
+    public function bad()
     {
-        $partner = new Model\PartnerDsa();
-        $this->partner(partner_cde,$partner );
+        $this->User_avis($_GET['partner'] , $_SESSION['id_user'], 'bad');
     }
 
-    public function partner_dsa_com()
+    public function view_comment()
     {
-        $partner = new Model\PartnerDsa();
-        $this->view_add_com($partner );
-    }
-
-    public function partner_co()
-    {
-        $partner = new Model\PartnerCo();
-        $this->partner(partner_cde,$partner );
-
-    }
-
-    public function partner_co_com()
-    {
-        $partner = new Model\PartnerCo();
-        $this->view_add_com($partner );
-
-    }
-
-    public function partner_pro()
-    {
-        $partner = new Model\PartnerPro();
-        $this->partner(partner_cde,$partner );
-    }
-
-        public function partner_pro_com()
-    {
-        $partner = new Model\PartnerPro();
-        $this->view_add_com($partner );
+        $this->view_add_com($_GET['partner']);
     }
 
 }

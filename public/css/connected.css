@@ -3,7 +3,9 @@
 }
 
 #sliderGBAF {
-    width: 100%;
+    width: 96%;
+    margin-left: 1.5%;
+    margin-right: 1.5%;
 }
 
 #photo #sliderGBAF {
@@ -17,10 +19,13 @@
 
 main#sectionPartner {
     margin-top: 20px;
-    padding-bottom: 6px;
-    border: 1px solid darkgray;
+    padding-bottom: 26px;
+    padding-top: 10px;
+   /* border: 1px solid darkgray;*/
     display: flex;
     flex-direction: column;
+    background-color: rgba(204,204,204,0.3);
+    border-radius: 5px;
 }
 
 #sectionPartner article {
@@ -32,7 +37,12 @@ main#sectionPartner {
     margin-top: 6px;
     padding-bottom: 40px;
     margin-left: 1.5%;
+    background-color: white;
+    border-bottom: rgba(115,117,28,0.8) 2px solid;
+    border-right: rgba(115,117,28,0.5) 2px solid;
+    border-radius: 5px;
 }
+
 
 #sectionPartner section img {
     width: 96%;
