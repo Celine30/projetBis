@@ -24,19 +24,24 @@
 section#partner{
     border: 1px solid darkgray;
     padding: 20px;
+    border-bottom: rgba(115,117,28,0.8) 2px solid;
+    border-right: rgba(115,117,28,0.5) 2px solid;
 }
 
 section#comments , section#add_comments{
-    border: 1px solid darkgray;
-    margin-top: 20px;
+  /*  border: 1px solid darkgray;
+    margin-top: 20px;*/
     padding: 20px 20px 20px 20px;
     position: relative;
+    background-color: rgba(204,204,204,0.3);
+    border-radius: 5px;
 }
 
 #title_comments{
     display: flex;
     justify-content: space-between;
 }
+
 #title_comments aside:nth-child(2){
     display: flex;
 }
@@ -51,6 +56,7 @@ section#comments , section#add_comments{
     border-radius: 15px;
     margin-left: 10px;
     display: block;
+    background-color: white;
 }
 
 .button a:first-child{
@@ -72,9 +78,12 @@ section#comments , section#add_comments{
 
 .content_comment{
     border: 1px solid darkgray;
-    border-radius: 15px;
+    border-radius: 5px;
     margin-top: 10px;
-    padding: 10px 20px 20px 20px;
+    padding: 5px 10px 5px 20px;
+    border-bottom: rgba(115,117,28,0.8) 2px solid;
+    border-right: rgba(115,117,28,0.5) 2px solid;
+    background-color: white;
 }
 
 #add_comments{
